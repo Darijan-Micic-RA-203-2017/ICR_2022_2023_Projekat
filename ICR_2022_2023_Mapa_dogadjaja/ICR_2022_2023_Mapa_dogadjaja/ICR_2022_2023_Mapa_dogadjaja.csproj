@@ -67,6 +67,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Attendance.cs" />
+    <Compile Include="Model\Country.cs" />
+    <Compile Include="Model\Event.cs" />
+    <Compile Include="Model\EventTag.cs" />
+    <Compile Include="Model\EventType.cs" />
+    <Compile Include="Model\PopulatedPlace.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
