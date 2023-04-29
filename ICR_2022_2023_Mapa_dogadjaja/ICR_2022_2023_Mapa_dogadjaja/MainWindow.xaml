@@ -5,8 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Mapa događaja" Height="680" Width="1240" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        <!-- Height="768" Width="1366"-->
+    <DockPanel>
+        <Menu x:Name="Glavni_meni" DockPanel.Dock="Top" Background="Black" Foreground="White">
+            <MenuItem x:Name="Podmeni_Aplikacija_glavnog_menija" Header="_Aplikacija (Alt + A)" 
+                      AutomationProperties.AccessKey="A">
+                <MenuItem x:Name="Stavka_Zatvori_podmenija_Aplikacija" Header="Zatvori" Click="CloseApplication">
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="Podmeni_Dogadjaj_glavnog_menija" Header="_Događaj (Alt + D)" 
+                      AutomationProperties.AccessKey="D">
+                <MenuItem x:Name="Stavka_Novi_dogadjaj_podmenija_Dogadjaj" Header="Novi događaj" 
+                          Click="OpenDialogForCreatingANewEvent"></MenuItem>
+                <MenuItem x:Name="Stavka_Izmeni_dogadjaj_podmenija_Dogadjaj" Header="Izmeni događaj" 
+                          Click="OpenDialogForEditingAnEvent"></MenuItem>
+                <MenuItem x:Name="Stavka_Obrisi_entitet_podmenija_Dogadjaj" Header="Obriši entitet" 
+                          Click="OpenDialogForDeletingAnEntity"></MenuItem>
+                <MenuItem x:Name="Stavka_Sve_etikete_podmenija_Dogadjaj" Header="Sve etikete" 
+                          Click="OpenDialogForAllEventTags"></MenuItem>
+                <MenuItem x:Name="Stavka_Svi_tipovi_dogadjaja_podmenija_Dogadjaj" Header="Svi tipovi događaja" 
+                          Click="OpenDialogForAllEventTypes"></MenuItem>
+                <MenuItem x:Name="Stavka_Svi_gradovi_podmenija_Dogadjaj" Header="Svi gradovi" 
+                          Click="OpenDialogForAllPopulatedPlaces"></MenuItem>
+                <MenuItem x:Name="Stavka_Sve_drzave_podmenija_Dogadjaj" Header="Sve države" 
+                          Click="OpenDialogForAllCountries"></MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="Podmeni_Pomoc_glavnog_menija" Header="_Pomoć (Alt + P)" AutomationProperties.AccessKey="P" 
+                      Click="OpenHelpDialog"></MenuItem>
+        </Menu>
+        <DataGrid></DataGrid>
+    </DockPanel>
 </Window>
