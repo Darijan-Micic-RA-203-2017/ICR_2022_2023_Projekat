@@ -9,31 +9,44 @@
         <!-- Height="768" Width="1366"-->
     <DockPanel>
         <Menu x:Name="Glavni_meni" DockPanel.Dock="Top" Background="Black" Foreground="White">
-            <MenuItem x:Name="Podmeni_Aplikacija_glavnog_menija" Header="_Aplikacija (Alt + A)" 
-                      AutomationProperties.AccessKey="A">
-                <MenuItem x:Name="Stavka_Zatvori_podmenija_Aplikacija" Header="Zatvori" Click="CloseApplication">
-                </MenuItem>
+            <MenuItem x:Name="Podmeni_Aplikacija_glavnog_menija" Header="_Aplikacija (Alt + A)" AutomationProperties.AccessKey="A">
+                <MenuItem x:Name="Stavka_Zatvori_podmenija_Aplikacija" Header="Zatvori" Background="Black" Foreground="White" 
+                          Click="CloseApplication"></MenuItem>
             </MenuItem>
-            <MenuItem x:Name="Podmeni_Dogadjaj_glavnog_menija" Header="_Događaj (Alt + D)" 
-                      AutomationProperties.AccessKey="D">
-                <MenuItem x:Name="Stavka_Novi_dogadjaj_podmenija_Dogadjaj" Header="Novi događaj" 
+            <MenuItem x:Name="Podmeni_Dogadjaj_glavnog_menija" Header="_Događaj (Alt + D)" AutomationProperties.AccessKey="D">
+                <MenuItem x:Name="Stavka_Novi_dogadjaj_podmenija_Dogadjaj" Header="Novi događaj" Background="Black" Foreground="White" 
                           Click="OpenDialogForCreatingANewEvent"></MenuItem>
-                <MenuItem x:Name="Stavka_Izmeni_dogadjaj_podmenija_Dogadjaj" Header="Izmeni događaj" 
+                <MenuItem x:Name="Stavka_Izmeni_dogadjaj_podmenija_Dogadjaj" Header="Izmeni događaj" Background="Black" Foreground="White" 
                           Click="OpenDialogForEditingAnEvent"></MenuItem>
-                <MenuItem x:Name="Stavka_Obrisi_entitet_podmenija_Dogadjaj" Header="Obriši entitet" 
+                <MenuItem x:Name="Stavka_Obrisi_entitet_podmenija_Dogadjaj" Header="Obriši entitet" Background="Black" Foreground="White" 
                           Click="OpenDialogForDeletingAnEntity"></MenuItem>
-                <MenuItem x:Name="Stavka_Sve_etikete_podmenija_Dogadjaj" Header="Sve etikete" 
+                <MenuItem x:Name="Stavka_Sve_etikete_podmenija_Dogadjaj" Header="Sve etikete" Background="Black" Foreground="White" 
                           Click="OpenDialogForAllEventTags"></MenuItem>
-                <MenuItem x:Name="Stavka_Svi_tipovi_dogadjaja_podmenija_Dogadjaj" Header="Svi tipovi događaja" 
+                <MenuItem x:Name="Stavka_Svi_tipovi_dogadjaja_podmenija_Dogadjaj" Header="Svi tipovi događaja" Background="Black" Foreground="White" 
                           Click="OpenDialogForAllEventTypes"></MenuItem>
-                <MenuItem x:Name="Stavka_Svi_gradovi_podmenija_Dogadjaj" Header="Svi gradovi" 
+                <MenuItem x:Name="Stavka_Svi_gradovi_podmenija_Dogadjaj" Header="Svi gradovi" Background="Black" Foreground="White" 
                           Click="OpenDialogForAllPopulatedPlaces"></MenuItem>
-                <MenuItem x:Name="Stavka_Sve_drzave_podmenija_Dogadjaj" Header="Sve države" 
+                <MenuItem x:Name="Stavka_Sve_drzave_podmenija_Dogadjaj" Header="Sve države" Background="Black" Foreground="White" 
                           Click="OpenDialogForAllCountries"></MenuItem>
             </MenuItem>
             <MenuItem x:Name="Podmeni_Pomoc_glavnog_menija" Header="_Pomoć (Alt + P)" AutomationProperties.AccessKey="P" 
                       Click="OpenHelpDialog"></MenuItem>
         </Menu>
-        <DataGrid></DataGrid>
+        <DataGrid x:Name="Tabela_dogadjaja" ItemsSource="{Binding Events}" IsReadOnly="True" SelectionMode="Single" 
+                  AutoGenerateColumns="False" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Oznaka" Binding="{Binding Id}" Width="8"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Ikona" Width="8">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate DataType="Image"></DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="39"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tip" Binding="{Binding Type.Name}" Width="18"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum" Binding="{Binding DateOfTheEvent}" Width="7"></DataGridTextColumn>
+                <DataGridTextColumn Header="Grad" Binding="{Binding PopulatedPlace.Name}" Width="10"></DataGridTextColumn>
+                <DataGridTextColumn Header="Drzava" Binding="{Binding Country.Name}" Width="10"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </DockPanel>
 </Window>
