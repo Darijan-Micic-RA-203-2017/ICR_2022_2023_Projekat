@@ -176,42 +176,42 @@ namespace ICR_2022_2023_Mapa_dogadjaja
 
         private void OpenDialogForCreatingANewEvent(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Create a new event Ctrl + N");
+            MessageBox.Show("Dijalog: Novi događaj Ctrl + N");
         }
 
         private void OpenDialogForEditingAnEvent(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Edit an event Ctrl + E");
+            MessageBox.Show("Dijalog: Izmeni događaj Ctrl + E");
         }
 
         private void OpenDialogForDeletingAnEntity(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Delete an entity Delete");
+            MessageBox.Show("Dijalog: Obriši entitet Delete");
         }
 
         private void OpenDialogForAllEventTags(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("All event tags Ctrl + I");
+            MessageBox.Show("Dijalog: Sve etikete Ctrl + I");
         }
 
         private void OpenDialogForAllEventTypes(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("All event types Ctrl + T");
+            MessageBox.Show("Dijalog: Svi tipovi događaja Ctrl + T");
         }
 
         private void OpenDialogForAllPopulatedPlaces(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("All populated places Ctrl + G");
+            MessageBox.Show("Dijalog: Svi gradovi Ctrl + G");
         }
 
         private void OpenDialogForAllCountries(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("All countries Ctrl + R");
+            MessageBox.Show("Dijalog: Sve države Ctrl + R");
         }
 
         private void OpenHelpDialog(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Help Alt + P");
+            MessageBox.Show("Dijalog: Pomoć Alt + P");
         }
     }
 }

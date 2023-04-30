@@ -8,31 +8,31 @@
         Title="Mapa događaja" Height="680" Width="1240" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
         <!-- Height="768" Width="1366"-->
     <DockPanel>
-        <Menu x:Name="Glavni_meni" DockPanel.Dock="Top" Background="Black" Foreground="White">
-            <MenuItem x:Name="Podmeni_Aplikacija_glavnog_menija" Header="_Aplikacija (Alt + A)" AutomationProperties.AccessKey="A">
-                <MenuItem x:Name="Stavka_Zatvori_podmenija_Aplikacija" Header="Zatvori" Background="Black" Foreground="White" 
+        <Menu x:Name="Main_menu" DockPanel.Dock="Top" Background="Black" Foreground="White">
+            <MenuItem x:Name="Submenu_Application_of_main_menu" Header="_Aplikacija (Alt + A)" AutomationProperties.AccessKey="A">
+                <MenuItem x:Name="Item_Close_of_submenu_Application" Header="Zatvori" Background="Black" Foreground="White" 
                           Click="CloseApplication"></MenuItem>
             </MenuItem>
-            <MenuItem x:Name="Podmeni_Dogadjaj_glavnog_menija" Header="_Događaj (Alt + D)" AutomationProperties.AccessKey="D">
-                <MenuItem x:Name="Stavka_Novi_dogadjaj_podmenija_Dogadjaj" Header="Novi događaj" Background="Black" Foreground="White" 
+            <MenuItem x:Name="Submenu_Event_of_main_menu" Header="_Događaj (Alt + D)" AutomationProperties.AccessKey="D">
+                <MenuItem x:Name="Item_New_event_of_submenu_Event" Header="Novi događaj" Background="Black" Foreground="White" 
                           Click="OpenDialogForCreatingANewEvent"></MenuItem>
-                <MenuItem x:Name="Stavka_Izmeni_dogadjaj_podmenija_Dogadjaj" Header="Izmeni događaj" Background="Black" Foreground="White" 
+                <MenuItem x:Name="Item_Edit_event_of_submenu_Event" Header="Izmeni događaj" Background="Black" Foreground="White" 
                           Click="OpenDialogForEditingAnEvent"></MenuItem>
-                <MenuItem x:Name="Stavka_Obrisi_entitet_podmenija_Dogadjaj" Header="Obriši entitet" Background="Black" Foreground="White" 
+                <MenuItem x:Name="Item_Delete_entity_of_submenu_Event" Header="Obriši entitet" Background="Black" Foreground="White" 
                           Click="OpenDialogForDeletingAnEntity"></MenuItem>
-                <MenuItem x:Name="Stavka_Sve_etikete_podmenija_Dogadjaj" Header="Sve etikete" Background="Black" Foreground="White" 
+                <MenuItem x:Name="Item_All_event_tags_of_submenu_Event" Header="Sve etikete" Background="Black" Foreground="White" 
                           Click="OpenDialogForAllEventTags"></MenuItem>
-                <MenuItem x:Name="Stavka_Svi_tipovi_dogadjaja_podmenija_Dogadjaj" Header="Svi tipovi događaja" Background="Black" Foreground="White" 
+                <MenuItem x:Name="Item_All_event_types_of_submenu_Event" Header="Svi tipovi događaja" Background="Black" Foreground="White" 
                           Click="OpenDialogForAllEventTypes"></MenuItem>
-                <MenuItem x:Name="Stavka_Svi_gradovi_podmenija_Dogadjaj" Header="Svi gradovi" Background="Black" Foreground="White" 
+                <MenuItem x:Name="Item_All_populated_places_of_submenu_Event" Header="Svi gradovi" Background="Black" Foreground="White" 
                           Click="OpenDialogForAllPopulatedPlaces"></MenuItem>
-                <MenuItem x:Name="Stavka_Sve_drzave_podmenija_Dogadjaj" Header="Sve države" Background="Black" Foreground="White" 
+                <MenuItem x:Name="Item_All_countries_of_submenu_Event" Header="Sve države" Background="Black" Foreground="White" 
                           Click="OpenDialogForAllCountries"></MenuItem>
             </MenuItem>
-            <MenuItem x:Name="Podmeni_Pomoc_glavnog_menija" Header="_Pomoć (Alt + P)" AutomationProperties.AccessKey="P" 
+            <MenuItem x:Name="Submenu_Help_of_main_menu" Header="_Pomoć (Alt + P)" AutomationProperties.AccessKey="P" 
                       Click="OpenHelpDialog"></MenuItem>
         </Menu>
-        <DataGrid x:Name="Tabela_dogadjaja" ItemsSource="{Binding Events}" IsReadOnly="True" SelectionMode="Single" 
+        <DataGrid x:Name="Table_of_events" ItemsSource="{Binding Events}" IsReadOnly="True" SelectionMode="Single" 
                   AutoGenerateColumns="False" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Oznaka" Binding="{Binding Id}" Width="8"></DataGridTextColumn>
