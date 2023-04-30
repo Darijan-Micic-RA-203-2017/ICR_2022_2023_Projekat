@@ -213,5 +213,26 @@ namespace ICR_2022_2023_Mapa_dogadjaja
         {
             MessageBox.Show("Dijalog: Pomoć Alt + P");
         }
+
+        // REFERENCE: https://social.msdn.microsoft.com/Forums/silverlight/en-US/062a2fc8-802d-4390-b2c8-ec73153e1911/column-width-in-percentage-for-datagrid?forum=silverlightcontrols
+        private void Table_of_events_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            DataGrid dataGrid = (DataGrid) sender;
+            
+            foreach (DataGridColumn dgColumn in dataGrid.Columns)
+            {
+                if (dgColumn.MinWidth > 0 && dgColumn.ActualWidth > 0)
+                {
+                    if (dataGrid.MinWidth > 0)
+                    {
+                        dgColumn.Width = new DataGridLength(dgColumn.MinWidth / dataGrid.MinWidth * dataGrid.ActualWidth);
+                    }
+                    else
+                    {
+                        dgColumn.Width = new DataGridLength(dgColumn.MinWidth * (dataGrid.ActualWidth - 14) / 100);
+                    }
+                }
+            }
+        }
     }
 }

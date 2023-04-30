@@ -33,19 +33,21 @@
                       Click="OpenHelpDialog"></MenuItem>
         </Menu>
         <DataGrid x:Name="Table_of_events" ItemsSource="{Binding Events}" IsReadOnly="True" SelectionMode="Single" 
-                  AutoGenerateColumns="False" HorizontalContentAlignment="Left" VerticalContentAlignment="Center">
+                  CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" 
+                  VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" 
+                  AutoGenerateColumns="False" Margin="10 0 10 0" SizeChanged="Table_of_events_SizeChanged">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Oznaka" Binding="{Binding Id}" Width="8"></DataGridTextColumn>
-                <DataGridTemplateColumn Header="Ikona" Width="8">
+                <DataGridTextColumn Header="Oznaka" Binding="{Binding Id}" MinWidth="8"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="Ikona" MinWidth="8">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate DataType="Image"></DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" Width="39"></DataGridTextColumn>
-                <DataGridTextColumn Header="Tip" Binding="{Binding Type.Name}" Width="18"></DataGridTextColumn>
-                <DataGridTextColumn Header="Datum" Binding="{Binding DateOfTheEvent}" Width="7"></DataGridTextColumn>
-                <DataGridTextColumn Header="Grad" Binding="{Binding PopulatedPlace.Name}" Width="10"></DataGridTextColumn>
-                <DataGridTextColumn Header="Drzava" Binding="{Binding Country.Name}" Width="10"></DataGridTextColumn>
+                <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" MinWidth="39"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tip" Binding="{Binding Type.Name}" MinWidth="18"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum" Binding="{Binding DateOfTheEvent}" MinWidth="7"></DataGridTextColumn>
+                <DataGridTextColumn Header="Grad" Binding="{Binding PopulatedPlace.Name}" MinWidth="10"></DataGridTextColumn>
+                <DataGridTextColumn Header="Drzava" Binding="{Binding Country.Name}" MinWidth="10"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>
