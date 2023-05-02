@@ -34,36 +34,36 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             DataContext = this;
 
             countries = new ObservableCollection<Country>();
-            Country country01 = new Country(1, "Srbija");
-            Country country02 = new Country(2, "Hrvatska");
+            Country country01 = new Country("DRZ001", "Srbija");
+            Country country02 = new Country("DRZ002", "Hrvatska");
             countries.Add(country01);
             countries.Add(country02);
 
             populatedPlaces = new ObservableCollection<PopulatedPlace>();
-            PopulatedPlace populatedPlace01 = new PopulatedPlace(1, "Novi Sad");
-            PopulatedPlace populatedPlace02 = new PopulatedPlace(2, "Drvengrad");
-            PopulatedPlace populatedPlace03 = new PopulatedPlace(3, "Beograd");
+            PopulatedPlace populatedPlace01 = new PopulatedPlace("GRAD001", "Novi Sad");
+            PopulatedPlace populatedPlace02 = new PopulatedPlace("GRAD002", "Drvengrad");
+            PopulatedPlace populatedPlace03 = new PopulatedPlace("GRAD003", "Beograd");
             populatedPlaces.Add(populatedPlace01);
             populatedPlaces.Add(populatedPlace02);
             populatedPlaces.Add(populatedPlace03);
 
             eventTypes = new ObservableCollection<EventType>();
-            EventType eventType01 = new EventType("1", "Muzički festival", "Opis", "Ikona");
-            EventType eventType02 = new EventType("2", "Filmski festival", "Opis", "Ikona");
-            EventType eventType03 = new EventType("3", "Košarkaška utakmica", "Opis", "Ikona");
-            EventType eventType04 = new EventType("4", "Humanitarna aukcija", "Opis", "Ikona");
+            EventType eventType01 = new EventType("TIPDOG001", "Muzički festival", "Opis", "Ikona");
+            EventType eventType02 = new EventType("TIPDOG002", "Filmski festival", "Opis", "Ikona");
+            EventType eventType03 = new EventType("TIPDOG003", "Košarkaška utakmica", "Opis", "Ikona");
+            EventType eventType04 = new EventType("TIPDOG004", "Humanitarna aukcija", "Opis", "Ikona");
             eventTypes.Add(eventType01);
             eventTypes.Add(eventType02);
             eventTypes.Add(eventType03);
             eventTypes.Add(eventType04);
 
             eventTags = new ObservableCollection<EventTag>();
-            EventTag eventTag01 = new EventTag("1", "Brown", "Muzika");
-            EventTag eventTag02 = new EventTag("2", "Red", "Kratkometražni film");
-            EventTag eventTag03 = new EventTag("3", "Orange", "Dugometražni film");
-            EventTag eventTag04 = new EventTag("4", "Blue", "Sport");
-            EventTag eventTag05 = new EventTag("5", "Black", "Dvoranski sport");
-            EventTag eventTag06 = new EventTag("6", "Green", "Humanitaran");
+            EventTag eventTag01 = new EventTag("ODOG001", "Brown", "Muzika");
+            EventTag eventTag02 = new EventTag("ODOG002", "Red", "Kratkometražni film");
+            EventTag eventTag03 = new EventTag("ODOG003", "Orange", "Dugometražni film");
+            EventTag eventTag04 = new EventTag("ODOG004", "Blue", "Sport");
+            EventTag eventTag05 = new EventTag("ODOG005", "Black", "Dvoranski sport");
+            EventTag eventTag06 = new EventTag("ODOG006", "Green", "Humanitaran");
             eventTags.Add(eventTag01);
             eventTags.Add(eventTag02);
             eventTags.Add(eventTag03);
@@ -72,18 +72,18 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             eventTags.Add(eventTag06);
 
             events = new ObservableCollection<Event>();
-            Event event01 = new Event("E001", new List<EventTag>() {eventTag01}, "Exit", 
+            Event event01 = new Event("DOG001", new List<EventTag>() {eventTag01}, "Exit", 
                 "Exit se održava u julu svake godine na Petrovaradinskoj tvrđavi.", eventType01, Attendance.OVER_10000, 
                 "Ikona", false, 250000.0, populatedPlace01, country01, new List<DateTime>() {}, new DateTime(2023, 7, 11));
-            Event event02 = new Event("E002", new List<EventTag>() {eventTag02, eventTag03}, "Kustendorf", 
+            Event event02 = new Event("DOG002", new List<EventTag>() {eventTag02, eventTag03}, "Kustendorf", 
                 "Kustendorf se održava 24. januara svake godine u etno naselju Drvengrad na planini Mećavnik.", eventType02, 
                 Attendance.OVER_10000, "Ikona", false, 200000.0, populatedPlace02, country01, new List<DateTime>() { }, 
                 new DateTime(2023, 1, 24));
-            Event event03 = new Event("E003", new List<EventTag>() {eventTag04, eventTag05}, "Partizan - Barselona",
+            Event event03 = new Event("DOG003", new List<EventTag>() {eventTag04, eventTag05}, "Partizan - Barselona",
                 "Utakmica 32. kola ligaškog dela Evrolige u Štark areni.", eventType03, Attendance.OVER_10000, "Ikona", false, 
                 110000.0, populatedPlace03, country01, new List<DateTime>() {}, 
                 new DateTime(2023, 4, 6));
-            Event event04 = new Event("E004", new List<EventTag>() {eventTag06}, "Aukcija sportskih dresova Miloša Nikolića", 
+            Event event04 = new Event("DOG004", new List<EventTag>() {eventTag06}, "Aukcija sportskih dresova Miloša Nikolića", 
                 "Uplaćen novac za kupovinu potpisanih dresova najpoznatijih sportista Evrope iskoristiće se kao donacija " + 
                 "Institutu za majku i dete u svrhu nabavke novih inkubatora za bebe.", eventType04, Attendance.BELOW_1000, 
                 "Ikona", true, 50.0, populatedPlace03, country01, new List<DateTime>() {}, 
