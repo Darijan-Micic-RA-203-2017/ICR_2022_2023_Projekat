@@ -53,6 +53,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\DateTimeToFormattedStringConverter.cs" />
     <Compile Include="View\DeleteAnEntityDialog.xaml.cs">
       <DependentUpon>DeleteAnEntityDialog.xaml</DependentUpon>
     </Compile>
