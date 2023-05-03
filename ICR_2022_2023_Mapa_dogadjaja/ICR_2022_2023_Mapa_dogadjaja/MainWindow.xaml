@@ -36,9 +36,11 @@
         <DockPanel Height="300" Margin="10 0 10 0">
             <WrapPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 0 0 10">
                 <Button x:Name="Search_button" Content="Pretraži (Alt + 1)" Margin="0 0 10 0"></Button>
-                <TextBox x:Name="Input_for_filtering_table" Text="Filtriraj tabelu (Alt + 2)" Margin="0 0 10 0" Width="200"></TextBox>
-                <TextBox x:Name="Input_for_filtering_map" Text="Filtriraj mapu (Alt + 3)" Margin="0 0 10 0" Width="200"></TextBox>
-                <Button x:Name="Cancel_search_or_filtering_button" Content="Poništi (Alt + 4)"></Button>
+                <TextBox x:Name="Input_for_filtering_table" Text="Filtriraj tabelu (Alt + 2)" Margin="0 0 10 0" Width="200" 
+                         TextChanged="FilterTable"></TextBox>
+                <TextBox x:Name="Input_for_filtering_map" Text="Filtriraj tabelu (Alt + 2)" Margin="0 0 10 0" Width="200"></TextBox>
+                <Button x:Name="Cancel_search_or_filtering_button" Content="Poništi (Alt + 4)" IsEnabled="False" 
+                        Click="CancelSearchOrFiltering"></Button>
             </WrapPanel>
             <DataGrid x:Name="Table_of_events" ItemsSource="{Binding Events}" IsReadOnly="True" SelectionMode="Single" 
                       CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" 

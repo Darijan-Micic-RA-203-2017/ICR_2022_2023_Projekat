@@ -21,33 +21,45 @@ namespace ICR_2022_2023_Mapa_dogadjaja
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ObservableCollection<Event> events;
-        private ObservableCollection<EventTag> eventTags;
-        private ObservableCollection<EventType> eventTypes;
-        private ObservableCollection<PopulatedPlace> populatedPlaces;
-        private ObservableCollection<Country> countries;
+        private const string DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_TABLE = "Filtriraj tabelu (Alt + 2)";
+        private const string DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_MAP = "Filtriraj mapu (Alt + 3)";
+        
+        private ObservableCollection<Event> events = new ObservableCollection<Event>();
+        private ObservableCollection<EventTag> eventTags = new ObservableCollection<EventTag>();
+        private ObservableCollection<EventType> eventTypes = new ObservableCollection<EventType>();
+        private ObservableCollection<PopulatedPlace> populatedPlaces = new ObservableCollection<PopulatedPlace>();
+        private ObservableCollection<Country> countries = new ObservableCollection<Country>();
+
+        private ObservableCollection<Event> eventsThatFitSearchCriterions = new ObservableCollection<Event>();
+        private ObservableCollection<EventTag> eventTagsThatFitSearchCriterions = new ObservableCollection<EventTag>();
+        private ObservableCollection<EventType> eventTypesThatFitSearchCriterions = new ObservableCollection<EventType>();
+        private ObservableCollection<PopulatedPlace> populatedPlacesThatFitSearchCriterions = new ObservableCollection<PopulatedPlace>();
+        private ObservableCollection<Country> countriesThatFitSearchCriterions = new ObservableCollection<Country>();
+
+        private ObservableCollection<Event> filteredEvents = new ObservableCollection<Event>();
+        private ObservableCollection<EventTag> filteredEventTags = new ObservableCollection<EventTag>();
+        private ObservableCollection<EventType> filteredEventTypes = new ObservableCollection<EventType>();
+        private ObservableCollection<PopulatedPlace> filteredPopulatedPlaces = new ObservableCollection<PopulatedPlace>();
+        private ObservableCollection<Country> filteredCountries = new ObservableCollection<Country>();
 
         public MainWindow()
         {
             InitializeComponent();
 
             DataContext = this;
-
-            countries = new ObservableCollection<Country>();
+            
             Country country01 = new Country("DRZ001", "Srbija");
             Country country02 = new Country("DRZ002", "Hrvatska");
             countries.Add(country01);
             countries.Add(country02);
-
-            populatedPlaces = new ObservableCollection<PopulatedPlace>();
+            
             PopulatedPlace populatedPlace01 = new PopulatedPlace("GRAD001", "Novi Sad");
             PopulatedPlace populatedPlace02 = new PopulatedPlace("GRAD002", "Drvengrad");
             PopulatedPlace populatedPlace03 = new PopulatedPlace("GRAD003", "Beograd");
             populatedPlaces.Add(populatedPlace01);
             populatedPlaces.Add(populatedPlace02);
             populatedPlaces.Add(populatedPlace03);
-
-            eventTypes = new ObservableCollection<EventType>();
+            
             EventType eventType01 = new EventType("TIPDOG001", "Muzički festival", "Opis", "Ikona");
             EventType eventType02 = new EventType("TIPDOG002", "Filmski festival", "Opis", "Ikona");
             EventType eventType03 = new EventType("TIPDOG003", "Košarkaška utakmica", "Opis", "Ikona");
@@ -56,8 +68,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             eventTypes.Add(eventType02);
             eventTypes.Add(eventType03);
             eventTypes.Add(eventType04);
-
-            eventTags = new ObservableCollection<EventTag>();
+            
             EventTag eventTag01 = new EventTag("ODOG001", "Brown", "Muzika");
             EventTag eventTag02 = new EventTag("ODOG002", "Red", "Kratkometražni film");
             EventTag eventTag03 = new EventTag("ODOG003", "Orange", "Dugometražni film");
@@ -70,8 +81,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             eventTags.Add(eventTag04);
             eventTags.Add(eventTag05);
             eventTags.Add(eventTag06);
-
-            events = new ObservableCollection<Event>();
+            
             Event event01 = new Event("DOG001", new List<EventTag>() {eventTag01}, "Exit", 
                 "Exit se održava u julu svake godine na Petrovaradinskoj tvrđavi.", eventType01, Attendance.OVER_10000, 
                 "Ikona", false, 250000.0, populatedPlace01, country01, new List<DateTime>() {}, new DateTime(2023, 7, 11));
@@ -92,7 +102,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             events.Add(event02);
             events.Add(event03);
             events.Add(event04);
-
+            
             AddHotKeys();
         }
 
@@ -124,6 +134,66 @@ namespace ICR_2022_2023_Mapa_dogadjaja
         {
             get { return countries; }
             set { countries = value; }
+        }
+
+        public ObservableCollection<Event> EventsThatFitSearchCriterions
+        {
+            get { return eventsThatFitSearchCriterions; }
+            set { eventsThatFitSearchCriterions = value; }
+        }
+
+        public ObservableCollection<EventTag> EventTagsThatFitSearchCriterions
+        {
+            get { return eventTagsThatFitSearchCriterions; }
+            set { eventTagsThatFitSearchCriterions = value; }
+        }
+
+        public ObservableCollection<EventType> EventTypesThatFitSearchCriterions
+        {
+            get { return eventTypesThatFitSearchCriterions; }
+            set { eventTypesThatFitSearchCriterions = value; }
+        }
+
+        public ObservableCollection<PopulatedPlace> PopulatedPlacesThatFitSearchCriterions
+        {
+            get { return populatedPlacesThatFitSearchCriterions; }
+            set { populatedPlacesThatFitSearchCriterions = value; }
+        }
+
+        public ObservableCollection<Country> CountriesThatFitSearchCriterions
+        {
+            get { return countriesThatFitSearchCriterions; }
+            set { countriesThatFitSearchCriterions = value; }
+        }
+
+        public ObservableCollection<Event> FilteredEvents
+        {
+            get { return filteredEvents; }
+            set { filteredEvents = value; }
+        }
+
+        public ObservableCollection<EventTag> FilteredEventTags
+        {
+            get { return filteredEventTags; }
+            set { filteredEventTags = value; }
+        }
+
+        public ObservableCollection<EventType> FilteredEventTypes
+        {
+            get { return filteredEventTypes; }
+            set { filteredEventTypes = value; }
+        }
+
+        public ObservableCollection<PopulatedPlace> FilteredPopulatedPlaces
+        {
+            get { return filteredPopulatedPlaces; }
+            set { filteredPopulatedPlaces = value; }
+        }
+
+        public ObservableCollection<Country> FilteredCountries
+        {
+            get { return filteredCountries; }
+            set { filteredCountries = value; }
         }
 
         // REFERENCE: https://codesamplez.com/development/wpf-hotkeys-c-sharp
@@ -162,6 +232,14 @@ namespace ICR_2022_2023_Mapa_dogadjaja
                 RoutedCommand openDialogForAllCountriesCommand = new RoutedCommand();
                 openDialogForAllCountriesCommand.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(openDialogForAllCountriesCommand, OpenDialogForAllCountries));
+
+                RoutedCommand focusOnInputForFilteringTableCommand = new RoutedCommand();
+                focusOnInputForFilteringTableCommand.InputGestures.Add(new KeyGesture(Key.D2, ModifierKeys.Alt));
+                CommandBindings.Add(new CommandBinding(focusOnInputForFilteringTableCommand, FocusOnInputForFilteringTable));
+
+                RoutedCommand cancelSearchOrFilteringCommand = new RoutedCommand();
+                cancelSearchOrFilteringCommand.InputGestures.Add(new KeyGesture(Key.D4, ModifierKeys.Alt));
+                CommandBindings.Add(new CommandBinding(cancelSearchOrFilteringCommand, CancelSearchOrFiltering));
             }
             catch (Exception e)
             {
@@ -214,6 +292,11 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             MessageBox.Show("Dijalog: Pomoć Alt + P");
         }
 
+        private void FocusOnInputForFilteringTable(object sender, RoutedEventArgs e)
+        {
+            Input_for_filtering_table.Focus();
+        }
+
         // REFERENCE: https://social.msdn.microsoft.com/Forums/silverlight/en-US/062a2fc8-802d-4390-b2c8-ec73153e1911/column-width-in-percentage-for-datagrid?forum=silverlightcontrols
         private void Table_of_events_SizeChanged(object sender, SizeChangedEventArgs e)
         {
@@ -233,6 +316,172 @@ namespace ICR_2022_2023_Mapa_dogadjaja
                     }
                 }
             }
+        }
+
+        private void FilterTable(object sender, TextChangedEventArgs e)
+        {
+            if (Table_of_events == null)
+            {
+                return;
+            }
+
+            TextBox inputForFilteringTable = (TextBox) sender;
+            
+            string enteredText = inputForFilteringTable.Text.ToLower();
+            if (enteredText == DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_TABLE)
+            {
+                Cancel_search_or_filtering_button.IsEnabled = false;
+                Table_of_events.ItemsSource = Events;
+                eventsThatFitSearchCriterions.Clear();
+                
+                return;
+            }
+            
+            filteredEvents.Clear();
+
+            foreach (Event eve in events)
+            {
+                if (eve.Id.ToLower() == enteredText)
+                {
+                    filteredEvents.Add(eve);
+                    continue;
+                }
+
+                foreach (EventTag eTag in eve.Tags)
+                {
+                    if (eTag.Id.ToLower() == enteredText)
+                    {
+                        filteredEvents.Add(eve);
+                        continue;
+                    }
+
+                    if (eTag.Color.ToLower() == enteredText)
+                    {
+                        filteredEvents.Add(eve);
+                        continue;
+                    }
+
+                    if (eTag.Description.ToLower() == enteredText)
+                    {
+                        filteredEvents.Add(eve);
+                        continue;
+                    }
+                }
+
+                if (eve.Name.ToLower() == enteredText)
+                {
+                    filteredEvents.Add(eve);
+                    continue;
+                }
+
+                if (eve.Description.ToLower() == enteredText)
+                {
+                    filteredEvents.Add(eve);
+                    continue;
+                }
+
+                if (eve.Type.Id.ToLower() == enteredText)
+                {
+                    filteredEvents.Add(eve);
+                    continue;
+                }
+                if (eve.Type.Name.ToLower() == enteredText)
+                {
+                    filteredEvents.Add(eve);
+                    continue;
+                }
+                if (eve.Type.Description.ToLower() == enteredText)
+                {
+                    filteredEvents.Add(eve);
+                    continue;
+                }
+                if (eve.Type.Icon.ToLower() == enteredText)
+                {
+                    filteredEvents.Add(eve);
+                    continue;
+                }
+
+                if (eve.Attendance.ToString().ToLower() == enteredText)
+                {
+                    filteredEvents.Add(eve);
+                    continue;
+                }
+
+                if (eve.Icon.ToLower() == enteredText)
+                {
+                    filteredEvents.Add(eve);
+                    continue;
+                }
+
+                if (eve.IsHumanitary.ToString().ToLower() == enteredText)
+                {
+                    filteredEvents.Add(eve);
+                    continue;
+                }
+
+                if (eve.AverageCostsOfSustension.ToString().ToLower() == enteredText)
+                {
+                    filteredEvents.Add(eve);
+                    continue;
+                }
+
+                if (eve.PopulatedPlace.Id.ToLower() == enteredText)
+                {
+                    filteredEvents.Add(eve);
+                    continue;
+                }
+                if (eve.PopulatedPlace.Name.ToLower() == enteredText)
+                {
+                    filteredEvents.Add(eve);
+                    continue;
+                }
+
+                if (eve.Country.Id.ToLower() == enteredText)
+                {
+                    filteredEvents.Add(eve);
+                    continue;
+                }
+                if (eve.Country.Name.ToLower() == enteredText)
+                {
+                    filteredEvents.Add(eve);
+                    continue;
+                }
+
+                foreach (DateTime historicalDOTE in eve.HistoryOfDatesOfTheEvent)
+                {
+                    if (historicalDOTE.ToString("MM/dd/yyyy").ToLower() == enteredText)
+                    {
+                        if (!filteredEvents.Contains(eve))
+                        {
+                            filteredEvents.Add(eve);
+                        }
+                        continue;
+                    }
+                }
+
+                if (eve.DateOfTheEvent.ToString("MM/dd/yyyy").ToLower() == enteredText)
+                {
+                    filteredEvents.Add(eve);
+                    continue;
+                }
+            }
+
+            Table_of_events.ItemsSource = FilteredEvents;
+            Cancel_search_or_filtering_button.IsEnabled = true;
+        }
+
+        private void CancelSearchOrFiltering(object sender, RoutedEventArgs e)
+        {
+            if (!Cancel_search_or_filtering_button.IsEnabled)
+            {
+                return;
+            }
+            
+            Cancel_search_or_filtering_button.IsEnabled = false;
+            Table_of_events.ItemsSource = Events;
+            eventsThatFitSearchCriterions.Clear();
+            filteredEvents.Clear();
+            Input_for_filtering_table.Text = DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_TABLE;
         }
     }
 }
