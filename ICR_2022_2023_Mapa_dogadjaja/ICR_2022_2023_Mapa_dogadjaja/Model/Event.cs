@@ -6,51 +6,63 @@ using System.Text;
 
 namespace ICR_2022_2023_Mapa_dogadjaja.Model
 {
-    public class Event : INotifyPropertyChanged
+    public class Event : IEditableObject, INotifyPropertyChanged
     {
-        private string id;
-        private List<EventTag> tags;
-        private string name;
-        private string description;
-        private EventType type;
-        private Attendance attendance;
-        private string icon;
-        private bool isHumanitary;
-        private double averageCostsOfSustension;
-        private PopulatedPlace populatedPlace;
-        private Country country;
-        private List<DateTime> historyOfDatesOfTheEvent;
-        private DateTime dateOfTheEvent;
+        private struct EventData
+        {
+            internal string id;
+            internal List<EventTag> tags;
+            internal string name;
+            internal string description;
+            internal EventType type;
+            internal Attendance attendance;
+            internal string icon;
+            internal bool isHumanitary;
+            internal double averageCostsOfSustension;
+            internal PopulatedPlace populatedPlace;
+            internal Country country;
+            internal List<DateTime> historyOfDatesOfTheEvent;
+            internal DateTime dateOfTheEvent;
+        }
+        
+        private EventData eventData;
+        private EventData backupData;
+        private bool inTxn = false;
 
-        public Event() { }
+        public Event()
+        {
+            eventData = new EventData();
+        }
 
-        public Event(string id, List<EventTag> tags, string name, string description, EventType type, Attendance attendance, 
-            string icon, bool isHumanitary, double averageCostsOfSustension, PopulatedPlace populatedPlace, Country country, 
+        public Event(string id, List<EventTag> tags, string name, string description, EventType type, Attendance attendance,
+            string icon, bool isHumanitary, double averageCostsOfSustension, PopulatedPlace populatedPlace, Country country,
             List<DateTime> historyOfDatesOfTheEvent, DateTime dateOfTheEvent)
         {
-            this.id = id;
-            this.tags = tags;
-            this.name = name;
-            this.description = description;
-            this.type = type;
-            this.attendance = attendance;
-            this.icon = icon;
-            this.isHumanitary = isHumanitary;
-            this.averageCostsOfSustension = averageCostsOfSustension;
-            this.populatedPlace = populatedPlace;
-            this.country = country;
-            this.historyOfDatesOfTheEvent = historyOfDatesOfTheEvent;
-            this.dateOfTheEvent = dateOfTheEvent;
+            eventData = new EventData();
+
+            eventData.id = id;
+            eventData.tags = tags;
+            eventData.name = name;
+            eventData.description = description;
+            eventData.type = type;
+            eventData.attendance = attendance;
+            eventData.icon = icon;
+            eventData.isHumanitary = isHumanitary;
+            eventData.averageCostsOfSustension = averageCostsOfSustension;
+            eventData.populatedPlace = populatedPlace;
+            eventData.country = country;
+            eventData.historyOfDatesOfTheEvent = historyOfDatesOfTheEvent;
+            eventData.dateOfTheEvent = dateOfTheEvent;
         }
 
         public string Id
         {
-            get { return id; }
+            get { return eventData.id; }
             set
             {
-                if (value != id)
+                if (value != eventData.id)
                 {
-                    id = value;
+                    eventData.id = value;
                     OnPropertyChanged("Id");
                 }
             }
@@ -58,12 +70,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
 
         public List<EventTag> Tags
         {
-            get { return tags; }
+            get { return eventData.tags; }
             set
             {
-                if (!value.SequenceEqual(tags))
+                if (!value.SequenceEqual(eventData.tags))
                 {
-                    tags = value;
+                    eventData.tags = value;
                     OnPropertyChanged("Tags");
                 }
             }
@@ -71,12 +83,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
 
         public string Name
         {
-            get { return name; }
+            get { return eventData.name; }
             set
             {
-                if (value != name)
+                if (value != eventData.name)
                 {
-                    name = value;
+                    eventData.name = value;
                     OnPropertyChanged("Name");
                 }
             }
@@ -84,12 +96,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
 
         public string Description
         {
-            get { return description; }
+            get { return eventData.description; }
             set
             {
-                if (value != description)
+                if (value != eventData.description)
                 {
-                    description = value;
+                    eventData.description = value;
                     OnPropertyChanged("Description");
                 }
             }
@@ -97,12 +109,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
 
         public EventType Type
         {
-            get { return type; }
+            get { return eventData.type; }
             set
             {
-                if (!value.Equals(type))
+                if (!value.Equals(eventData.type))
                 {
-                    type = value;
+                    eventData.type = value;
                     OnPropertyChanged("Type");
                 }
             }
@@ -110,12 +122,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
 
         public Attendance Attendance
         {
-            get { return attendance; }
+            get { return eventData.attendance; }
             set
             {
-                if (value != attendance)
+                if (value != eventData.attendance)
                 {
-                    attendance = value;
+                    eventData.attendance = value;
                     OnPropertyChanged("Attendance");
                 }
             }
@@ -123,12 +135,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
 
         public string Icon
         {
-            get { return icon; }
+            get { return eventData.icon; }
             set
             {
-                if (value != icon)
+                if (value != eventData.icon)
                 {
-                    icon = value;
+                    eventData.icon = value;
                     OnPropertyChanged("Icon");
                 }
             }
@@ -136,12 +148,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
 
         public bool IsHumanitary
         {
-            get { return isHumanitary; }
+            get { return eventData.isHumanitary; }
             set
             {
-                if (value != isHumanitary)
+                if (value != eventData.isHumanitary)
                 {
-                    isHumanitary = value;
+                    eventData.isHumanitary = value;
                     OnPropertyChanged("IsHumanitary");
                 }
             }
@@ -149,12 +161,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
 
         public double AverageCostsOfSustension
         {
-            get { return averageCostsOfSustension; }
+            get { return eventData.averageCostsOfSustension; }
             set
             {
-                if (value != averageCostsOfSustension)
+                if (value != eventData.averageCostsOfSustension)
                 {
-                    averageCostsOfSustension = value;
+                    eventData.averageCostsOfSustension = value;
                     OnPropertyChanged("AverageCostsOfSustension");
                 }
             }
@@ -162,12 +174,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
 
         public PopulatedPlace PopulatedPlace
         {
-            get { return populatedPlace; }
+            get { return eventData.populatedPlace; }
             set
             {
-                if (!value.Equals(populatedPlace))
+                if (!value.Equals(eventData.populatedPlace))
                 {
-                    populatedPlace = value;
+                    eventData.populatedPlace = value;
                     OnPropertyChanged("PopulatedPlace");
                 }
             }
@@ -175,12 +187,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
 
         public Country Country
         {
-            get { return country; }
+            get { return eventData.country; }
             set
             {
-                if (!value.Equals(country))
+                if (!value.Equals(eventData.country))
                 {
-                    country = value;
+                    eventData.country = value;
                     OnPropertyChanged("Country");
                 }
             }
@@ -188,12 +200,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
 
         public List<DateTime> HistoryOfDatesOfTheEvent
         {
-            get { return historyOfDatesOfTheEvent; }
+            get { return eventData.historyOfDatesOfTheEvent; }
             set
             {
-                if (!value.SequenceEqual(historyOfDatesOfTheEvent))
+                if (!value.SequenceEqual(eventData.historyOfDatesOfTheEvent))
                 {
-                    historyOfDatesOfTheEvent = value;
+                    eventData.historyOfDatesOfTheEvent = value;
                     OnPropertyChanged("HistoryOfDatesOfTheEvent");
                 }
             }
@@ -201,14 +213,41 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
 
         public DateTime DateOfTheEvent
         {
-            get { return dateOfTheEvent; }
+            get { return eventData.dateOfTheEvent; }
             set
             {
-                if (value != dateOfTheEvent)
+                if (value != eventData.dateOfTheEvent)
                 {
-                    dateOfTheEvent = value;
+                    eventData.dateOfTheEvent = value;
                     OnPropertyChanged("DateOfTheEvent");
                 }
+            }
+        }
+        
+        public void BeginEdit()
+        {
+            if (!inTxn)
+            {
+                backupData = eventData;
+                inTxn = true;
+            }
+        }
+
+        public void EndEdit()
+        {
+            if (inTxn)
+            {
+                backupData = new EventData();
+                inTxn = false;
+            }
+        }
+
+        public void CancelEdit()
+        {
+            if (inTxn)
+            {
+                eventData = backupData;
+                inTxn = false;
             }
         }
 
@@ -229,139 +268,139 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
                 return false;
             }
 
-            Event other = (Event) obj;
+            Event other = (Event)obj;
 
-            if (id == null)
+            if (eventData.id == null)
             {
-                if (other.id != null)
+                if (other.eventData.id != null)
                 {
                     return false;
                 }
             }
-            else if (id != other.id)
+            else if (eventData.id != other.eventData.id)
             {
                 return false;
             }
 
-            if (tags == null)
+            if (eventData.tags == null)
             {
-                if (other.tags != null)
+                if (other.eventData.tags != null)
                 {
                     return false;
                 }
             }
-            else if (!tags.SequenceEqual(other.tags))
+            else if (!eventData.tags.SequenceEqual(other.eventData.tags))
             {
                 return false;
             }
 
-            if (name == null)
+            if (eventData.name == null)
             {
-                if (other.name != null)
+                if (other.eventData.name != null)
                 {
                     return false;
                 }
             }
-            else if (name != other.name)
+            else if (eventData.name != other.eventData.name)
             {
                 return false;
             }
 
-            if (description == null)
+            if (eventData.description == null)
             {
-                if (other.description != null)
+                if (other.eventData.description != null)
                 {
                     return false;
                 }
             }
-            else if (description != other.description)
+            else if (eventData.description != other.eventData.description)
             {
                 return false;
             }
 
-            if (type == null)
+            if (eventData.type == null)
             {
-                if (other.type != null)
+                if (other.eventData.type != null)
                 {
                     return false;
                 }
             }
-            else if (!type.Equals(other.type))
+            else if (!eventData.type.Equals(other.eventData.type))
             {
                 return false;
             }
 
-            if (attendance != other.attendance)
+            if (eventData.attendance != other.eventData.attendance)
             {
                 return false;
             }
 
-            if (icon == null)
+            if (eventData.icon == null)
             {
-                if (other.icon != null)
+                if (other.eventData.icon != null)
                 {
                     return false;
                 }
             }
-            else if (icon != other.icon)
+            else if (eventData.icon != other.eventData.icon)
             {
                 return false;
             }
 
-            if (isHumanitary != other.isHumanitary)
+            if (eventData.isHumanitary != other.eventData.isHumanitary)
             {
                 return false;
             }
 
-            if (averageCostsOfSustension != other.averageCostsOfSustension)
+            if (eventData.averageCostsOfSustension != other.eventData.averageCostsOfSustension)
             {
                 return false;
             }
 
-            if (populatedPlace == null)
+            if (eventData.populatedPlace == null)
             {
-                if (other.populatedPlace != null)
+                if (other.eventData.populatedPlace != null)
                 {
                     return false;
                 }
             }
-            else if (!populatedPlace.Equals(other.populatedPlace))
+            else if (!eventData.populatedPlace.Equals(other.eventData.populatedPlace))
             {
                 return false;
             }
 
-            if (country == null)
+            if (eventData.country == null)
             {
-                if (other.country != null)
+                if (other.eventData.country != null)
                 {
                     return false;
                 }
             }
-            else if (!country.Equals(other.country))
+            else if (!eventData.country.Equals(other.eventData.country))
             {
                 return false;
             }
 
-            if (historyOfDatesOfTheEvent == null)
+            if (eventData.historyOfDatesOfTheEvent == null)
             {
-                if (other.historyOfDatesOfTheEvent != null)
+                if (other.eventData.historyOfDatesOfTheEvent != null)
                 {
                     return false;
                 }
             }
-            else if (!historyOfDatesOfTheEvent.SequenceEqual(other.historyOfDatesOfTheEvent))
+            else if (!eventData.historyOfDatesOfTheEvent.SequenceEqual(other.eventData.historyOfDatesOfTheEvent))
             {
                 return false;
             }
 
-            if (dateOfTheEvent == null)
+            if (eventData.dateOfTheEvent == null)
             {
-                if (other.dateOfTheEvent != null)
+                if (other.eventData.dateOfTheEvent != null)
                 {
                     return false;
                 }
             }
-            else if (dateOfTheEvent != other.dateOfTheEvent)
+            else if (eventData.dateOfTheEvent != other.eventData.dateOfTheEvent)
             {
                 return false;
             }
@@ -371,7 +410,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
 
         public override int GetHashCode()
         {
-            return id.GetHashCode();
+            return eventData.id.GetHashCode();
         }
     }
 }
