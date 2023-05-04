@@ -1,4 +1,5 @@
 ﻿using ICR_2022_2023_Mapa_dogadjaja.Model;
+using ICR_2022_2023_Mapa_dogadjaja.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -84,20 +85,21 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             
             Event event01 = new Event("DOG001", new List<EventTag>() {eventTag01}, "Exit", 
                 "Exit se održava u julu svake godine na Petrovaradinskoj tvrđavi.", eventType01, Attendance.OVER_10000, 
-                "Ikona", false, 250000.0, populatedPlace01, country01, new List<DateTime>() {}, new DateTime(2023, 7, 11));
+                "Icons/EventIcons/EXIT_ikona.jpg", false, 250000.0, populatedPlace01, country01, new List<DateTime>() {}, 
+                new DateTime(2023, 7, 11));
             Event event02 = new Event("DOG002", new List<EventTag>() {eventTag02, eventTag03}, "Kustendorf", 
                 "Kustendorf se održava 24. januara svake godine u etno naselju Drvengrad na planini Mećavnik.", eventType02, 
-                Attendance.OVER_10000, "Ikona", false, 200000.0, populatedPlace02, country01, new List<DateTime>() { }, 
-                new DateTime(2023, 1, 24));
+                Attendance.OVER_10000, "Icons/EventIcons/Kustendorf_ikona.png", false, 200000.0, populatedPlace02, country01, 
+                new List<DateTime>() { }, new DateTime(2023, 1, 24));
             Event event03 = new Event("DOG003", new List<EventTag>() {eventTag04, eventTag05}, "Partizan - Barselona",
-                "Utakmica 32. kola ligaškog dela Evrolige u Štark areni.", eventType03, Attendance.OVER_10000, "Ikona", false, 
-                110000.0, populatedPlace03, country01, new List<DateTime>() {}, 
-                new DateTime(2023, 4, 6));
+                "Utakmica 32. kola ligaškog dela Evrolige u Štark areni.", eventType03, Attendance.OVER_10000, 
+                "Icons/EventIcons/Partizan-Barselona_ikona.jpg", false, 110000.0, populatedPlace03, country01, 
+                new List<DateTime>() {}, new DateTime(2023, 4, 6));
             Event event04 = new Event("DOG004", new List<EventTag>() {eventTag06}, "Aukcija sportskih dresova Miloša Nikolića", 
                 "Uplaćen novac za kupovinu potpisanih dresova najpoznatijih sportista Evrope iskoristiće se kao donacija " + 
                 "Institutu za majku i dete u svrhu nabavke novih inkubatora za bebe.", eventType04, Attendance.BELOW_1000, 
-                "Ikona", true, 50.0, populatedPlace03, country01, new List<DateTime>() {}, 
-                new DateTime(2023, 5, 30));
+                "Icons/EventIcons/Aukcija_sportskih_dresova_Milosa_Nikolica_ikona.jpg", true, 50.0, populatedPlace03, country01, 
+                new List<DateTime>() {}, new DateTime(2023, 5, 30));
             events.Add(event01);
             events.Add(event02);
             events.Add(event03);
@@ -254,7 +256,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja
 
         private void OpenDialogForCreatingANewEvent(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Dijalog: Novi događaj Ctrl + N");
+            CreatingANewEventDialog dialogForCreatingANewEvent = new CreatingANewEventDialog(this);
+            dialogForCreatingANewEvent.ShowDialog();
         }
 
         private void OpenDialogForEditingAnEvent(object sender, RoutedEventArgs e)
