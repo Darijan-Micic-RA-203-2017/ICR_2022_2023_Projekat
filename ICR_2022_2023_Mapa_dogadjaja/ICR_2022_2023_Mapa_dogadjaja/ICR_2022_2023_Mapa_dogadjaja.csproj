@@ -54,6 +54,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\DateTimeToFormattedStringConverter.cs" />
+    <Compile Include="Converter\EnumDescriptionTypeConverter.cs" />
+    <Compile Include="ViewModel\EnumBindingSourceExtension.cs" />
     <Compile Include="View\CreatingANewEventDialog.xaml.cs">
       <DependentUpon>CreatingANewEventDialog.xaml</DependentUpon>
     </Compile>
