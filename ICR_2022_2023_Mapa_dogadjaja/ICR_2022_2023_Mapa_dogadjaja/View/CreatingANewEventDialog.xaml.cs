@@ -42,9 +42,13 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
         {
             try
             {
+                RoutedCommand saveEventCommand = new RoutedCommand();
+                saveEventCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(saveEventCommand, SaveEvent));
+
                 RoutedCommand closeDialogCommand = new RoutedCommand();
-                closeDialogCommand.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
-                CommandBindings.Add(new CommandBinding(closeDialogCommand, CloseDialog));
+                saveEventCommand.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(saveEventCommand, CloseDialog));
             }
             catch (Exception e)
             {
@@ -52,9 +56,15 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             }
         }
 
+        private void SaveEvent(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
+
+        // REFERENCE: https://learn.microsoft.com/en-us/dotnet/desktop/wpf/windows/how-to-close-window-dialog-box?source=recommendations&view=netdesktop-7.0
         private void CloseDialog(object sender, RoutedEventArgs e)
         {
-            Close();
+            DialogResult = false;
         }
     }
 }

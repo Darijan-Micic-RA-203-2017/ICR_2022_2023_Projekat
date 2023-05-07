@@ -131,7 +131,8 @@
             <Label DockPanel.Dock="Left">Datum održavanja:</Label>
             <DatePicker x:Name="Input_for_date_of_the_event" VerticalContentAlignment="Center"></DatePicker>
         </DockPanel>
-        <Button Grid.Row="8" Grid.Column="0" x:Name="Save_button" Height="30" Width="100">Sačuvaj</Button>
-        <Button Grid.Row="8" Grid.Column="1" x:Name="Cancel_button" Height="30" Width="100" Click="CloseDialog">Otkaži</Button>
+        <Button Grid.Row="8" Grid.Column="0" x:Name="Save_button" Height="30" Width="100" Click="SaveEvent">Sačuvaj</Button>
+        <Button Grid.Row="8" Grid.Column="1" x:Name="Cancel_button" Height="30" Width="100" 
+                IsCancel="True" Click="CloseDialog">Otkaži</Button>
     </Grid>
 </Window>
