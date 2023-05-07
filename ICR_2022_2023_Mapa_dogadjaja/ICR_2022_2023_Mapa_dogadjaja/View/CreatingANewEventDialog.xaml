@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:model="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.Model"
         xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View"
         xmlns:view_model="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.ViewModel"
@@ -15,16 +14,11 @@
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="150"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
@@ -32,80 +26,112 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <DockPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 0 5 0">
             <Label DockPanel.Dock="Left" Width="60">Oznaka:</Label>
-            <TextBox x:Name="Input_for_id"></TextBox>
+            <TextBox x:Name="Input_for_id" VerticalContentAlignment="Center"></TextBox>
         </DockPanel>
-        <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <Label DockPanel.Dock="Left" Width="60">Etikete:</Label>
-            <DockPanel HorizontalAlignment="Right" VerticalAlignment="Center">
-                <ComboBox DockPanel.Dock="Left" x:Name="Combo_box_for_event_tags" ItemsSource="{Binding MainWindow.EventTags}" 
-                          Margin="0 0 10 0" Width="560"></ComboBox>
-                <Button x:Name="Create_a_new_event_tag_button">Unesite novu etiketu</Button>
-            </DockPanel>
-        </DockPanel>
-        <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <DockPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5 0 0 0">
             <Label DockPanel.Dock="Left" Width="60">Naziv:</Label>
-            <TextBox x:Name="Input_for_name"></TextBox>
+            <TextBox x:Name="Input_for_name" VerticalContentAlignment="Center"></TextBox>
         </DockPanel>
-        <DockPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <Label DockPanel.Dock="Left" Width="60">Opis:</Label>
-            <RichTextBox x:Name="Input_for_decription"></RichTextBox>
+        <DockPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 0 5 0">
+            <Label DockPanel.Dock="Left" Width="60">Etikete:</Label>
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ComboBox Grid.Row="0" Grid.Column="0" x:Name="Combo_box_for_event_tags" VerticalContentAlignment="Center" 
+                          HorizontalAlignment="Left" ItemsSource="{Binding MainWindow.EventTags}" Width="150"></ComboBox>
+                <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_event_tag_button" HorizontalAlignment="Right" 
+                        Width="120">Unesite novu etiketu</Button>
+            </Grid>
         </DockPanel>
-        <DockPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <DockPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5 0 0 0">
             <Label DockPanel.Dock="Left" Width="60">Tip:</Label>
-            <DockPanel HorizontalAlignment="Right" VerticalAlignment="Center">
-                <ComboBox DockPanel.Dock="Left" x:Name="Combo_box_for_event_type" ItemsSource="{Binding MainWindow.EventTypes}" 
-                          Margin="0 0 10 0" Width="560"></ComboBox>
-                <Button x:Name="Create_a_new_event_type_button">Unesite novi tip</Button>
-            </DockPanel>
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ComboBox Grid.Row="0" Grid.Column="0" x:Name="Combo_box_for_event_type" VerticalContentAlignment="Center" 
+                          HorizontalAlignment="Left" ItemsSource="{Binding MainWindow.EventTypes}" Width="150"></ComboBox>
+                <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_event_type_button" HorizontalAlignment="Right" 
+                        Width="120">Unesite novi tip</Button>
+            </Grid>
         </DockPanel>
-        <DockPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <Label DockPanel.Dock="Left">Posećenost događaja:</Label>
-            <!-- REFERENCE: https://brianlagunas.com/a-better-way-to-data-bind-enums-in-wpf/ -->
-            <ComboBox x:Name="Combo_box_for_attendance" 
-                      ItemsSource="{Binding Source={view_model:EnumBindingSource {x:Type model:Attendance}}}" SelectedIndex="0"></ComboBox>
+        <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Label DockPanel.Dock="Left" Width="60">Opis:</Label>
+            <RichTextBox x:Name="Input_for_decription" VerticalScrollBarVisibility="Visible"></RichTextBox>
         </DockPanel>
-        <DockPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <Label DockPanel.Dock="Left">Ikona:</Label>
-            <Button x:Name="Add_icon_button">Odaberite ikonu</Button>
+        <DockPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 0 5 0">
+            <Label DockPanel.Dock="Left" Width="60">Ikona:</Label>
+            <Button x:Name="Add_icon_button" Width="100">Odaberite ikonu</Button>
         </DockPanel>
-        <DockPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <DockPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5 0 0 0">
             <Label DockPanel.Dock="Left">Humanitarnog karaktera:</Label>
             <WrapPanel x:Name="IsHumanitary_radio_buttons_group" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <RadioButton x:Name="IsHumanitary_option_Yes_radio_button" Margin="0 0 20 0">Da</RadioButton>
-                <RadioButton x:Name="IsHumanitaty_option_No_radio_button">Ne</RadioButton>
+                <RadioButton x:Name="IsHumanitary_option_Yes_radio_button" VerticalContentAlignment="Center" Margin="0 0 20 0">Da</RadioButton>
+                <RadioButton x:Name="IsHumanitaty_option_No_radio_button" VerticalContentAlignment="Center">Ne</RadioButton>
             </WrapPanel>
         </DockPanel>
-        <DockPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <DockPanel Grid.Row="4" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 0 5 0">
+            <Label DockPanel.Dock="Left">Posećenost događaja:</Label>
+            <!-- REFERENCE: https://brianlagunas.com/a-better-way-to-data-bind-enums-in-wpf/ -->
+            <ComboBox x:Name="Combo_box_for_attendance" VerticalContentAlignment="Center" 
+                      ItemsSource="{Binding Source={view_model:EnumBindingSource {x:Type model:Attendance}}}" SelectedIndex="0"></ComboBox>
+        </DockPanel>
+        <DockPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5 0 0 0">
             <Label DockPanel.Dock="Left">Prosečna cena troškova za održavanje:</Label>
-            <TextBox x:Name="Input_for_average_costs_of_sustension"></TextBox>
+            <TextBox x:Name="Input_for_average_costs_of_sustension" VerticalContentAlignment="Center"></TextBox>
         </DockPanel>
-        <DockPanel Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <Label DockPanel.Dock="Left">Grad:</Label>
-            <DockPanel HorizontalAlignment="Right" VerticalAlignment="Center">
-                <ComboBox DockPanel.Dock="Left" x:Name="Combo_box_for_populated_place" 
-                          ItemsSource="{Binding MainWindow.PopulatedPlaces}" Margin="0 0 10 0" Width="560"></ComboBox>
-                <Button x:Name="Create_a_new_populated_place_button">Unesite novi grad</Button>
-            </DockPanel>
+        <DockPanel Grid.Row="5" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 0 5 0">
+            <Label DockPanel.Dock="Left" Width="60">Grad:</Label>
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ComboBox Grid.Row="0" Grid.Column="0" x:Name="Combo_box_for_populated_place" VerticalContentAlignment="Center" 
+                          HorizontalAlignment="Left" ItemsSource="{Binding MainWindow.PopulatedPlaces}" Width="150"></ComboBox>
+                <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_populated_place_button" HorizontalAlignment="Right" 
+                        Width="120">Unesite novi grad</Button>
+            </Grid>
         </DockPanel>
-        <DockPanel Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-            <Label DockPanel.Dock="Left">Država:</Label>
-            <DockPanel HorizontalAlignment="Right" VerticalAlignment="Center">
-                <ComboBox DockPanel.Dock="Left" x:Name="Combo_box_for_country" ItemsSource="{Binding MainWindow.Countries}" 
-                          Margin="0 0 10 0" Width="560"></ComboBox>
-                <Button x:Name="Create_a_new_country_button">Unesite novu državu</Button>
-            </DockPanel>
+        <DockPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5 0 0 0">
+            <Label DockPanel.Dock="Left" Width="60">Država:</Label>
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ComboBox Grid.Row="0" Grid.Column="0" x:Name="Combo_box_for_country" VerticalContentAlignment="Center" 
+                          HorizontalAlignment="Left" ItemsSource="{Binding MainWindow.Countries}" Width="150"></ComboBox>
+                <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_country_button" HorizontalAlignment="Right" 
+                        Width="120">Unesite novu državu</Button>
+            </Grid>
         </DockPanel>
-        <DockPanel Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <DockPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Label DockPanel.Dock="Left">Istorija datuma održavanja:</Label>
             <ListBox x:Name="Input_for_history_of_dates_of_the_event"></ListBox>
         </DockPanel>
-        <DockPanel Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+        <DockPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
             <Label DockPanel.Dock="Left">Datum održavanja:</Label>
-            <DatePicker x:Name="Input_for_date_of_the_event"></DatePicker>
+            <DatePicker x:Name="Input_for_date_of_the_event" VerticalContentAlignment="Center"></DatePicker>
         </DockPanel>
-        <Button Grid.Row="13" Grid.Column="0" x:Name="Save_button" Height="30" Width="100">Sačuvaj</Button>
-        <Button Grid.Row="13" Grid.Column="1" x:Name="Cancel_button" Height="30" Width="100" Click="CloseDialog">Otkaži</Button>
+        <Button Grid.Row="8" Grid.Column="0" x:Name="Save_button" Height="30" Width="100">Sačuvaj</Button>
+        <Button Grid.Row="8" Grid.Column="1" x:Name="Cancel_button" Height="30" Width="100" Click="CloseDialog">Otkaži</Button>
     </Grid>
 </Window>

@@ -7,7 +7,7 @@
         xmlns:cvt="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.Converter"
         mc:Ignorable="d"
         Title="Mapa događaja" Height="680" Width="1240" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
-        <!-- Screen resolution: Height="768" Width="1366"-->
+        <!-- Screen resolution: Height="768" Width="1366" -->
     <DockPanel>
         <Menu x:Name="Main_menu" DockPanel.Dock="Top" Background="Black" Foreground="White">
             <MenuItem x:Name="Submenu_Application_of_main_menu" Header="_Aplikacija (Alt + A)" AutomationProperties.AccessKey="A">
