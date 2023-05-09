@@ -18,25 +18,13 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
     /// </summary>
     public partial class CreatingANewEventDialog : Window
     {
-        private MainWindow mainVindow;
-
-        public CreatingANewEventDialog(MainWindow mainVindow)
+        public CreatingANewEventDialog()
         {
             InitializeComponent();
-
-            this.mainVindow = mainVindow;
-
-            DataContext = this.mainVindow;
-
+            
             AddHotKeys();
         }
-
-        public MainWindow MainWindow
-        {
-            get { return mainVindow; }
-            set { mainVindow = value; }
-        }
-
+        
         // REFERENCE: https://codesamplez.com/development/wpf-hotkeys-c-sharp
         private void AddHotKeys()
         {

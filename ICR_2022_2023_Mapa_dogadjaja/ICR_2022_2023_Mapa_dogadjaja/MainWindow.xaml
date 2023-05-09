@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja"
         xmlns:cvt="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.Converter"
+        xmlns:view_model="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.ViewModel"
         mc:Ignorable="d"
         Title="Mapa događaja" Height="680" Width="1240" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
         <!-- Screen resolution: Height="768" Width="1366" -->
+    <Window.DataContext>
+        <view_model:EventsViewModel></view_model:EventsViewModel>
+    </Window.DataContext>
     <DockPanel>
         <Menu x:Name="Main_menu" DockPanel.Dock="Top" Background="Black" Foreground="White">
             <MenuItem x:Name="Submenu_Application_of_main_menu" Header="_Aplikacija (Alt + A)" AutomationProperties.AccessKey="A">
