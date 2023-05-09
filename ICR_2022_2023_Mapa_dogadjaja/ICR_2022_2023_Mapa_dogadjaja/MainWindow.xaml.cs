@@ -26,121 +26,29 @@ namespace ICR_2022_2023_Mapa_dogadjaja
         private const string DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_TABLE = "Filtriraj tabelu (Alt + 2)";
         private const string DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_MAP = "Filtriraj mapu (Alt + 3)";
         
-        private ObservableCollection<Event> events = new ObservableCollection<Event>();
-        private ObservableCollection<EventTag> eventTags = new ObservableCollection<EventTag>();
-        private ObservableCollection<EventType> eventTypes = new ObservableCollection<EventType>();
-        private ObservableCollection<PopulatedPlace> populatedPlaces = new ObservableCollection<PopulatedPlace>();
-        private ObservableCollection<Country> countries = new ObservableCollection<Country>();
-
         private ObservableCollection<Event> eventsThatFitSearchCriterions = new ObservableCollection<Event>();
-        private ObservableCollection<EventTag> eventTagsThatFitSearchCriterions = new ObservableCollection<EventTag>();
-        private ObservableCollection<EventType> eventTypesThatFitSearchCriterions = new ObservableCollection<EventType>();
-        private ObservableCollection<PopulatedPlace> populatedPlacesThatFitSearchCriterions = new ObservableCollection<PopulatedPlace>();
-        private ObservableCollection<Country> countriesThatFitSearchCriterions = new ObservableCollection<Country>();
-
+        
         private ObservableCollection<Event> filteredEvents = new ObservableCollection<Event>();
-        private ObservableCollection<EventTag> filteredEventTags = new ObservableCollection<EventTag>();
-        private ObservableCollection<EventType> filteredEventTypes = new ObservableCollection<EventType>();
-        private ObservableCollection<PopulatedPlace> filteredPopulatedPlaces = new ObservableCollection<PopulatedPlace>();
-        private ObservableCollection<Country> filteredCountries = new ObservableCollection<Country>();
-
+        
         public MainWindow()
         {
             InitializeComponent();
             
             AddHotKeys();
         }
-
-        public ObservableCollection<Event> Events
-        {
-            get { return events; }
-            set { events = value; }
-        }
-
-        public ObservableCollection<EventTag> EventTags
-        {
-            get { return eventTags; }
-            set { eventTags = value; }
-        }
-
-        public ObservableCollection<EventType> EventTypes
-        {
-            get { return eventTypes; }
-            set { eventTypes = value; }
-        }
-
-        public ObservableCollection<PopulatedPlace> PopulatedPlaces
-        {
-            get { return populatedPlaces; }
-            set { populatedPlaces = value; }
-        }
-
-        public ObservableCollection<Country> Countries
-        {
-            get { return countries; }
-            set { countries = value; }
-        }
-
+        
         public ObservableCollection<Event> EventsThatFitSearchCriterions
         {
             get { return eventsThatFitSearchCriterions; }
             set { eventsThatFitSearchCriterions = value; }
         }
-
-        public ObservableCollection<EventTag> EventTagsThatFitSearchCriterions
-        {
-            get { return eventTagsThatFitSearchCriterions; }
-            set { eventTagsThatFitSearchCriterions = value; }
-        }
-
-        public ObservableCollection<EventType> EventTypesThatFitSearchCriterions
-        {
-            get { return eventTypesThatFitSearchCriterions; }
-            set { eventTypesThatFitSearchCriterions = value; }
-        }
-
-        public ObservableCollection<PopulatedPlace> PopulatedPlacesThatFitSearchCriterions
-        {
-            get { return populatedPlacesThatFitSearchCriterions; }
-            set { populatedPlacesThatFitSearchCriterions = value; }
-        }
-
-        public ObservableCollection<Country> CountriesThatFitSearchCriterions
-        {
-            get { return countriesThatFitSearchCriterions; }
-            set { countriesThatFitSearchCriterions = value; }
-        }
-
+        
         public ObservableCollection<Event> FilteredEvents
         {
             get { return filteredEvents; }
             set { filteredEvents = value; }
         }
-
-        public ObservableCollection<EventTag> FilteredEventTags
-        {
-            get { return filteredEventTags; }
-            set { filteredEventTags = value; }
-        }
-
-        public ObservableCollection<EventType> FilteredEventTypes
-        {
-            get { return filteredEventTypes; }
-            set { filteredEventTypes = value; }
-        }
-
-        public ObservableCollection<PopulatedPlace> FilteredPopulatedPlaces
-        {
-            get { return filteredPopulatedPlaces; }
-            set { filteredPopulatedPlaces = value; }
-        }
-
-        public ObservableCollection<Country> FilteredCountries
-        {
-            get { return filteredCountries; }
-            set { filteredCountries = value; }
-        }
-
+        
         // REFERENCE: https://codesamplez.com/development/wpf-hotkeys-c-sharp
         private void AddHotKeys()
         {
@@ -277,7 +185,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             if (enteredText == DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_TABLE)
             {
                 Cancel_search_or_filtering_button.IsEnabled = false;
-                Table_of_events.ItemsSource = Events;
+                Table_of_events.ItemsSource = EventsViewModel.Events;
                 eventsThatFitSearchCriterions.Clear();
                 
                 return;
@@ -285,7 +193,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             
             filteredEvents.Clear();
 
-            foreach (Event eve in events)
+            foreach (Event eve in EventsViewModel.Events)
             {
                 if (eve.Id.ToLower() == enteredText)
                 {
@@ -424,7 +332,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             }
             
             Cancel_search_or_filtering_button.IsEnabled = false;
-            Table_of_events.ItemsSource = Events;
+            Table_of_events.ItemsSource = EventsViewModel.Events;
             eventsThatFitSearchCriterions.Clear();
             filteredEvents.Clear();
             Input_for_filtering_table.Text = DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_TABLE;

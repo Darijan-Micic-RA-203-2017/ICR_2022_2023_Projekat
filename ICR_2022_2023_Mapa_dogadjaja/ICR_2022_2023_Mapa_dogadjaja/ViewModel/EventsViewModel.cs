@@ -9,7 +9,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
 {
     public class EventsViewModel
     {
-        private ObservableCollection<Event> events = new ObservableCollection<Event>();
+        private static ObservableCollection<Event> events = new ObservableCollection<Event>();
 
         public EventsViewModel()
         {
@@ -67,7 +67,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
             events.Add(event04);
         }
 
-        public ObservableCollection<Event> Events
+        public static ObservableCollection<Event> Events
         {
             get { return events; }
             set { events = value; }

@@ -48,10 +48,10 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
             set { eventTagsViewModel.EventTags = value; }
         }
 
-        public ObservableCollection<Event> Events
+        public static ObservableCollection<Event> Events
         {
-            get { return eventsViewModel.Events; }
-            set { eventsViewModel.Events = value; }
+            get { return EventsViewModel.Events; }
+            set { EventsViewModel.Events = value; }
         }
     }
 }
