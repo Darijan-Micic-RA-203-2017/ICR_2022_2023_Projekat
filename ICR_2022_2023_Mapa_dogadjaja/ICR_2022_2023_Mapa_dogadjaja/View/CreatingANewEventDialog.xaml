@@ -10,9 +10,6 @@
         Title="Unos i izmena događaja" Height="680" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
         <!-- Screen resolution:      Height="768" Width="1366" -->
         <!-- Main window resolution: Height="680" Width="1240" -->
-    <Window.DataContext>
-        <view_model:AllEntitiesViewModel></view_model:AllEntitiesViewModel>
-    </Window.DataContext>
     <Grid Margin="10 0 10 0">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>

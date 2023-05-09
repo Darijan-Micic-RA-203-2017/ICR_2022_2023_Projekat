@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ICR_2022_2023_Mapa_dogadjaja.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,9 +19,14 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
     /// </summary>
     public partial class CreatingANewEventDialog : Window
     {
+        private AllEntitiesViewModel allEntitiesViewModel;
+
         public CreatingANewEventDialog()
         {
             InitializeComponent();
+
+            allEntitiesViewModel = new AllEntitiesViewModel();
+            DataContext = allEntitiesViewModel;
             
             AddHotKeys();
         }

@@ -25,14 +25,18 @@ namespace ICR_2022_2023_Mapa_dogadjaja
     {
         private const string DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_TABLE = "Filtriraj tabelu (Alt + 2)";
         private const string DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_MAP = "Filtriraj mapu (Alt + 3)";
-        
+
+        private EventsViewModel eventsViewModel;
+
         private ObservableCollection<Event> eventsThatFitSearchCriterions = new ObservableCollection<Event>();
-        
         private ObservableCollection<Event> filteredEvents = new ObservableCollection<Event>();
         
         public MainWindow()
         {
             InitializeComponent();
+
+            eventsViewModel = new EventsViewModel();
+            DataContext = eventsViewModel;
             
             AddHotKeys();
         }
@@ -180,20 +184,20 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             }
 
             TextBox inputForFilteringTable = (TextBox) sender;
-            
-            string enteredText = inputForFilteringTable.Text.ToLower();
-            if (enteredText == DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_TABLE)
+
+            string enteredText = inputForFilteringTable.Text;
+            if (enteredText == DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_TABLE.ToLower())
             {
                 Cancel_search_or_filtering_button.IsEnabled = false;
-                Table_of_events.ItemsSource = EventsViewModel.Events;
+                Table_of_events.ItemsSource = eventsViewModel.Events;
                 eventsThatFitSearchCriterions.Clear();
                 
                 return;
             }
             
             filteredEvents.Clear();
-
-            foreach (Event eve in EventsViewModel.Events)
+            
+            foreach (Event eve in eventsViewModel.Events)
             {
                 if (eve.Id.ToLower() == enteredText)
                 {
@@ -332,7 +336,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             }
             
             Cancel_search_or_filtering_button.IsEnabled = false;
-            Table_of_events.ItemsSource = EventsViewModel.Events;
+            Table_of_events.ItemsSource = eventsViewModel.Events;
             eventsThatFitSearchCriterions.Clear();
             filteredEvents.Clear();
             Input_for_filtering_table.Text = DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_TABLE;

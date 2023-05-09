@@ -9,9 +9,6 @@
         mc:Ignorable="d"
         Title="Mapa događaja" Height="680" Width="1240" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
         <!-- Screen resolution: Height="768" Width="1366" -->
-    <Window.DataContext>
-        <view_model:EventsViewModel></view_model:EventsViewModel>
-    </Window.DataContext>
     <DockPanel>
         <Menu x:Name="Main_menu" DockPanel.Dock="Top" Background="Black" Foreground="White">
             <MenuItem x:Name="Submenu_Application_of_main_menu" Header="_Aplikacija (Alt + A)" AutomationProperties.AccessKey="A">
@@ -42,7 +39,7 @@
                 <Button x:Name="Search_button" Margin="0 0 10 0">Pretraži (Alt + 1)</Button>
                 <TextBox x:Name="Input_for_filtering_table" Text="Filtriraj tabelu (Alt + 2)" Margin="0 0 10 0" Width="200" 
                          TextChanged="FilterTable"></TextBox>
-                <TextBox x:Name="Input_for_filtering_map" Text="Filtriraj tabelu (Alt + 2)" Margin="0 0 10 0" Width="200"></TextBox>
+                <TextBox x:Name="Input_for_filtering_map" Text="Filtriraj mapu (Alt + 3)" Margin="0 0 10 0" Width="200"></TextBox>
                 <Button x:Name="Cancel_search_or_filtering_button" IsEnabled="False" 
                         Click="CancelSearchOrFiltering">Poništi (Alt + 4)</Button>
             </WrapPanel>
