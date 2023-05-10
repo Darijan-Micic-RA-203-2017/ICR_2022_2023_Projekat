@@ -13,7 +13,7 @@
     <Grid Margin="10 0 10 0">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -34,8 +34,9 @@
             <Label DockPanel.Dock="Left" Width="60">Naziv:</Label>
             <TextBox x:Name="Input_for_name" VerticalContentAlignment="Center"></TextBox>
         </DockPanel>
-        <DockPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 0 5 0">
-            <Label DockPanel.Dock="Left" Width="60">Etikete:</Label>
+        <DockPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxHeight="40" 
+                   Margin="0 0 5 0">
+            <Label DockPanel.Dock="Left" VerticalAlignment="Center" Width="60">Etikete:</Label>
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
@@ -45,13 +46,23 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <ComboBox Grid.Row="0" Grid.Column="0" x:Name="Combo_box_for_event_tags" VerticalContentAlignment="Center" 
-                          HorizontalAlignment="Left" ItemsSource="{Binding EventTags}" Width="150"></ComboBox>
+                          HorizontalAlignment="Left" ItemsSource="{Binding EventTags}" Width="150">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Fill="{Binding Color}" Width="50" Margin="0 0 10 0"></Rectangle>
+                                <TextBlock Text="{Binding Description}" VerticalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_event_tag_button" HorizontalAlignment="Right" 
                         Width="120">Unesite novu etiketu</Button>
             </Grid>
         </DockPanel>
-        <DockPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5 0 0 0">
-            <Label DockPanel.Dock="Left" Width="60">Tip:</Label>
+        <DockPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxHeight="40" 
+                   Margin="5 0 0 0">
+            <Label DockPanel.Dock="Left" VerticalAlignment="Center" Width="60">Tip:</Label>
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
@@ -61,7 +72,16 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <ComboBox Grid.Row="0" Grid.Column="0" x:Name="Combo_box_for_event_type" VerticalContentAlignment="Center" 
-                          HorizontalAlignment="Left" ItemsSource="{Binding EventTypes}" Width="150"></ComboBox>
+                          HorizontalAlignment="Left" ItemsSource="{Binding EventTypes}" Width="150">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Icon}" Stretch="Uniform" Width="50" Margin="0 0 10 0"></Image>
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_event_type_button" HorizontalAlignment="Right" 
                         Width="120">Unesite novi tip</Button>
             </Grid>
