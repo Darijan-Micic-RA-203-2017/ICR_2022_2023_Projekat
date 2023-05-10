@@ -18,10 +18,19 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
                 return;
             }
 
-            EventType eventType01 = new EventType("TIPDOG001", "Muzički festival", "Opis", "Ikona");
-            EventType eventType02 = new EventType("TIPDOG002", "Filmski festival", "Opis", "Ikona");
-            EventType eventType03 = new EventType("TIPDOG003", "Košarkaška utakmica", "Opis", "Ikona");
-            EventType eventType04 = new EventType("TIPDOG004", "Humanitarna aukcija", "Opis", "Ikona");
+            // REFERENCE: https://stackoverflow.com/a/2416464
+            EventType eventType01 = new EventType("TIPDOG001", "Muzički festival", 
+                "Festival muzike u zatvorenom ili otvorenom prostoru.",
+                "/ICR_2022_2023_Mapa_dogadjaja;component/Icons/EventTypeIcons/Muzicki_festival_ikona.png");
+            EventType eventType02 = new EventType("TIPDOG002", "Filmski festival", 
+                "Festival filma u zatvorenom ili otvorenom prostoru.",
+                "/ICR_2022_2023_Mapa_dogadjaja;component/Icons/EventTypeIcons/Filmski_festival_ikona.jpg");
+            EventType eventType03 = new EventType("TIPDOG003", "Košarkaška utakmica", 
+                "Utakmica 2. najpopularnijeg timskog sporta, posmatrano na globalnom nivou.",
+                "/ICR_2022_2023_Mapa_dogadjaja;component/Icons/EventTypeIcons/Kosarkaska_utakmica_ikona.png");
+            EventType eventType04 = new EventType("TIPDOG004", "Humanitarna aukcija", 
+                "Aukcija napravljena sa ciljem da se uplaćeni novac donira u humanitarne svrhe.",
+                "/ICR_2022_2023_Mapa_dogadjaja;component/Icons/EventTypeIcons/Humanitarna_aukcija_ikona.jpg");
             eventTypes.Add(eventType01);
             eventTypes.Add(eventType02);
             eventTypes.Add(eventType03);
