@@ -24,8 +24,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
     {
         private AllEntitiesViewModel allEntitiesViewModel;
 
-        private string pathToSelectedEventIcon;
-
+        private BitmapImage selectedEventIcon;
+        
         public CreatingANewEventDialog()
         {
             InitializeComponent();
@@ -33,15 +33,9 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             allEntitiesViewModel = new AllEntitiesViewModel();
             DataContext = allEntitiesViewModel;
 
-            pathToSelectedEventIcon = "";
+            selectedEventIcon = null;
             
             AddHotKeys();
-        }
-        
-        public string PathToSelectedEventIcon
-        {
-            get { return pathToSelectedEventIcon; }
-            set { pathToSelectedEventIcon = value; }
         }
         
         // REFERENCE: https://codesamplez.com/development/wpf-hotkeys-c-sharp
@@ -70,6 +64,11 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
         // REFERENCE: https://learn.microsoft.com/en-us/dotnet/desktop/wpf/windows/how-to-open-common-system-dialog-box?view=netdesktop-7.0
         private void OpenDialogForSelectingEventIcon(object sender, RoutedEventArgs e)
         {
+            if (Event_icon == null)
+            {
+                return;
+            }
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image Files (*.gif, *.jpg, *.jpe, *.png, *.bmp, *.dib, *.tif, *.wmf, *.ras, *.eps, " + 
                 "*.pcx, *.pcd, *.tga, *.dds)|*.gif;*.jpg;*.jpe;*.png;*.bmp;*.dib;*.tif;*.wmf;*.ras;*.eps;*.pcx;*.pcd;*.tga;" + 
@@ -94,9 +93,10 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             {
                 return;
             }
-            
-            pathToSelectedEventIcon = openFileDialog.FileName;
-            allEntitiesViewModel.PathToSelectedEventIcon = pathToSelectedEventIcon;
+
+            // REFERENCE: https://stackoverflow.com/questions/6503424/how-to-programmatically-set-the-image-source?noredirect=1&lq=1
+            selectedEventIcon = new BitmapImage(new Uri(openFileDialog.FileName, UriKind.Absolute));
+            Event_icon.Source = selectedEventIcon;
         }
 
         private void SaveEvent(object sender, RoutedEventArgs e)

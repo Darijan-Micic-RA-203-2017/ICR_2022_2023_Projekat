@@ -14,8 +14,6 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
         private EventTypesViewModel eventTypesViewModel;
         private EventTagsViewModel eventTagsViewModel;
         private EventsViewModel eventsViewModel;
-
-        private string pathToSelectedEventIcon;
         
         public AllEntitiesViewModel()
         {
@@ -24,8 +22,6 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
             eventTypesViewModel = new EventTypesViewModel();
             eventTagsViewModel = new EventTagsViewModel();
             eventsViewModel = new EventsViewModel();
-
-            pathToSelectedEventIcon = "";
         }
 
         public ObservableCollection<Country> Countries
@@ -56,12 +52,6 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
         {
             get { return eventsViewModel.Events; }
             set { eventsViewModel.Events = value; }
-        }
-
-        public string PathToSelectedEventIcon
-        {
-            get { return pathToSelectedEventIcon; }
-            set { pathToSelectedEventIcon = value; }
         }
     }
 }

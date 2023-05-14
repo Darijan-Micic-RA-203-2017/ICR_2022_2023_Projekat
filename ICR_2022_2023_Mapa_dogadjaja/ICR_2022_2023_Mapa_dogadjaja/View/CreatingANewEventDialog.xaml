@@ -15,7 +15,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="150"></RowDefinition>
@@ -57,7 +57,7 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_event_tag_button" HorizontalAlignment="Right" 
-                        Width="120">Unesite novu etiketu</Button>
+                        VerticalAlignment="Center" Width="120">Unesite novu etiketu</Button>
             </Grid>
         </DockPanel>
         <DockPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxHeight="40" 
@@ -83,18 +83,19 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_event_type_button" HorizontalAlignment="Right" 
-                        Width="120">Unesite novi tip</Button>
+                        VerticalAlignment="Center" Width="120">Unesite novi tip</Button>
             </Grid>
         </DockPanel>
         <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Label DockPanel.Dock="Left" Width="60">Opis:</Label>
             <RichTextBox x:Name="Input_for_decription" VerticalScrollBarVisibility="Visible"></RichTextBox>
         </DockPanel>
-        <DockPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 0 5 0">
-            <Label DockPanel.Dock="Left" Width="60">Ikona:</Label>
-            <Button DockPanel.Dock="Left" x:Name="Add_icon_button" Width="100" 
+        <DockPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxHeight="50" 
+                   Margin="0 0 5 0">
+            <Label DockPanel.Dock="Left" VerticalAlignment="Center" Width="60">Ikona:</Label>
+            <Button DockPanel.Dock="Left" x:Name="Add_icon_button" VerticalAlignment="Center" Width="100" 
                     Click="OpenDialogForSelectingEventIcon">Odaberite ikonu</Button>
-            <Image Source="{Binding PathToSelectedEventIcon}" Stretch="Uniform" MaxWidth="150"></Image>
+            <Image x:Name="Event_icon" Stretch="Uniform" MaxWidth="150"></Image>
         </DockPanel>
         <DockPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5 0 0 0">
             <Label DockPanel.Dock="Left">Humanitarnog karaktera:</Label>
