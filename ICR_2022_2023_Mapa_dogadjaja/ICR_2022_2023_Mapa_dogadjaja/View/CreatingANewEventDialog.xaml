@@ -92,7 +92,9 @@
         </DockPanel>
         <DockPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 0 5 0">
             <Label DockPanel.Dock="Left" Width="60">Ikona:</Label>
-            <Button x:Name="Add_icon_button" Width="100">Odaberite ikonu</Button>
+            <Button DockPanel.Dock="Left" x:Name="Add_icon_button" Width="100" 
+                    Click="OpenDialogForSelectingEventIcon">Odaberite ikonu</Button>
+            <Image Source="{Binding PathToSelectedEventIcon}" Stretch="Uniform" MaxWidth="150"></Image>
         </DockPanel>
         <DockPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5 0 0 0">
             <Label DockPanel.Dock="Left">Humanitarnog karaktera:</Label>
