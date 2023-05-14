@@ -124,7 +124,16 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <ComboBox Grid.Row="0" Grid.Column="0" x:Name="Combo_box_for_populated_place" VerticalContentAlignment="Center" 
-                          HorizontalAlignment="Left" ItemsSource="{Binding PopulatedPlaces}" Width="150"></ComboBox>
+                          HorizontalAlignment="Left" ItemsSource="{Binding PopulatedPlaces}" Width="150">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Id}" Margin="0 0 10 0"></TextBlock>
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_populated_place_button" HorizontalAlignment="Right" 
                         Width="120">Unesite novi grad</Button>
             </Grid>
@@ -140,7 +149,16 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <ComboBox Grid.Row="0" Grid.Column="0" x:Name="Combo_box_for_country" VerticalContentAlignment="Center" 
-                          HorizontalAlignment="Left" ItemsSource="{Binding Countries}" Width="150"></ComboBox>
+                          HorizontalAlignment="Left" ItemsSource="{Binding Countries}" Width="150">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Id}" Margin="0 0 10 0"></TextBlock>
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_country_button" HorizontalAlignment="Right" 
                         Width="120">Unesite novu državu</Button>
             </Grid>
