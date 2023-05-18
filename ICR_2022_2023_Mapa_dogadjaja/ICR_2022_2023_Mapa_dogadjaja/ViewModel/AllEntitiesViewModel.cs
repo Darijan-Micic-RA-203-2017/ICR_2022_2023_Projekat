@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
 namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
 {
-    public class AllEntitiesViewModel
+    public class AllEntitiesViewModel : INotifyPropertyChanged
     {
         private CountriesViewModel countriesViewModel;
         private PopulatedPlacesViewModel populatedPlacesViewModel;
@@ -24,34 +25,79 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
             eventsViewModel = new EventsViewModel();
         }
 
-        public ObservableCollection<Country> Countries
+        public CountriesViewModel CountriesViewModel
         {
-            get { return countriesViewModel.Countries; }
-            set { countriesViewModel.Countries = value; }
+            get { return countriesViewModel; }
+            set
+            {
+                if (value != countriesViewModel)
+                {
+                    countriesViewModel = value;
+                    OnPropertyChanged("CountriesViewModel");
+                }
+            }
         }
-
-        public ObservableCollection<PopulatedPlace> PopulatedPlaces
+        
+        public PopulatedPlacesViewModel PopulatedPlacesViewModel
         {
-            get { return populatedPlacesViewModel.PopulatedPlaces; }
-            set { populatedPlacesViewModel.PopulatedPlaces = value; }
+            get { return populatedPlacesViewModel; }
+            set
+            {
+                if (value != populatedPlacesViewModel)
+                {
+                    populatedPlacesViewModel = value;
+                    OnPropertyChanged("PopulatedPlacesViewModel");
+                }
+            }
         }
-
-        public ObservableCollection<EventType> EventTypes
+        
+        public EventTypesViewModel EventTypesViewModel
         {
-            get { return eventTypesViewModel.EventTypes; }
-            set { eventTypesViewModel.EventTypes = value; }
+            get { return eventTypesViewModel; }
+            set
+            {
+                if (value != eventTypesViewModel)
+                {
+                    eventTypesViewModel = value;
+                    OnPropertyChanged("EventTypesViewModel");
+                }
+            }
         }
-
-        public ObservableCollection<EventTag> EventTags
+        
+        public EventTagsViewModel EventTagsViewModel
         {
-            get { return eventTagsViewModel.EventTags; }
-            set { eventTagsViewModel.EventTags = value; }
+            get { return eventTagsViewModel; }
+            set
+            {
+                if (value != eventTagsViewModel)
+                {
+                    eventTagsViewModel = value;
+                    OnPropertyChanged("EventTagsViewModel");
+                }
+            }
         }
-
-        public ObservableCollection<Event> Events
+        
+        public EventsViewModel EventsViewModel
         {
-            get { return eventsViewModel.Events; }
-            set { eventsViewModel.Events = value; }
+            get { return eventsViewModel; }
+            set
+            {
+                if (value != eventsViewModel)
+                {
+                    eventsViewModel = value;
+                    OnPropertyChanged("EventsViewModel");
+                }
+            }
         }
+        
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+        }
+        
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

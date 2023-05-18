@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
 namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
 {
-    public class EventsViewModel
+    public class EventsViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Event> events = new ObservableCollection<Event>();
 
@@ -71,7 +72,24 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
         public ObservableCollection<Event> Events
         {
             get { return events; }
-            set { events = value; }
+            set
+            {
+                if (value != events)
+                {
+                    events = value;
+                    OnPropertyChanged("Events");
+                }
+            }
         }
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

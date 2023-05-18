@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
 namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
 {
-    public class PopulatedPlacesViewModel
+    public class PopulatedPlacesViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<PopulatedPlace> populatedPlaces = new ObservableCollection<PopulatedPlace>();
 
@@ -29,7 +30,24 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
         public ObservableCollection<PopulatedPlace> PopulatedPlaces
         {
             get { return populatedPlaces; }
-            set { populatedPlaces = value; }
+            set
+            {
+                if (value != populatedPlaces)
+                {
+                    populatedPlaces = value;
+                    OnPropertyChanged("PopulatedPlaces");
+                }
+            }
         }
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
