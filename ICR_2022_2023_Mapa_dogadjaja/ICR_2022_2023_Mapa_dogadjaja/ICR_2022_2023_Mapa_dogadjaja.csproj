@@ -55,6 +55,7 @@
     </ApplicationDefinition>
     <Compile Include="Converter\DateTimeToFormattedStringConverter.cs" />
     <Compile Include="Converter\EnumDescriptionTypeConverter.cs" />
+    <Compile Include="Validation\Event\UniqueEventIdValidationRule.cs" />
     <Compile Include="ViewModel\AllEntitiesViewModel.cs" />
     <Compile Include="ViewModel\CountriesViewModel.cs" />
     <Compile Include="ViewModel\EnumBindingSourceExtension.cs" />

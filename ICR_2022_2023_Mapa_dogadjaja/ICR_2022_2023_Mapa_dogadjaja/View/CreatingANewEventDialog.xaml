@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:model="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.Model"
+        xmlns:val_event="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.Validation.Event"
         xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View"
         xmlns:view_model="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.ViewModel"
         mc:Ignorable="d"
@@ -28,7 +29,31 @@
         </Grid.ColumnDefinitions>
         <DockPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 0 5 0">
             <Label DockPanel.Dock="Left" Width="60">Oznaka:</Label>
-            <TextBox x:Name="Input_for_id" VerticalContentAlignment="Center"></TextBox>
+            <TextBox x:Name="Input_for_id" VerticalContentAlignment="Center">
+                <TextBox.Text>
+                    <Binding Path="NewEvent.Id" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
+                            <val_event:UniqueEventIdValidationRule ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <AdornedElementPlaceholder Grid.Row="0" Grid.Column="0" x:Name="Input_for_id_textbox"></AdornedElementPlaceholder>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding [0].ErrorContent}" Foreground="Red"></TextBlock>
+                        </Grid>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </TextBox>
         </DockPanel>
         <DockPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5 0 0 0">
             <Label DockPanel.Dock="Left" Width="60">Naziv:</Label>
@@ -46,7 +71,8 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <ComboBox Grid.Row="0" Grid.Column="0" x:Name="Combo_box_for_event_tags" VerticalContentAlignment="Center" 
-                          HorizontalAlignment="Left" ItemsSource="{Binding EventTags}" Width="150">
+                          HorizontalAlignment="Left" ItemsSource="{Binding AllEntitiesViewModel.EventTagsViewModel.EventTags}" 
+                          Width="150">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -72,7 +98,8 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <ComboBox Grid.Row="0" Grid.Column="0" x:Name="Combo_box_for_event_type" VerticalContentAlignment="Center" 
-                          HorizontalAlignment="Left" ItemsSource="{Binding EventTypes}" Width="150">
+                          HorizontalAlignment="Left" ItemsSource="{Binding AllEntitiesViewModel.EventTypesViewModel.EventTypes}" 
+                          Width="150">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -125,7 +152,8 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <ComboBox Grid.Row="0" Grid.Column="0" x:Name="Combo_box_for_populated_place" VerticalContentAlignment="Center" 
-                          HorizontalAlignment="Left" ItemsSource="{Binding PopulatedPlaces}" Width="150">
+                          HorizontalAlignment="Left" 
+                          ItemsSource="{Binding AllEntitiesViewModel.PopulatedPlacesViewModel.PopulatedPlaces}" Width="150">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -150,7 +178,8 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <ComboBox Grid.Row="0" Grid.Column="0" x:Name="Combo_box_for_country" VerticalContentAlignment="Center" 
-                          HorizontalAlignment="Left" ItemsSource="{Binding Countries}" Width="150">
+                          HorizontalAlignment="Left" ItemsSource="{Binding AllEntitiesViewModel.CountriesViewModel.Countries}" 
+                          Width="150">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">

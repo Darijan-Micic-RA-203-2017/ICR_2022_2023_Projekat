@@ -3,6 +3,7 @@ using ICR_2022_2023_Mapa_dogadjaja.ViewModel;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -20,24 +21,63 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
     /// <summary>
     /// Interaction logic for CreatingANewEventDialog.xaml
     /// </summary>
-    public partial class CreatingANewEventDialog : Window
+    public partial class CreatingANewEventDialog : Window, INotifyPropertyChanged
     {
-        private AllEntitiesViewModel allEntitiesViewModel;
-
+        private Event newEvent;
+        
         private BitmapImage selectedEventIcon;
+
+        private AllEntitiesViewModel allEntitiesViewModel;
         
         public CreatingANewEventDialog()
         {
             InitializeComponent();
             
-            allEntitiesViewModel = new AllEntitiesViewModel();
-            DataContext = allEntitiesViewModel;
+            DataContext = this;
 
+            newEvent = new Event();
             selectedEventIcon = null;
+            allEntitiesViewModel = new AllEntitiesViewModel();
             
             AddHotKeys();
         }
+
+        public Event NewEvent
+        {
+            get { return newEvent; }
+            set
+            {
+                if (value != newEvent)
+                {
+                    newEvent = value;
+                    OnPropertyChanged("NewEvent");
+                }
+            }
+        }
         
+        public AllEntitiesViewModel AllEntitiesViewModel
+        {
+            get { return allEntitiesViewModel; }
+            set
+            {
+                if (value != allEntitiesViewModel)
+                {
+                    allEntitiesViewModel = value;
+                    OnPropertyChanged("AllEntitiesViewModel");
+                }
+            }
+        }
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         // REFERENCE: https://codesamplez.com/development/wpf-hotkeys-c-sharp
         private void AddHotKeys()
         {
