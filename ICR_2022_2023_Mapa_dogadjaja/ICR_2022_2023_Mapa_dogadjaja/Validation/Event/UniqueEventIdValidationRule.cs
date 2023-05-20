@@ -28,21 +28,19 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Event
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             var enteredId = value as string;
-
-            MessageBox.Show("Uneta oznaka: " + enteredId);
-
+            if (string.IsNullOrWhiteSpace(enteredId))
+            {
+                return new ValidationResult(false, "Oznaka mora biti uneta!");
+            }
+            
             foreach (Model.Event e in eventsViewModel.Events)
             {
                 if (e.Id.Equals(enteredId))
                 {
-                    MessageBox.Show("Pronađen je događaj sa istom oznakom!");
-
                     return new ValidationResult(false, "Već postoji događaj sa unetom oznakom!");
                 }
             }
-
-            MessageBox.Show("Uneta oznaka jeste jedinstvena.");
-
+            
             return new ValidationResult(true, null);
         }
     }
