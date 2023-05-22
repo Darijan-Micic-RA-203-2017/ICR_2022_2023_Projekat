@@ -22,7 +22,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
             internal PopulatedPlace populatedPlace;
             internal Country country;
             internal List<DateTime> historyOfDatesOfTheEvent;
-            internal DateTime dateOfTheEvent;
+            internal DateTime? dateOfTheEvent;
         }
         
         private EventData eventData;
@@ -32,14 +32,15 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
         public Event()
         {
             eventData = new EventData();
+            eventData.id = "";
+            backupData = new EventData();
         }
 
         public Event(string id, List<EventTag> tags, string name, string description, EventType type, Attendance attendance,
             string icon, bool isHumanitary, double averageCostsOfSustension, PopulatedPlace populatedPlace, Country country,
-            List<DateTime> historyOfDatesOfTheEvent, DateTime dateOfTheEvent)
+            List<DateTime> historyOfDatesOfTheEvent, DateTime? dateOfTheEvent)
         {
             eventData = new EventData();
-
             eventData.id = id;
             eventData.tags = tags;
             eventData.name = name;
@@ -53,6 +54,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
             eventData.country = country;
             eventData.historyOfDatesOfTheEvent = historyOfDatesOfTheEvent;
             eventData.dateOfTheEvent = dateOfTheEvent;
+
+            backupData = new EventData();
         }
 
         public string Id
@@ -211,7 +214,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
             }
         }
 
-        public DateTime DateOfTheEvent
+        public DateTime? DateOfTheEvent
         {
             get { return eventData.dateOfTheEvent; }
             set

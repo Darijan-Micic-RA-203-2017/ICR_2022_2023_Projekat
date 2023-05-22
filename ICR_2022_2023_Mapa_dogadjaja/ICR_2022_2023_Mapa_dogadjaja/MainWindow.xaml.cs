@@ -317,7 +317,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja
                     }
                 }
 
-                if (eve.DateOfTheEvent.ToString("MM/dd/yyyy").ToLower() == enteredText)
+                if (eve.DateOfTheEvent.Value.ToString("MM/dd/yyyy").ToLower() == enteredText)
                 {
                     filteredEvents.Add(eve);
                     continue;

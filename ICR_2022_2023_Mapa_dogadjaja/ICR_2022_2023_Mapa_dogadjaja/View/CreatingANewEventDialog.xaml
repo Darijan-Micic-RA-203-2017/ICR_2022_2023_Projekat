@@ -25,9 +25,31 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <AdornedElementPlaceholder Grid.Row="0" Grid.Column="0" x:Name="Input_for_id_placeholder"/>
-                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding ElementName=Input_for_id_placeholder, 
-                                        Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" Foreground="Red"></TextBlock>
+                            <AdornedElementPlaceholder Grid.Row="0" Grid.Column="0" x:Name="TextBox_placeholder"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding ElementName=TextBox_placeholder, 
+                                        Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" TextWrapping="Wrap" 
+                                       Foreground="Red"></TextBlock>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ControlForDatePickerValidationErrorStyle" TargetType="DatePicker">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <AdornedElementPlaceholder Grid.Row="0" Grid.Column="0" x:Name="DatePicker_placeholder"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding ElementName=DatePicker_placeholder, 
+                                        Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" TextWrapping="Wrap" 
+                                       Foreground="Red"></TextBlock>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -66,7 +88,17 @@
         </DockPanel>
         <DockPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5 0 0 0">
             <Label DockPanel.Dock="Left" Width="60">Naziv:</Label>
-            <TextBox x:Name="Input_for_name" VerticalContentAlignment="Center"></TextBox>
+            <TextBox x:Name="Input_for_name" VerticalContentAlignment="Center" 
+                     Style="{StaticResource ControlForTextBoxValidationErrorStyle}">
+                <TextBox.Text>
+                    <Binding Path="NewEvent.Name" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
+                            <val_event:UniqueEventNameValidationRule ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </DockPanel>
         <DockPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxHeight="40" 
                    Margin="0 0 5 0">
@@ -124,7 +156,17 @@
         </DockPanel>
         <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Label DockPanel.Dock="Left" Width="60">Opis:</Label>
-            <RichTextBox x:Name="Input_for_decription" VerticalScrollBarVisibility="Visible"></RichTextBox>
+            <TextBox x:Name="Input_for_decription" VerticalScrollBarVisibility="Visible" 
+                     Style="{StaticResource ControlForTextBoxValidationErrorStyle}">
+                <TextBox.Text>
+                    <Binding Path="NewEvent.Description" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
+                            <val_event:ExistingEventDescriptionValidationRule ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </DockPanel>
         <DockPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxHeight="50" 
                    Margin="0 0 5 0">
@@ -136,8 +178,10 @@
         <DockPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5 0 0 0">
             <Label DockPanel.Dock="Left">Humanitarnog karaktera:</Label>
             <WrapPanel x:Name="IsHumanitary_radio_buttons_group" HorizontalAlignment="Left" VerticalAlignment="Center">
-                <RadioButton x:Name="IsHumanitary_option_Yes_radio_button" VerticalContentAlignment="Center" Margin="0 0 20 0">Da</RadioButton>
-                <RadioButton x:Name="IsHumanitaty_option_No_radio_button" VerticalContentAlignment="Center">Ne</RadioButton>
+                <RadioButton x:Name="IsHumanitary_option_Yes_radio_button" VerticalContentAlignment="Center" Margin="0 0 20 0" 
+                             GroupName="IsHumanitary_radio_buttons_group">Da</RadioButton>
+                <RadioButton x:Name="IsHumanitaty_option_No_radio_button" VerticalContentAlignment="Center" IsChecked="True" 
+                             GroupName="IsHumanitary_radio_buttons_group">Ne</RadioButton>
             </WrapPanel>
         </DockPanel>
         <DockPanel Grid.Row="4" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 0 5 0">
@@ -148,7 +192,17 @@
         </DockPanel>
         <DockPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5 0 0 0">
             <Label DockPanel.Dock="Left">Prosečna cena troškova za održavanje:</Label>
-            <TextBox x:Name="Input_for_average_costs_of_sustension" VerticalContentAlignment="Center"></TextBox>
+            <TextBox x:Name="Input_for_average_costs_of_sustension" VerticalContentAlignment="Center" 
+                     Style="{StaticResource ControlForTextBoxValidationErrorStyle}">
+                <TextBox.Text>
+                    <Binding Path="NewEvent.AverageCostsOfSustension" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
+                            <val_event:AverageCostsOfSustensionForEventValidationRule ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </DockPanel>
         <DockPanel Grid.Row="5" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 0 5 0">
             <Label DockPanel.Dock="Left" Width="60">Grad:</Label>
@@ -208,7 +262,17 @@
         </DockPanel>
         <DockPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
             <Label DockPanel.Dock="Left">Datum održavanja:</Label>
-            <DatePicker x:Name="Input_for_date_of_the_event" VerticalContentAlignment="Center"></DatePicker>
+            <DatePicker x:Name="Input_for_date_of_the_event" VerticalContentAlignment="Center" 
+                        Style="{StaticResource ControlForDatePickerValidationErrorStyle}">
+                <DatePicker.SelectedDate>
+                    <Binding Path="NewEvent.DateOfTheEvent" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
+                            <val_event:EventDateValidationRule ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </DatePicker.SelectedDate>
+            </DatePicker>
         </DockPanel>
         <Button Grid.Row="8" Grid.Column="0" x:Name="Save_button" Height="30" Width="100" Click="SaveEvent">Sačuvaj</Button>
         <Button Grid.Row="8" Grid.Column="1" x:Name="Cancel_button" Height="30" Width="100" 
