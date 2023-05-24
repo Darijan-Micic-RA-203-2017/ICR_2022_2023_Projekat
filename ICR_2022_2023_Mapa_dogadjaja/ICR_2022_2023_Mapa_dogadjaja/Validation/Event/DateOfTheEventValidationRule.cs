@@ -7,18 +7,18 @@ using System.Windows.Controls;
 
 namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Event
 {
-    public class EventDateValidationRule : ValidationRule
+    public class DateOfTheEventValidationRule : ValidationRule
     {
-        public EventDateValidationRule() { }
+        public DateOfTheEventValidationRule() { }
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            DateTime? enteredDateOfTheEvent = (DateTime?) value;
+            DateTime? enteredDateOfTheEvent = (DateTime?)value;
             if (!enteredDateOfTheEvent.HasValue)
             {
                 return new ValidationResult(false, "Datum održavanja mora biti unet!");
             }
-            
+
             return new ValidationResult(true, null);
         }
     }

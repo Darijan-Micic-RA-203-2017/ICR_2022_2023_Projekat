@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View"
         xmlns:view_model="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.ViewModel"
         mc:Ignorable="d"
-        Title="Unos i izmena događaja" Height="680" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Unos i izmena događaja" Height="720" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
         <!-- Screen resolution:      Height="768" Width="1366" -->
         <!-- Main window resolution: Height="680" Width="1240" -->
     <Window.Resources>
@@ -27,6 +27,53 @@
                             </Grid.ColumnDefinitions>
                             <AdornedElementPlaceholder Grid.Row="0" Grid.Column="0" x:Name="TextBox_placeholder"/>
                             <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding ElementName=TextBox_placeholder, 
+                                        Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" TextWrapping="Wrap" 
+                                       Foreground="Red"></TextBlock>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ControlForListBoxValidationErrorStyle" TargetType="ListBox">
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"></Setter>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible"></Setter>
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <AdornedElementPlaceholder Grid.Row="0" Grid.Column="0" x:Name="ListBox_placeholder"/>
+                            <AdornedElementPlaceholder Grid.Row="0" Grid.Column="1" x:Name="New_tag_button_placeholder"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Visibility="Collapsed"></TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Text="{Binding 
+                                ElementName=ListBox_placeholder, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" 
+                                       TextWrapping="Wrap" Foreground="Red" Margin="7 0 0 0"></TextBlock>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ControlForComboBoxValidationErrorStyle" TargetType="ComboBox">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <AdornedElementPlaceholder Grid.Row="0" Grid.Column="0" x:Name="ComboBox_placeholder"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding ElementName=ComboBox_placeholder, 
                                         Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" TextWrapping="Wrap" 
                                        Foreground="Red"></TextBlock>
                         </Grid>
@@ -59,12 +106,12 @@
     <Grid Margin="10 0 10 0">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="90"></RowDefinition>
+            <RowDefinition Height="150"></RowDefinition>
             <RowDefinition Height="60"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="150"></RowDefinition>
+            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="120"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
@@ -100,10 +147,10 @@
                 </TextBox.Text>
             </TextBox>
         </DockPanel>
-        <DockPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxHeight="40" 
+        <DockPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="80" 
                    Margin="0 0 5 0">
             <Label DockPanel.Dock="Left" VerticalAlignment="Center" Width="60">Etikete:</Label>
-            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
@@ -111,23 +158,32 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <ComboBox Grid.Row="0" Grid.Column="0" x:Name="Combo_box_for_event_tags" VerticalContentAlignment="Center" 
-                          HorizontalAlignment="Left" ItemsSource="{Binding AllEntitiesViewModel.EventTagsViewModel.EventTags}" 
-                          Width="150">
-                    <ComboBox.ItemTemplate>
+                <ListBox Grid.Row="0" Grid.Column="0" x:Name="List_box_for_event_tags" VerticalContentAlignment="Center" 
+                         HorizontalAlignment="Left" VerticalAlignment="Stretch" 
+                         Style="{StaticResource ControlForListBoxValidationErrorStyle}" SelectionMode="Multiple" 
+                         ItemsSource="{Binding AllEntitiesViewModel.EventTagsViewModel.EventTags}" Width="160">
+                    <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Rectangle Fill="{Binding Color}" Width="50" Margin="0 0 10 0"></Rectangle>
                                 <TextBlock Text="{Binding Description}" VerticalAlignment="Center"></TextBlock>
                             </StackPanel>
                         </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+                    </ListBox.ItemTemplate>
+                    <ListBox.SelectedItem>
+                        <Binding Path="CurrentlySelectedEventTag" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
+                                <val_event:ExistingEventTagsValidationRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </ListBox.SelectedItem>
+                </ListBox>
                 <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_event_tag_button" HorizontalAlignment="Right" 
                         VerticalAlignment="Center" Width="120">Unesite novu etiketu</Button>
             </Grid>
         </DockPanel>
-        <DockPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxHeight="40" 
+        <DockPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="50" 
                    Margin="5 0 0 0">
             <Label DockPanel.Dock="Left" VerticalAlignment="Center" Width="60">Tip:</Label>
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
@@ -139,8 +195,8 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <ComboBox Grid.Row="0" Grid.Column="0" x:Name="Combo_box_for_event_type" VerticalContentAlignment="Center" 
-                          HorizontalAlignment="Left" ItemsSource="{Binding AllEntitiesViewModel.EventTypesViewModel.EventTypes}" 
-                          Width="150">
+                          HorizontalAlignment="Left" Style="{StaticResource ControlForComboBoxValidationErrorStyle}" 
+                          ItemsSource="{Binding AllEntitiesViewModel.EventTypesViewModel.EventTypes}" Width="150">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -149,15 +205,23 @@
                             </StackPanel>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
+                    <ComboBox.SelectedItem>
+                        <Binding Path="NewEvent.Type" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
+                                <val_event:ExistingEventTypeValidationRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </ComboBox.SelectedItem>
                 </ComboBox>
                 <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_event_type_button" HorizontalAlignment="Right" 
                         VerticalAlignment="Center" Width="120">Unesite novi tip</Button>
             </Grid>
         </DockPanel>
         <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <Label DockPanel.Dock="Left" Width="60">Opis:</Label>
-            <TextBox x:Name="Input_for_decription" VerticalScrollBarVisibility="Visible" 
-                     Style="{StaticResource ControlForTextBoxValidationErrorStyle}">
+            <Label DockPanel.Dock="Left" VerticalAlignment="Center" Width="60">Opis:</Label>
+            <TextBox x:Name="Input_for_decription" VerticalAlignment="Bottom" VerticalScrollBarVisibility="Visible" 
+                     Style="{StaticResource ControlForTextBoxValidationErrorStyle}" Height="120">
                 <TextBox.Text>
                     <Binding Path="NewEvent.Description" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -168,14 +232,14 @@
                 </TextBox.Text>
             </TextBox>
         </DockPanel>
-        <DockPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxHeight="50" 
+        <DockPanel Grid.Row="3" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="50" 
                    Margin="0 0 5 0">
-            <Label DockPanel.Dock="Left" VerticalAlignment="Center" Width="60">Ikona:</Label>
-            <Button DockPanel.Dock="Left" x:Name="Add_icon_button" VerticalAlignment="Center" Width="100" 
+            <Label DockPanel.Dock="Left" VerticalAlignment="Bottom" Width="60">Ikona:</Label>
+            <Button DockPanel.Dock="Left" x:Name="Add_icon_button" VerticalAlignment="Bottom" Width="100" 
                     Click="OpenDialogForSelectingEventIcon">Odaberite ikonu</Button>
             <Image x:Name="Event_icon" Stretch="Uniform" MaxWidth="150"></Image>
         </DockPanel>
-        <DockPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5 0 0 0">
+        <DockPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="5 0 0 0">
             <Label DockPanel.Dock="Left">Humanitarnog karaktera:</Label>
             <WrapPanel x:Name="IsHumanitary_radio_buttons_group" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <RadioButton x:Name="IsHumanitary_option_Yes_radio_button" VerticalContentAlignment="Center" Margin="0 0 20 0" 
@@ -184,13 +248,13 @@
                              GroupName="IsHumanitary_radio_buttons_group">Ne</RadioButton>
             </WrapPanel>
         </DockPanel>
-        <DockPanel Grid.Row="4" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 0 5 0">
+        <DockPanel Grid.Row="4" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="0 0 5 0">
             <Label DockPanel.Dock="Left">Posećenost događaja:</Label>
             <!-- REFERENCE: https://brianlagunas.com/a-better-way-to-data-bind-enums-in-wpf/ -->
             <ComboBox x:Name="Combo_box_for_attendance" VerticalContentAlignment="Center" 
                       ItemsSource="{Binding Source={view_model:EnumBindingSource {x:Type model:Attendance}}}" SelectedIndex="0"></ComboBox>
         </DockPanel>
-        <DockPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5 0 0 0">
+        <DockPanel Grid.Row="4" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="5 0 0 0">
             <Label DockPanel.Dock="Left">Prosečna cena troškova za održavanje:</Label>
             <TextBox x:Name="Input_for_average_costs_of_sustension" VerticalContentAlignment="Center" 
                      Style="{StaticResource ControlForTextBoxValidationErrorStyle}">
@@ -215,7 +279,7 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <ComboBox Grid.Row="0" Grid.Column="0" x:Name="Combo_box_for_populated_place" VerticalContentAlignment="Center" 
-                          HorizontalAlignment="Left" 
+                          HorizontalAlignment="Left" Style="{StaticResource ControlForComboBoxValidationErrorStyle}" 
                           ItemsSource="{Binding AllEntitiesViewModel.PopulatedPlacesViewModel.PopulatedPlaces}" Width="150">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -225,6 +289,14 @@
                             </StackPanel>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
+                    <ComboBox.SelectedItem>
+                        <Binding Path="NewEvent.PopulatedPlace" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
+                                <val_event:ExistingEventPopulatedPlaceValidationRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </ComboBox.SelectedItem>
                 </ComboBox>
                 <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_populated_place_button" HorizontalAlignment="Right" 
                         Width="120">Unesite novi grad</Button>
@@ -241,8 +313,8 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <ComboBox Grid.Row="0" Grid.Column="0" x:Name="Combo_box_for_country" VerticalContentAlignment="Center" 
-                          HorizontalAlignment="Left" ItemsSource="{Binding AllEntitiesViewModel.CountriesViewModel.Countries}" 
-                          Width="150">
+                          HorizontalAlignment="Left" Style="{StaticResource ControlForComboBoxValidationErrorStyle}" 
+                          ItemsSource="{Binding AllEntitiesViewModel.CountriesViewModel.Countries}" Width="150">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -251,6 +323,14 @@
                             </StackPanel>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
+                    <ComboBox.SelectedItem>
+                        <Binding Path="NewEvent.Country" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
+                                <val_event:ExistingEventCountryValidationRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </ComboBox.SelectedItem>
                 </ComboBox>
                 <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_country_button" HorizontalAlignment="Right" 
                         Width="120">Unesite novu državu</Button>
@@ -268,7 +348,7 @@
                     <Binding Path="NewEvent.DateOfTheEvent" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
-                            <val_event:EventDateValidationRule ValidatesOnTargetUpdated="True"/>
+                            <val_event:DateOfTheEventValidationRule ValidatesOnTargetUpdated="True"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </DatePicker.SelectedDate>

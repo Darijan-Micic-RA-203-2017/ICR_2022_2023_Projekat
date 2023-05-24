@@ -33,6 +33,9 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
         {
             eventData = new EventData();
             eventData.id = "";
+            eventData.tags = new List<EventTag>();
+            eventData.historyOfDatesOfTheEvent = new List<DateTime>();
+
             backupData = new EventData();
         }
 

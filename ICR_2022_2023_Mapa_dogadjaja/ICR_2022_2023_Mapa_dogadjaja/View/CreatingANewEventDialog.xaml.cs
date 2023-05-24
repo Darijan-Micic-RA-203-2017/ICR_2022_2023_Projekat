@@ -24,6 +24,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
     public partial class CreatingANewEventDialog : Window, INotifyPropertyChanged
     {
         private Event newEvent;
+
+        private EventTag currentlySelectedEventTag;
         
         private BitmapImage selectedEventIcon;
 
@@ -36,6 +38,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             DataContext = this;
 
             newEvent = new Event();
+            currentlySelectedEventTag = new EventTag();
             selectedEventIcon = null;
             allEntitiesViewModel = new AllEntitiesViewModel();
             
@@ -51,6 +54,19 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 {
                     newEvent = value;
                     OnPropertyChanged("NewEvent");
+                }
+            }
+        }
+
+        public EventTag CurrentlySelectedEventTag
+        {
+            get { return currentlySelectedEventTag; }
+            set
+            {
+                if (value != currentlySelectedEventTag)
+                {
+                    currentlySelectedEventTag = value;
+                    OnPropertyChanged("CurrentlySelectedEventTag");
                 }
             }
         }
