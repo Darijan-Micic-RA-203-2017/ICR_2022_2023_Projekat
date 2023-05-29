@@ -30,6 +30,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
         private BitmapImage selectedEventIcon;
 
         private AllEntitiesViewModel allEntitiesViewModel;
+
+        private int validationErrorsCounter;
         
         public CreatingANewEventDialog()
         {
@@ -41,8 +43,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             currentlySelectedTag = null;
             selectedEventIcon = null;
             allEntitiesViewModel = new AllEntitiesViewModel();
-            
+            validationErrorsCounter = 0;
+
             AddHotKeys();
+
+            // REFERENCE: https://stackoverflow.com/a/808190
+            AddHandler(System.Windows.Controls.Validation.ErrorEvent, new RoutedEventHandler(OnErrorEvent));
         }
 
         public Event NewEvent
@@ -117,6 +123,43 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             }
         }
 
+        // REFERENCE: https://stackoverflow.com/a/808190
+        private void OnErrorEvent(object sender, RoutedEventArgs e)
+        {
+            var validationEventArgs = e as ValidationErrorEventArgs;
+            if (validationEventArgs == null)
+            {
+                throw new Exception("Unexpected event args!");
+            }
+
+            switch (validationEventArgs.Action)
+            {
+                case ValidationErrorEventAction.Added:
+                    {
+                        validationErrorsCounter++;
+                        break;
+                    }
+                case ValidationErrorEventAction.Removed:
+                    {
+                        validationErrorsCounter--;
+                        break;
+                    }
+                default:
+                    {
+                        throw new Exception("Unknown action!");
+                    }
+            }
+
+            if (validationErrorsCounter == 0)
+            {
+                Save_button.IsEnabled = true;
+            }
+            else
+            {
+                Save_button.IsEnabled = false;
+            }
+        }
+
         // REFERENCE: https://learn.microsoft.com/en-us/dotnet/desktop/wpf/windows/how-to-open-common-system-dialog-box?view=netdesktop-7.0
         private void OpenDialogForSelectingEventIcon(object sender, RoutedEventArgs e)
         {
@@ -158,6 +201,11 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
         private void SaveEvent(object sender, RoutedEventArgs e)
         {
             if (New_event_form_grid == null)
+            {
+                return;
+            }
+
+            if (!Save_button.IsEnabled)
             {
                 return;
             }
@@ -222,7 +270,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
 
             //DialogResult = true;
         }
-
+        
         // REFERENCE: https://learn.microsoft.com/en-us/dotnet/desktop/wpf/windows/how-to-close-window-dialog-box?source=recommendations&view=netdesktop-7.0
         private void CloseDialog(object sender, RoutedEventArgs e)
         {

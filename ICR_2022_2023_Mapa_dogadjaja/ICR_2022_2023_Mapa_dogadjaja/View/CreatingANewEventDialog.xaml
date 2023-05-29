@@ -124,7 +124,7 @@
             <TextBox x:Name="Input_for_id" VerticalContentAlignment="Center" 
                      Style="{StaticResource ControlForTextBoxValidationErrorStyle}">
                 <TextBox.Text>
-                    <Binding Path="NewEvent.Id" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="NewEvent.Id" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>
                             <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
                             <val_event:UniqueEventIdValidationRule ValidatesOnTargetUpdated="True"/>
@@ -138,7 +138,7 @@
             <TextBox x:Name="Input_for_name" VerticalContentAlignment="Center" 
                      Style="{StaticResource ControlForTextBoxValidationErrorStyle}">
                 <TextBox.Text>
-                    <Binding Path="NewEvent.Name" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="NewEvent.Name" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>
                             <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
                             <val_event:UniqueEventNameValidationRule ValidatesOnTargetUpdated="True"/>
@@ -171,7 +171,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                     <ListBox.SelectedItem>
-                        <Binding Path="CurrentlySelectedTag" UpdateSourceTrigger="PropertyChanged">
+                        <Binding Path="CurrentlySelectedTag" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                             <Binding.ValidationRules>
                                 <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
                                 <val_event:ExistingEventTagsValidationRule ValidatesOnTargetUpdated="True"/>
@@ -206,7 +206,7 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                     <ComboBox.SelectedItem>
-                        <Binding Path="NewEvent.Type" UpdateSourceTrigger="PropertyChanged">
+                        <Binding Path="NewEvent.Type" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                             <Binding.ValidationRules>
                                 <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
                                 <val_event:ExistingEventTypeValidationRule ValidatesOnTargetUpdated="True"/>
@@ -223,7 +223,7 @@
             <TextBox x:Name="Input_for_decription" VerticalAlignment="Bottom" VerticalScrollBarVisibility="Visible" 
                      Style="{StaticResource ControlForTextBoxValidationErrorStyle}" Height="120">
                 <TextBox.Text>
-                    <Binding Path="NewEvent.Description" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="NewEvent.Description" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>
                             <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
                             <val_event:ExistingEventDescriptionValidationRule ValidatesOnTargetUpdated="True"/>
@@ -259,7 +259,8 @@
             <TextBox x:Name="Input_for_average_costs_of_sustension" VerticalContentAlignment="Center" 
                      Style="{StaticResource ControlForTextBoxValidationErrorStyle}">
                 <TextBox.Text>
-                    <Binding Path="NewEvent.AverageCostsOfSustension" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="NewEvent.AverageCostsOfSustension" UpdateSourceTrigger="PropertyChanged" 
+                             NotifyOnValidationError="True">
                         <Binding.ValidationRules>
                             <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
                             <val_event:AverageCostsOfSustensionForEventValidationRule ValidatesOnTargetUpdated="True"/>
@@ -290,7 +291,7 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                     <ComboBox.SelectedItem>
-                        <Binding Path="NewEvent.PopulatedPlace" UpdateSourceTrigger="PropertyChanged">
+                        <Binding Path="NewEvent.PopulatedPlace" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                             <Binding.ValidationRules>
                                 <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
                                 <val_event:ExistingEventPopulatedPlaceValidationRule ValidatesOnTargetUpdated="True"/>
@@ -324,7 +325,7 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                     <ComboBox.SelectedItem>
-                        <Binding Path="NewEvent.Country" UpdateSourceTrigger="PropertyChanged">
+                        <Binding Path="NewEvent.Country" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                             <Binding.ValidationRules>
                                 <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
                                 <val_event:ExistingEventCountryValidationRule ValidatesOnTargetUpdated="True"/>
@@ -345,7 +346,7 @@
             <DatePicker x:Name="Input_for_date_of_the_event" VerticalContentAlignment="Center" 
                         Style="{StaticResource ControlForDatePickerValidationErrorStyle}">
                 <DatePicker.SelectedDate>
-                    <Binding Path="NewEvent.DateOfTheEvent" UpdateSourceTrigger="PropertyChanged">
+                    <Binding Path="NewEvent.DateOfTheEvent" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>
                             <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
                             <val_event:DateOfTheEventValidationRule ValidatesOnTargetUpdated="True"/>
@@ -354,7 +355,8 @@
                 </DatePicker.SelectedDate>
             </DatePicker>
         </DockPanel>
-        <Button Grid.Row="8" Grid.Column="0" x:Name="Save_button" Height="30" Width="100" Click="SaveEvent">Sačuvaj</Button>
+        <Button Grid.Row="8" Grid.Column="0" x:Name="Save_button" Height="30" Width="100" IsEnabled="False" 
+                Click="SaveEvent">Sačuvaj</Button>
         <Button Grid.Row="8" Grid.Column="1" x:Name="Cancel_button" Height="30" Width="100" 
                 IsCancel="True" Click="CloseDialog">Otkaži</Button>
     </Grid>
