@@ -173,7 +173,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             }
             else
             {
-                newEvent.Icon = null;
+                newEvent.Icon = newEvent.Type.Icon;
             }
 
             if (IsHumanitary_option_Yes_radio_button.IsChecked == true)
