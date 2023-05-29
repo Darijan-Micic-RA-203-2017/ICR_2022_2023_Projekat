@@ -103,7 +103,7 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid Margin="10 0 10 0">
+    <Grid x:Name="New_event_form_grid" Margin="10 0 10 0">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="90"></RowDefinition>
@@ -171,7 +171,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                     <ListBox.SelectedItem>
-                        <Binding Path="CurrentlySelectedEventTag" UpdateSourceTrigger="PropertyChanged">
+                        <Binding Path="CurrentlySelectedTag" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
                                 <val_event:ExistingEventTagsValidationRule ValidatesOnTargetUpdated="True"/>
@@ -241,7 +241,7 @@
         </DockPanel>
         <DockPanel Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="5 0 0 0">
             <Label DockPanel.Dock="Left">Humanitarnog karaktera:</Label>
-            <WrapPanel x:Name="IsHumanitary_radio_buttons_group" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <WrapPanel x:Name="IsHumanitary_radio_buttons_panel" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <RadioButton x:Name="IsHumanitary_option_Yes_radio_button" VerticalContentAlignment="Center" Margin="0 0 20 0" 
                              GroupName="IsHumanitary_radio_buttons_group">Da</RadioButton>
                 <RadioButton x:Name="IsHumanitaty_option_No_radio_button" VerticalContentAlignment="Center" IsChecked="True" 

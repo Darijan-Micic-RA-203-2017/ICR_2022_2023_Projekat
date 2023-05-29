@@ -25,7 +25,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
     {
         private Event newEvent;
 
-        private EventTag currentlySelectedEventTag;
+        private EventTag currentlySelectedTag;
         
         private BitmapImage selectedEventIcon;
 
@@ -38,7 +38,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             DataContext = this;
 
             newEvent = new Event();
-            currentlySelectedEventTag = new EventTag();
+            currentlySelectedTag = null;
             selectedEventIcon = null;
             allEntitiesViewModel = new AllEntitiesViewModel();
             
@@ -58,15 +58,15 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             }
         }
 
-        public EventTag CurrentlySelectedEventTag
+        public EventTag CurrentlySelectedTag
         {
-            get { return currentlySelectedEventTag; }
+            get { return currentlySelectedTag; }
             set
             {
-                if (value != currentlySelectedEventTag)
+                if (value != currentlySelectedTag)
                 {
-                    currentlySelectedEventTag = value;
-                    OnPropertyChanged("CurrentlySelectedEventTag");
+                    currentlySelectedTag = value;
+                    OnPropertyChanged("CurrentlySelectedTag");
                 }
             }
         }
@@ -157,7 +157,70 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
 
         private void SaveEvent(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            if (New_event_form_grid == null)
+            {
+                return;
+            }
+            
+            foreach (EventTag selectedTag in List_box_for_event_tags.SelectedItems)
+            {
+                newEvent.Tags.Add(selectedTag);
+            }
+            
+            if (Event_icon.Source != null)
+            {
+                newEvent.Icon = Event_icon.Source.ToString();
+            }
+            else
+            {
+                newEvent.Icon = null;
+            }
+
+            if (IsHumanitary_option_Yes_radio_button.IsChecked == true)
+            {
+                newEvent.IsHumanitary = true;
+            }
+            else
+            {
+                newEvent.IsHumanitary = false;
+            }
+
+            newEvent.Attendance = (Attendance) Combo_box_for_attendance.SelectedItem;
+
+            StringBuilder newEventStringBuilder = new StringBuilder();
+            newEventStringBuilder.AppendLine("Oznaka: " + newEvent.Id);
+            newEventStringBuilder.AppendLine("Naziv: " + newEvent.Name);
+            int i = 0;
+            foreach (EventTag t in newEvent.Tags)
+            {
+                newEventStringBuilder.AppendLine(i + ". etiketa: " + t.Description);
+                i++;
+            }
+            if (newEvent.Type != null)
+            {
+                newEventStringBuilder.AppendLine("Tip: " + newEvent.Type.Name);
+            }
+            newEventStringBuilder.AppendLine("Opis: " + newEvent.Description);
+            newEventStringBuilder.AppendLine("Ikona: " + newEvent.Icon);
+            newEventStringBuilder.AppendLine("Humanitaran: " + newEvent.IsHumanitary);
+            newEventStringBuilder.AppendLine("Posecenost: " + newEvent.Attendance);
+            newEventStringBuilder.AppendLine("Troskovi: " + newEvent.AverageCostsOfSustension);
+            if (newEvent.PopulatedPlace != null)
+            {
+                newEventStringBuilder.AppendLine("Grad: " + newEvent.PopulatedPlace.Name);
+            }
+            if (newEvent.Country != null)
+            {
+                newEventStringBuilder.AppendLine("Drzava: " + newEvent.Country.Name);
+            }
+            newEventStringBuilder.AppendLine("Istorija datuma: " + newEvent.HistoryOfDatesOfTheEvent);
+            newEventStringBuilder.AppendLine("Datum: " + newEvent.DateOfTheEvent);
+            MessageBox.Show(newEventStringBuilder.ToString());
+
+            allEntitiesViewModel.EventsViewModel.Events.Add(newEvent);
+            MessageBox.Show("Broj dogadjaja: " + allEntitiesViewModel.EventsViewModel.Events.Count);
+
+            //DialogResult = true;
         }
 
         // REFERENCE: https://learn.microsoft.com/en-us/dotnet/desktop/wpf/windows/how-to-close-window-dialog-box?source=recommendations&view=netdesktop-7.0
