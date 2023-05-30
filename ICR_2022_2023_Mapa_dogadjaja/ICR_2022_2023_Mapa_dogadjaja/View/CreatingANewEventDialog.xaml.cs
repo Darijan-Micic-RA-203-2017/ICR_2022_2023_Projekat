@@ -197,6 +197,50 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             selectedEventIcon = new BitmapImage(new Uri(openFileDialog.FileName, UriKind.Absolute));
             Event_icon.Source = selectedEventIcon;
         }
+        
+        // REFERENCE: https://stackoverflow.com/a/4496827
+        private RoutedEventHandler clicked;
+        public event RoutedEventHandler Clicked
+        {
+            add
+            {
+                clicked -= value;
+                clicked += value;
+            }
+            remove
+            {
+                clicked -= value;
+            }
+        }
+        
+        private void CreateNewHistoricalDateOfTheEventInput(object sender, RoutedEventArgs e)
+        {
+            if (Panel_for_inputs_for_historical_dates_of_the_event == null)
+            {
+                return;
+            }
+            
+            DockPanel newHistoricalDateOfTheEventDockPanel = new DockPanel();
+            newHistoricalDateOfTheEventDockPanel.LastChildFill = true;
+            newHistoricalDateOfTheEventDockPanel.Margin = new Thickness(0, 0, 0, 10);
+            
+            Button buttonForAddingAnotherDockPanel = new Button();
+            buttonForAddingAnotherDockPanel.Content = "+";
+            buttonForAddingAnotherDockPanel.Margin = new Thickness(0, 0, 10, 0);
+            // REFERENCE: https://stackoverflow.com/a/4496827
+            var snapshot = clicked;
+            if (snapshot != null)
+            {
+                snapshot(buttonForAddingAnotherDockPanel, (RoutedEventArgs) EventArgs.Empty);
+            }
+            newHistoricalDateOfTheEventDockPanel.Children.Add(buttonForAddingAnotherDockPanel);
+            
+            DatePicker newHistoricalDateOfTheEventPicker = new DatePicker();
+            newHistoricalDateOfTheEventPicker.VerticalContentAlignment = VerticalAlignment.Center;
+            newHistoricalDateOfTheEventDockPanel.Children.Add(newHistoricalDateOfTheEventPicker);
+            
+            Panel_for_inputs_for_historical_dates_of_the_event.Children.Add(newHistoricalDateOfTheEventDockPanel);
+        }
 
         private void SaveEvent(object sender, RoutedEventArgs e)
         {

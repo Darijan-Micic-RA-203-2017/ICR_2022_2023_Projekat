@@ -339,7 +339,16 @@
         </DockPanel>
         <DockPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Label DockPanel.Dock="Left">Istorija datuma održavanja:</Label>
-            <ListBox x:Name="Input_for_history_of_dates_of_the_event"></ListBox>
+            <!-- REFERENCE: https://stackoverflow.com/questions/6250240/how-to-add-a-scrollbar-to-a-stackpanel#comment77547339_6250287 -->
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" CanContentScroll="True">
+                <StackPanel x:Name="Panel_for_inputs_for_historical_dates_of_the_event" Orientation="Vertical" Margin="0 0 10 0">
+                    <DockPanel x:Name="Panel_for_first_historical_date_of_the_event" LastChildFill="True" Margin="0 0 0 10">
+                        <Button x:Name="Button_for_adding_another_panel" DockPanel.Dock="Left" Margin="0 0 10 0" 
+                                Click="CreateNewHistoricalDateOfTheEventInput">+</Button>
+                        <DatePicker VerticalContentAlignment="Center"></DatePicker>
+                    </DockPanel>
+                </StackPanel>
+            </ScrollViewer>
         </DockPanel>
         <DockPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
             <Label DockPanel.Dock="Left">Datum održavanja:</Label>
