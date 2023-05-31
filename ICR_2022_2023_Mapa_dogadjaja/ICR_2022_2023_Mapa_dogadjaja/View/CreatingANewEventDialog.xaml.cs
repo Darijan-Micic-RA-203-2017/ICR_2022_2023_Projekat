@@ -198,21 +198,6 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             Event_icon.Source = selectedEventIcon;
         }
         
-        // REFERENCE: https://stackoverflow.com/a/4496827
-        private RoutedEventHandler clicked;
-        public event RoutedEventHandler Clicked
-        {
-            add
-            {
-                clicked -= value;
-                clicked += value;
-            }
-            remove
-            {
-                clicked -= value;
-            }
-        }
-        
         private void CreateNewHistoricalDateOfTheEventInput(object sender, RoutedEventArgs e)
         {
             if (Panel_for_inputs_for_historical_dates_of_the_event == null)
@@ -220,26 +205,11 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 return;
             }
             
-            DockPanel newHistoricalDateOfTheEventDockPanel = new DockPanel();
-            newHistoricalDateOfTheEventDockPanel.LastChildFill = true;
-            newHistoricalDateOfTheEventDockPanel.Margin = new Thickness(0, 0, 0, 10);
-            
-            Button buttonForAddingAnotherDockPanel = new Button();
-            buttonForAddingAnotherDockPanel.Content = "+";
-            buttonForAddingAnotherDockPanel.Margin = new Thickness(0, 0, 10, 0);
-            // REFERENCE: https://stackoverflow.com/a/4496827
-            var snapshot = clicked;
-            if (snapshot != null)
-            {
-                snapshot(buttonForAddingAnotherDockPanel, (RoutedEventArgs) EventArgs.Empty);
-            }
-            newHistoricalDateOfTheEventDockPanel.Children.Add(buttonForAddingAnotherDockPanel);
-            
             DatePicker newHistoricalDateOfTheEventPicker = new DatePicker();
             newHistoricalDateOfTheEventPicker.VerticalContentAlignment = VerticalAlignment.Center;
-            newHistoricalDateOfTheEventDockPanel.Children.Add(newHistoricalDateOfTheEventPicker);
+            newHistoricalDateOfTheEventPicker.Margin = new Thickness(0, 0, 0, 10);
             
-            Panel_for_inputs_for_historical_dates_of_the_event.Children.Add(newHistoricalDateOfTheEventDockPanel);
+            Panel_for_inputs_for_historical_dates_of_the_event.Children.Add(newHistoricalDateOfTheEventPicker);
         }
 
         private void SaveEvent(object sender, RoutedEventArgs e)
@@ -248,7 +218,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             {
                 return;
             }
-
+            
             if (!Save_button.IsEnabled)
             {
                 return;
@@ -279,40 +249,18 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
 
             newEvent.Attendance = (Attendance) Combo_box_for_attendance.SelectedItem;
 
-            StringBuilder newEventStringBuilder = new StringBuilder();
-            newEventStringBuilder.AppendLine("Oznaka: " + newEvent.Id);
-            newEventStringBuilder.AppendLine("Naziv: " + newEvent.Name);
-            int i = 0;
-            foreach (EventTag t in newEvent.Tags)
+            foreach (UIElement childElem in Panel_for_inputs_for_historical_dates_of_the_event.Children)
             {
-                newEventStringBuilder.AppendLine(i + ". etiketa: " + t.Description);
-                i++;
+                DatePicker datePicker = (DatePicker) childElem;
+                if (datePicker.SelectedDate.HasValue)
+                {
+                    newEvent.HistoryOfDatesOfTheEvent.Add(datePicker.SelectedDate.Value);
+                }
             }
-            if (newEvent.Type != null)
-            {
-                newEventStringBuilder.AppendLine("Tip: " + newEvent.Type.Name);
-            }
-            newEventStringBuilder.AppendLine("Opis: " + newEvent.Description);
-            newEventStringBuilder.AppendLine("Ikona: " + newEvent.Icon);
-            newEventStringBuilder.AppendLine("Humanitaran: " + newEvent.IsHumanitary);
-            newEventStringBuilder.AppendLine("Posecenost: " + newEvent.Attendance);
-            newEventStringBuilder.AppendLine("Troskovi: " + newEvent.AverageCostsOfSustension);
-            if (newEvent.PopulatedPlace != null)
-            {
-                newEventStringBuilder.AppendLine("Grad: " + newEvent.PopulatedPlace.Name);
-            }
-            if (newEvent.Country != null)
-            {
-                newEventStringBuilder.AppendLine("Drzava: " + newEvent.Country.Name);
-            }
-            newEventStringBuilder.AppendLine("Istorija datuma: " + newEvent.HistoryOfDatesOfTheEvent);
-            newEventStringBuilder.AppendLine("Datum: " + newEvent.DateOfTheEvent);
-            MessageBox.Show(newEventStringBuilder.ToString());
-
+            
             allEntitiesViewModel.EventsViewModel.Events.Add(newEvent);
-            MessageBox.Show("Broj dogadjaja: " + allEntitiesViewModel.EventsViewModel.Events.Count);
-
-            //DialogResult = true;
+            
+            DialogResult = true;
         }
         
         // REFERENCE: https://learn.microsoft.com/en-us/dotnet/desktop/wpf/windows/how-to-close-window-dialog-box?source=recommendations&view=netdesktop-7.0
