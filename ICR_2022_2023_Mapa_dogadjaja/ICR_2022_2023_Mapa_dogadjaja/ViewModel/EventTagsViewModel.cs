@@ -1,36 +1,24 @@
 ﻿using ICR_2022_2023_Mapa_dogadjaja.Model;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
 {
     public class EventTagsViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<EventTag> eventTags = new ObservableCollection<EventTag>();
+        private JArray eventTagsArray;
 
         public EventTagsViewModel()
         {
-            if (eventTags.Count > 0)
-            {
-                return;
-            }
-
-            EventTag eventTag01 = new EventTag("ODOG001", "Brown", "Muzika");
-            EventTag eventTag02 = new EventTag("ODOG002", "Red", "Kratkometražni film");
-            EventTag eventTag03 = new EventTag("ODOG003", "Orange", "Dugometražni film");
-            EventTag eventTag04 = new EventTag("ODOG004", "Blue", "Sport");
-            EventTag eventTag05 = new EventTag("ODOG005", "Black", "Dvoranski sport");
-            EventTag eventTag06 = new EventTag("ODOG006", "Green", "Humanitaran");
-            eventTags.Add(eventTag01);
-            eventTags.Add(eventTag02);
-            eventTags.Add(eventTag03);
-            eventTags.Add(eventTag04);
-            eventTags.Add(eventTag05);
-            eventTags.Add(eventTag06);
+            LoadAll();
         }
 
         public ObservableCollection<EventTag> EventTags
@@ -55,5 +43,56 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        // REFERENCE: https://www.newtonsoft.com/json/help/html/ReadJson.htm
+        public void LoadAll()
+        {
+            try
+            {
+                Uri uriToFile = new Uri("../../Repository/EventTags.json", UriKind.Relative);
+                eventTagsArray = JArray.Parse(File.ReadAllText(uriToFile.ToString()));
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+
+                return;
+            }
+
+            // REFERENCE: https://www.newtonsoft.com/json/help/html/ToObjectType.htm
+            foreach (JToken token in eventTagsArray.Children())
+            {
+                EventTag eventTag = (EventTag) token.ToObject(typeof(EventTag));
+                if (!eventTags.Contains(eventTag))
+                {
+                    eventTags.Add(eventTag);
+                }
+            }
+        }
+
+        // REFERENCE: https://www.newtonsoft.com/json/help/html/WriteToJsonFile.htm
+        public void Save()
+        {
+            eventTagsArray = JArray.FromObject(eventTags);
+
+            try
+            {
+                Uri uriToFile = new Uri("../../Repository/EventTags.json", UriKind.Relative);
+                File.WriteAllText(uriToFile.ToString(), eventTagsArray.ToString());
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+
+                return;
+            }
+        }
+
+        public void Save(EventTag newEventTag)
+        {
+            eventTags.Add(newEventTag);
+
+            Save();
+        }
     }
 }

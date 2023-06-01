@@ -1,0 +1,32 @@
+[
+  {
+    "Id": "ODOG001",
+    "Color": "Brown",
+    "Description": "Muzika"
+  },
+  {
+    "Id": "ODOG002",
+    "Color": "Red",
+    "Description": "Kratkometražni film"
+  },
+  {
+    "Id": "ODOG003",
+    "Color": "Orange",
+    "Description": "Dugometražni film"
+  },
+  {
+    "Id": "ODOG004",
+    "Color": "Blue",
+    "Description": "Sport"
+  },
+  {
+    "Id": "ODOG005",
+    "Color": "Black",
+    "Description": "Dvoranski sport"
+  },
+  {
+    "Id": "ODOG006",
+    "Color": "Green",
+    "Description": "Humanitaran"
+  }
+]

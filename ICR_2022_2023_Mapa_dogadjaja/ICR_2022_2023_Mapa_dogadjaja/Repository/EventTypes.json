@@ -1,0 +1,26 @@
+[
+  {
+    "Id": "TIPDOG001",
+    "Name": "Muzički festival",
+    "Description": "Festival muzike u zatvorenom ili otvorenom prostoru.",
+    "Icon": "/ICR_2022_2023_Mapa_dogadjaja;component/Icons/EventTypeIcons/Muzicki_festival_ikona.png"
+  },
+  {
+    "Id": "TIPDOG002",
+    "Name": "Filmski festival",
+    "Description": "Festival filma u zatvorenom ili otvorenom prostoru.",
+    "Icon": "/ICR_2022_2023_Mapa_dogadjaja;component/Icons/EventTypeIcons/Filmski_festival_ikona.jpg"
+  },
+  {
+    "Id": "TIPDOG003",
+    "Name": "Košarkaška utakmica",
+    "Description": "Utakmica 2. najpopularnijeg timskog sporta, posmatrano na globalnom nivou.",
+    "Icon": "/ICR_2022_2023_Mapa_dogadjaja;component/Icons/EventTypeIcons/Kosarkaska_utakmica_ikona.png"
+  },
+  {
+    "Id": "TIPDOG004",
+    "Name": "Humanitarna aukcija",
+    "Description": "Aukcija napravljena sa ciljem da se uplaćeni novac donira u humanitarne svrhe.",
+    "Icon": "/ICR_2022_2023_Mapa_dogadjaja;component/Icons/EventTypeIcons/Humanitarna_aukcija_ikona.jpg"
+  }
+]

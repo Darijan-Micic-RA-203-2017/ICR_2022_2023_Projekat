@@ -129,6 +129,13 @@
     <None Include="Repository\Countries.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Repository\EventTags.json" />
+    <None Include="Repository\EventTypes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Repository\PopulatedPlaces.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icons\EventIcons\Aukcija_sportskih_dresova_Milosa_Nikolica_ikona.jpg">

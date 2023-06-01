@@ -1,0 +1,14 @@
+[
+  {
+    "Id": "GRAD001",
+    "Name": "Novi Sad"
+  },
+  {
+    "Id": "GRAD002",
+    "Name": "Drvengrad"
+  },
+  {
+    "Id": "GRAD003",
+    "Name": "Beograd"
+  }
+]

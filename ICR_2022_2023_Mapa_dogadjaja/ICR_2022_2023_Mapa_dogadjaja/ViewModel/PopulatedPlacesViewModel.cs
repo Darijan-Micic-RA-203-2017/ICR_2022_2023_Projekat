@@ -1,30 +1,24 @@
 ﻿using ICR_2022_2023_Mapa_dogadjaja.Model;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
 {
     public class PopulatedPlacesViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<PopulatedPlace> populatedPlaces = new ObservableCollection<PopulatedPlace>();
+        private JArray populatedPlacesArray;
 
         public PopulatedPlacesViewModel()
         {
-            if (populatedPlaces.Count > 0)
-            {
-                return;
-            }
-
-            PopulatedPlace populatedPlace01 = new PopulatedPlace("GRAD001", "Novi Sad");
-            PopulatedPlace populatedPlace02 = new PopulatedPlace("GRAD002", "Drvengrad");
-            PopulatedPlace populatedPlace03 = new PopulatedPlace("GRAD003", "Beograd");
-            populatedPlaces.Add(populatedPlace01);
-            populatedPlaces.Add(populatedPlace02);
-            populatedPlaces.Add(populatedPlace03);
+            LoadAll();
         }
 
         public ObservableCollection<PopulatedPlace> PopulatedPlaces
@@ -49,5 +43,56 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        // REFERENCE: https://www.newtonsoft.com/json/help/html/ReadJson.htm
+        public void LoadAll()
+        {
+            try
+            {
+                Uri uriToFile = new Uri("../../Repository/PopulatedPlaces.json", UriKind.Relative);
+                populatedPlacesArray = JArray.Parse(File.ReadAllText(uriToFile.ToString()));
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+
+                return;
+            }
+
+            // REFERENCE: https://www.newtonsoft.com/json/help/html/ToObjectType.htm
+            foreach (JToken token in populatedPlacesArray.Children())
+            {
+                PopulatedPlace populatedPlace = (PopulatedPlace) token.ToObject(typeof(PopulatedPlace));
+                if (!populatedPlaces.Contains(populatedPlace))
+                {
+                    populatedPlaces.Add(populatedPlace);
+                }
+            }
+        }
+
+        // REFERENCE: https://www.newtonsoft.com/json/help/html/WriteToJsonFile.htm
+        public void Save()
+        {
+            populatedPlacesArray = JArray.FromObject(populatedPlaces);
+
+            try
+            {
+                Uri uriToFile = new Uri("../../Repository/PopulatedPlaces.json", UriKind.Relative);
+                File.WriteAllText(uriToFile.ToString(), populatedPlacesArray.ToString());
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+
+                return;
+            }
+        }
+
+        public void Save(PopulatedPlace newPopulatedPlace)
+        {
+            populatedPlaces.Add(newPopulatedPlace);
+
+            Save();
+        }
     }
 }
