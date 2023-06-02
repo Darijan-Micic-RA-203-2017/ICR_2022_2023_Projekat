@@ -274,7 +274,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
                 return false;
             }
 
-            Event other = (Event)obj;
+            Event other = (Event) obj;
 
             if (eventData.id == null)
             {

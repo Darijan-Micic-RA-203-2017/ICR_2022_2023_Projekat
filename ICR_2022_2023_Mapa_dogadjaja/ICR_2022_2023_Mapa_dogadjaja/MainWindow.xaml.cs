@@ -26,7 +26,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja
         private const string DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_TABLE = "Filtriraj tabelu (Alt + 2)";
         private const string DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_MAP = "Filtriraj mapu (Alt + 3)";
 
-        private EventsViewModel eventsViewModel;
+        private AllEntitiesViewModel allEntitiesViewModel;
 
         private ObservableCollection<Event> eventsThatFitSearchCriterions = new ObservableCollection<Event>();
         private ObservableCollection<Event> filteredEvents = new ObservableCollection<Event>();
@@ -35,8 +35,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja
         {
             InitializeComponent();
 
-            eventsViewModel = new EventsViewModel();
-            DataContext = eventsViewModel;
+            allEntitiesViewModel = new AllEntitiesViewModel();
+            DataContext = allEntitiesViewModel;
             
             AddHotKeys();
         }
@@ -111,7 +111,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja
 
         private void OpenDialogForCreatingANewEvent(object sender, RoutedEventArgs e)
         {
-            CreatingANewEventDialog dialogForCreatingANewEvent = new CreatingANewEventDialog();
+            CreatingANewEventDialog dialogForCreatingANewEvent = new CreatingANewEventDialog(allEntitiesViewModel);
             dialogForCreatingANewEvent.ShowDialog();
         }
 
@@ -189,7 +189,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             if (enteredText == DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_TABLE.ToLower())
             {
                 Cancel_search_or_filtering_button.IsEnabled = false;
-                Table_of_events.ItemsSource = eventsViewModel.Events;
+                Table_of_events.ItemsSource = allEntitiesViewModel.EventsViewModel.Events;
                 eventsThatFitSearchCriterions.Clear();
                 
                 return;
@@ -197,7 +197,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             
             filteredEvents.Clear();
             
-            foreach (Event eve in eventsViewModel.Events)
+            foreach (Event eve in allEntitiesViewModel.EventsViewModel.Events)
             {
                 if (eve.Id.ToLower() == enteredText)
                 {
@@ -336,7 +336,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             }
             
             Cancel_search_or_filtering_button.IsEnabled = false;
-            Table_of_events.ItemsSource = eventsViewModel.Events;
+            Table_of_events.ItemsSource = allEntitiesViewModel.EventsViewModel.Events;
             eventsThatFitSearchCriterions.Clear();
             filteredEvents.Clear();
             Input_for_filtering_table.Text = DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_TABLE;

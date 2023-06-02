@@ -33,7 +33,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
 
         private int validationErrorsCounter;
         
-        public CreatingANewEventDialog()
+        public CreatingANewEventDialog(AllEntitiesViewModel allEntitiesViewModel)
         {
             InitializeComponent();
             
@@ -42,7 +42,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             newEvent = new Event();
             currentlySelectedTag = null;
             selectedEventIcon = null;
-            allEntitiesViewModel = new AllEntitiesViewModel();
+            this.allEntitiesViewModel = allEntitiesViewModel;
             validationErrorsCounter = 0;
 
             AddHotKeys();
@@ -258,7 +258,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 }
             }
             
-            allEntitiesViewModel.EventsViewModel.Events.Add(newEvent);
+            allEntitiesViewModel.EventsViewModel.Save(newEvent);
             
             DialogResult = true;
         }

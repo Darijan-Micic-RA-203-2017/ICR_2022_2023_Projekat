@@ -1,4 +1,5 @@
-﻿using ICR_2022_2023_Mapa_dogadjaja.Model;
+﻿using ICR_2022_2023_Mapa_dogadjaja.DTO;
+using ICR_2022_2023_Mapa_dogadjaja.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,6 +24,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
             eventTypesViewModel = new EventTypesViewModel();
             eventTagsViewModel = new EventTagsViewModel();
             eventsViewModel = new EventsViewModel();
+
+            ConnectEventsToOtherEntities();
         }
 
         public CountriesViewModel CountriesViewModel
@@ -99,5 +102,29 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
         }
         
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public void ConnectEventsToOtherEntities()
+        {
+            foreach (EventDTO eventDTO in eventsViewModel.EventsDTOs)
+            {
+                List<EventTag> tags = new List<EventTag>();
+                foreach (string tagId in eventDTO.Tags)
+                {
+                    EventTag tag = eventTagsViewModel.FindById(tagId);
+                    tags.Add(tag);
+                }
+
+                EventType type = eventTypesViewModel.FindById(eventDTO.Type);
+
+                PopulatedPlace populatedPlace = populatedPlacesViewModel.FindById(eventDTO.PopulatedPlace);
+
+                Country country = countriesViewModel.FindById(eventDTO.Country);
+
+                Event eve = new Event(eventDTO.Id, tags, eventDTO.Name, eventDTO.Description, type, eventDTO.Attendance, 
+                    eventDTO.Icon, eventDTO.IsHumanitary, eventDTO.AverageCostsOfSustension, populatedPlace, country, 
+                    eventDTO.HistoryOfDatesOfTheEvent, eventDTO.DateOfTheEvent);
+                eventsViewModel.Events.Add(eve);
+            }
+        }
     }
 }

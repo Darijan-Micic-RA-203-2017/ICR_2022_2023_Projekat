@@ -44,13 +44,28 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public Country FindById(string countryId)
+        {
+            Country foundCountry = null;
+            foreach (Country c in countries)
+            {
+                if (c.Id == countryId)
+                {
+                    foundCountry = c;
+                    break;
+                }
+            }
+
+            return foundCountry;
+        }
+
         // REFERENCE: https://www.newtonsoft.com/json/help/html/ReadJson.htm
         public void LoadAll()
         {
             try
             {
-                Uri uriToFile = new Uri("../../Repository/Countries.json", UriKind.Relative);
-                countriesArray = JArray.Parse(File.ReadAllText(uriToFile.ToString()));
+                Uri fileUri = new Uri("../../Repository/Countries.json", UriKind.Relative);
+                countriesArray = JArray.Parse(File.ReadAllText(fileUri.ToString()));
             }
             catch (Exception e)
             {
@@ -77,8 +92,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
 
             try
             {
-                Uri uriToFile = new Uri("../../Repository/Countries.json", UriKind.Relative);
-                File.WriteAllText(uriToFile.ToString(), countriesArray.ToString());
+                Uri fileUri = new Uri("../../Repository/Countries.json", UriKind.Relative);
+                File.WriteAllText(fileUri.ToString(), countriesArray.ToString());
             }
             catch (Exception e)
             {

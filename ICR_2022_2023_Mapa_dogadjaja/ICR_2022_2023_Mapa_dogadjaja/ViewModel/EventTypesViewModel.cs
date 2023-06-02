@@ -44,13 +44,28 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public EventType FindById(string eventTypeId)
+        {
+            EventType foundEventType = null;
+            foreach (EventType eType in eventTypes)
+            {
+                if (eType.Id == eventTypeId)
+                {
+                    foundEventType = eType;
+                    break;
+                }
+            }
+
+            return foundEventType;
+        }
+
         // REFERENCE: https://www.newtonsoft.com/json/help/html/ReadJson.htm
         public void LoadAll()
         {
             try
             {
-                Uri uriToFile = new Uri("../../Repository/EventTypes.json", UriKind.Relative);
-                eventTypesArray = JArray.Parse(File.ReadAllText(uriToFile.ToString()));
+                Uri fileUri = new Uri("../../Repository/EventTypes.json", UriKind.Relative);
+                eventTypesArray = JArray.Parse(File.ReadAllText(fileUri.ToString()));
             }
             catch (Exception e)
             {
@@ -77,8 +92,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
 
             try
             {
-                Uri uriToFile = new Uri("../../Repository/EventTypes.json", UriKind.Relative);
-                File.WriteAllText(uriToFile.ToString(), eventTypesArray.ToString());
+                Uri fileUri = new Uri("../../Repository/EventTypes.json", UriKind.Relative);
+                File.WriteAllText(fileUri.ToString(), eventTypesArray.ToString());
             }
             catch (Exception e)
             {

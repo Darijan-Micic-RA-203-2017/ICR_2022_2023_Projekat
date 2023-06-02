@@ -44,13 +44,28 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public PopulatedPlace FindById(string populatedPlaceId)
+        {
+            PopulatedPlace foundPopulatedPlace = null;
+            foreach (PopulatedPlace pPlace in populatedPlaces)
+            {
+                if (pPlace.Id == populatedPlaceId)
+                {
+                    foundPopulatedPlace = pPlace;
+                    break;
+                }
+            }
+
+            return foundPopulatedPlace;
+        }
+
         // REFERENCE: https://www.newtonsoft.com/json/help/html/ReadJson.htm
         public void LoadAll()
         {
             try
             {
-                Uri uriToFile = new Uri("../../Repository/PopulatedPlaces.json", UriKind.Relative);
-                populatedPlacesArray = JArray.Parse(File.ReadAllText(uriToFile.ToString()));
+                Uri fileUri = new Uri("../../Repository/PopulatedPlaces.json", UriKind.Relative);
+                populatedPlacesArray = JArray.Parse(File.ReadAllText(fileUri.ToString()));
             }
             catch (Exception e)
             {
@@ -77,8 +92,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
 
             try
             {
-                Uri uriToFile = new Uri("../../Repository/PopulatedPlaces.json", UriKind.Relative);
-                File.WriteAllText(uriToFile.ToString(), populatedPlacesArray.ToString());
+                Uri fileUri = new Uri("../../Repository/PopulatedPlaces.json", UriKind.Relative);
+                File.WriteAllText(fileUri.ToString(), populatedPlacesArray.ToString());
             }
             catch (Exception e)
             {

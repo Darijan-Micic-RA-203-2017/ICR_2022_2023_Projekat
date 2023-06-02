@@ -43,8 +43,8 @@
                 <Button x:Name="Cancel_search_or_filtering_button" IsEnabled="False" 
                         Click="CancelSearchOrFiltering">Poništi (Alt + 4)</Button>
             </WrapPanel>
-            <DataGrid x:Name="Table_of_events" ItemsSource="{Binding Events}" IsReadOnly="True" SelectionMode="Single" 
-                      CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" 
+            <DataGrid x:Name="Table_of_events" ItemsSource="{Binding EventsViewModel.Events}" IsReadOnly="True" 
+                      SelectionMode="Single" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" 
                       VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch" 
                       AutoGenerateColumns="False" SizeChanged="Table_of_events_SizeChanged" RowHeight="86">
                 <DataGrid.Columns>

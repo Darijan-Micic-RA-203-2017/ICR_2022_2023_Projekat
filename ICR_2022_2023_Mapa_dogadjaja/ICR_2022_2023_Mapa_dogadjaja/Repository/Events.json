@@ -1,0 +1,72 @@
+[
+  {
+    "Id": "DOG001",
+    "Tags": [
+      "ODOG001"
+    ],
+    "Name": "Exit",
+    "Description": "Exit se održava u julu svake godine na Petrovaradinskoj tvrđavi.",
+    "Type": "TIPDOG001",
+    "Attendance": 3,
+    "Icon": "/ICR_2022_2023_Mapa_dogadjaja;component/Icons/EventIcons/EXIT_ikona.jpg",
+    "IsHumanitary": false,
+    "AverageCostsOfSustension": 250000.0,
+    "PopulatedPlace": "GRAD001",
+    "Country": "DRZ001",
+    "HistoryOfDatesOfTheEvent": [],
+    "DateOfTheEvent": "2023-07-11T00:00:00"
+  },
+  {
+    "Id": "DOG002",
+    "Tags": [
+      "ODOG002",
+      "ODOG003"
+    ],
+    "Name": "Kustendorf",
+    "Description": "Kustendorf se održava 24. januara svake godine u etno naselju Drvengrad na planini Mećavnik.",
+    "Type": "TIPDOG002",
+    "Attendance": 3,
+    "Icon": "/ICR_2022_2023_Mapa_dogadjaja;component/Icons/EventIcons/Kustendorf_ikona.png",
+    "IsHumanitary": false,
+    "AverageCostsOfSustension": 200000.0,
+    "PopulatedPlace": "GRAD002",
+    "Country": "DRZ001",
+    "HistoryOfDatesOfTheEvent": [],
+    "DateOfTheEvent": "2023-01-24T00:00:00"
+  },
+  {
+    "Id": "DOG003",
+    "Tags": [
+      "ODOG004",
+      "ODOG005"
+    ],
+    "Name": "Partizan - Barselona",
+    "Description": "Utakmica 32. kola ligaškog dela Evrolige u Štark areni.",
+    "Type": "TIPDOG003",
+    "Attendance": 3,
+    "Icon": "/ICR_2022_2023_Mapa_dogadjaja;component/Icons/EventIcons/Partizan-Barselona_ikona.jpg",
+    "IsHumanitary": false,
+    "AverageCostsOfSustension": 110000.0,
+    "PopulatedPlace": "GRAD003",
+    "Country": "DRZ001",
+    "HistoryOfDatesOfTheEvent": [],
+    "DateOfTheEvent": "2023-04-06T00:00:00"
+  },
+  {
+    "Id": "DOG004",
+    "Tags": [
+      "ODOG006"
+    ],
+    "Name": "Aukcija sportskih dresova Miloša Nikolića",
+    "Description": "Uplaćen novac za kupovinu potpisanih dresova najpoznatijih sportista Evrope iskoristiće se kao donacija Institutu za majku i dete u svrhu nabavke novih inkubatora za bebe.",
+    "Type": "TIPDOG004",
+    "Attendance": 0,
+    "Icon": "/ICR_2022_2023_Mapa_dogadjaja;component/Icons/EventIcons/Aukcija_sportskih_dresova_Milosa_Nikolica_ikona.jpg",
+    "IsHumanitary": true,
+    "AverageCostsOfSustension": 50.0,
+    "PopulatedPlace": "GRAD003",
+    "Country": "DRZ001",
+    "HistoryOfDatesOfTheEvent": [],
+    "DateOfTheEvent": "2023-05-30T00:00:00"
+  }
+]

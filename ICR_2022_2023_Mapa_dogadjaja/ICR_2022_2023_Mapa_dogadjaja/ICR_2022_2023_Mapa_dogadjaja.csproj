@@ -55,6 +55,8 @@
     </ApplicationDefinition>
     <Compile Include="Converter\DateTimeToFormattedStringConverter.cs" />
     <Compile Include="Converter\EnumDescriptionTypeConverter.cs" />
+    <Compile Include="Converter\EventDTOConverter.cs" />
+    <Compile Include="DTO\EventDTO.cs" />
     <Compile Include="Validation\Event\AverageCostsOfSustensionForEventValidationRule.cs" />
     <Compile Include="Validation\Event\DateOfTheEventValidationRule.cs" />
     <Compile Include="Validation\Event\ExistingEventCountryValidationRule.cs" />
@@ -129,7 +131,12 @@
     <None Include="Repository\Countries.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Repository\EventTags.json" />
+    <None Include="Repository\Events.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Repository\EventTags.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Repository\EventTypes.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
