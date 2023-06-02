@@ -31,9 +31,9 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Event
                 return new ValidationResult(false, "Oznaka mora biti uneta!");
             }
             
-            foreach (Model.Event e in eventsViewModel.Events)
+            foreach (DTO.EventDTO eDTO in eventsViewModel.EventsDTOs)
             {
-                if (e.Id.Equals(enteredId))
+                if (eDTO.Id.Equals(enteredId))
                 {
                     return new ValidationResult(false, "Već postoji događaj sa unetom oznakom!");
                 }
