@@ -300,7 +300,7 @@
                     </ComboBox.SelectedItem>
                 </ComboBox>
                 <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_populated_place_button" HorizontalAlignment="Right" 
-                        Width="120">Unesite novi grad</Button>
+                        Width="120" Click="OpenDialogForCreatingANewPopulatedPlace">Unesite novi grad</Button>
             </Grid>
         </DockPanel>
         <DockPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5 0 0 0">

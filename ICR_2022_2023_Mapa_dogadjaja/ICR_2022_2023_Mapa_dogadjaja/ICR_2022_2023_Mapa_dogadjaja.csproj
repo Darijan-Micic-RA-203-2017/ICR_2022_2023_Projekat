@@ -68,6 +68,8 @@
     <Compile Include="Validation\Event\ExistingEventTypeValidationRule.cs" />
     <Compile Include="Validation\Event\UniqueEventIdValidationRule.cs" />
     <Compile Include="Validation\Event\UniqueEventNameValidationRule.cs" />
+    <Compile Include="Validation\PopulatedPlace\UniquePopulatedPlaceIdValidationRule.cs" />
+    <Compile Include="Validation\PopulatedPlace\UniquePopulatedPlaceNameValidationRule.cs" />
     <Compile Include="ViewModel\AllEntitiesViewModel.cs" />
     <Compile Include="ViewModel\CountriesViewModel.cs" />
     <Compile Include="ViewModel\EnumBindingSourceExtension.cs" />
@@ -76,6 +78,9 @@
     <Compile Include="ViewModel\EventTagsViewModel.cs" />
     <Compile Include="ViewModel\EventTypesViewModel.cs" />
     <Compile Include="ViewModel\PopulatedPlacesViewModel.cs" />
+    <Compile Include="View\CreateANewPopulatedPlaceDialog.xaml.cs">
+      <DependentUpon>CreateANewPopulatedPlaceDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CreatingANewCountryDialog.xaml.cs">
       <DependentUpon>CreatingANewCountryDialog.xaml</DependentUpon>
     </Compile>
@@ -97,6 +102,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\CreateANewPopulatedPlaceDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CreatingANewCountryDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

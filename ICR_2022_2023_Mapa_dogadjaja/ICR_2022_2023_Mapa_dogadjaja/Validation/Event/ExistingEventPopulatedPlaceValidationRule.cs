@@ -14,7 +14,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Event
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            PopulatedPlace selectedPopulatedPlace = (PopulatedPlace) value;
+            Model.PopulatedPlace selectedPopulatedPlace = (Model.PopulatedPlace) value;
             if (selectedPopulatedPlace == null)
             {
                 return new ValidationResult(false, "Grad mora biti odabran!");

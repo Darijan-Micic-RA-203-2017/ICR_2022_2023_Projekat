@@ -17,23 +17,23 @@ using System.Windows.Shapes;
 namespace ICR_2022_2023_Mapa_dogadjaja.View
 {
     /// <summary>
-    /// Interaction logic for CreatingANewCountryDialog.xaml
+    /// Interaction logic for CreateANewPopulatedPlaceDialog.xaml
     /// </summary>
-    public partial class CreatingANewCountryDialog : Window, INotifyPropertyChanged
+    public partial class CreateANewPopulatedPlaceDialog : Window, INotifyPropertyChanged
     {
-        private Country newCountry;
+        private PopulatedPlace newPopulatedPlace;
 
         private AllEntitiesViewModel allEntitiesViewModel;
 
         private int validationErrorsCounter;
 
-        public CreatingANewCountryDialog(AllEntitiesViewModel allEntitiesViewModel)
+        public CreateANewPopulatedPlaceDialog(AllEntitiesViewModel allEntitiesViewModel)
         {
             InitializeComponent();
 
             DataContext = this;
-            
-            newCountry = new Country();
+
+            newPopulatedPlace = new PopulatedPlace();
             this.allEntitiesViewModel = allEntitiesViewModel;
             validationErrorsCounter = 0;
 
@@ -43,15 +43,15 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             AddHandler(System.Windows.Controls.Validation.ErrorEvent, new RoutedEventHandler(OnErrorEvent));
         }
 
-        public Country NewCountry
+        public PopulatedPlace NewPopulatedPlace
         {
-            get { return newCountry; }
+            get { return newPopulatedPlace; }
             set
             {
-                if (value != newCountry)
+                if (value != newPopulatedPlace)
                 {
-                    newCountry = value;
-                    OnPropertyChanged("NewCountry");
+                    newPopulatedPlace = value;
+                    OnPropertyChanged("NewPopulatedPlace");
                 }
             }
         }
@@ -84,9 +84,9 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
         {
             try
             {
-                RoutedCommand saveCountryCommand = new RoutedCommand();
-                saveCountryCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
-                CommandBindings.Add(new CommandBinding(saveCountryCommand, SaveCountry));
+                RoutedCommand savePopulatedPlaceCommand = new RoutedCommand();
+                savePopulatedPlaceCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(savePopulatedPlaceCommand, SavePopulatedPlace));
 
                 RoutedCommand closeDialogCommand = new RoutedCommand();
                 closeDialogCommand.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
@@ -135,9 +135,9 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             }
         }
 
-        private void SaveCountry(object sender, RoutedEventArgs e)
+        private void SavePopulatedPlace(object sender, RoutedEventArgs e)
         {
-            if (New_country_form_grid == null)
+            if (New_populated_place_form_grid == null)
             {
                 return;
             }
@@ -146,8 +146,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             {
                 return;
             }
-            
-            allEntitiesViewModel.CountriesViewModel.Save(newCountry);
+
+            allEntitiesViewModel.PopulatedPlacesViewModel.Save(newPopulatedPlace);
 
             DialogResult = true;
         }

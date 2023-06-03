@@ -109,6 +109,11 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 openDialogForSelectingEventIconCommand.InputGestures.Add(new KeyGesture(Key.I, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(openDialogForSelectingEventIconCommand, OpenDialogForSelectingEventIcon));
 
+                RoutedCommand openDialogForCreatingANewPopulatedPlaceCommand = new RoutedCommand();
+                openDialogForCreatingANewPopulatedPlaceCommand.InputGestures.Add(new KeyGesture(Key.G, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(openDialogForCreatingANewPopulatedPlaceCommand, 
+                    OpenDialogForCreatingANewPopulatedPlace));
+
                 RoutedCommand openDialogForCreatingANewCountryCommand = new RoutedCommand();
                 openDialogForCreatingANewCountryCommand.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(openDialogForCreatingANewCountryCommand, OpenDialogForCreatingANewCountry));
@@ -118,8 +123,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 CommandBindings.Add(new CommandBinding(saveEventCommand, SaveEvent));
 
                 RoutedCommand closeDialogCommand = new RoutedCommand();
-                saveEventCommand.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
-                CommandBindings.Add(new CommandBinding(saveEventCommand, CloseDialog));
+                closeDialogCommand.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(closeDialogCommand, CloseDialog));
             }
             catch (Exception e)
             {
@@ -200,6 +205,13 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             // REFERENCE: https://stackoverflow.com/questions/6503424/how-to-programmatically-set-the-image-source?noredirect=1&lq=1
             selectedEventIcon = new BitmapImage(new Uri(openFileDialog.FileName, UriKind.Absolute));
             Event_icon.Source = selectedEventIcon;
+        }
+
+        private void OpenDialogForCreatingANewPopulatedPlace(object sender, RoutedEventArgs e)
+        {
+            CreateANewPopulatedPlaceDialog dialogForCreatingANewPopulatedPlace = 
+                new CreateANewPopulatedPlaceDialog(allEntitiesViewModel);
+            dialogForCreatingANewPopulatedPlace.ShowDialog();
         }
 
         private void OpenDialogForCreatingANewCountry(object sender, RoutedEventArgs e)
