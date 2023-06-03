@@ -184,9 +184,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             }
 
             TextBox inputForFilteringTable = (TextBox) sender;
-
             string enteredText = inputForFilteringTable.Text;
-            if (enteredText == DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_TABLE.ToLower())
+            if (enteredText == DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_TABLE)
             {
                 Cancel_search_or_filtering_button.IsEnabled = false;
                 Table_of_events.ItemsSource = allEntitiesViewModel.EventsViewModel.Events;
@@ -199,115 +198,36 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             
             foreach (Event eve in allEntitiesViewModel.EventsViewModel.Events)
             {
-                if (eve.Id.ToLower() == enteredText)
+                if (eve.Id.StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    filteredEvents.Add(eve);
+                    if (!filteredEvents.Contains(eve))
+                    {
+                        filteredEvents.Add(eve);
+                    }
                     continue;
                 }
 
                 foreach (EventTag eTag in eve.Tags)
                 {
-                    if (eTag.Id.ToLower() == enteredText)
+                    if (eTag.Id.StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
                     {
-                        filteredEvents.Add(eve);
+                        if (!filteredEvents.Contains(eve))
+                        {
+                            filteredEvents.Add(eve);
+                        }
                         continue;
                     }
 
-                    if (eTag.Color.ToLower() == enteredText)
+                    if (eTag.Color.StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
                     {
-                        filteredEvents.Add(eve);
+                        if (!filteredEvents.Contains(eve))
+                        {
+                            filteredEvents.Add(eve);
+                        }
                         continue;
                     }
 
-                    if (eTag.Description.ToLower() == enteredText)
-                    {
-                        filteredEvents.Add(eve);
-                        continue;
-                    }
-                }
-
-                if (eve.Name.ToLower() == enteredText)
-                {
-                    filteredEvents.Add(eve);
-                    continue;
-                }
-
-                if (eve.Description.ToLower() == enteredText)
-                {
-                    filteredEvents.Add(eve);
-                    continue;
-                }
-
-                if (eve.Type.Id.ToLower() == enteredText)
-                {
-                    filteredEvents.Add(eve);
-                    continue;
-                }
-                if (eve.Type.Name.ToLower() == enteredText)
-                {
-                    filteredEvents.Add(eve);
-                    continue;
-                }
-                if (eve.Type.Description.ToLower() == enteredText)
-                {
-                    filteredEvents.Add(eve);
-                    continue;
-                }
-                if (eve.Type.Icon.ToLower() == enteredText)
-                {
-                    filteredEvents.Add(eve);
-                    continue;
-                }
-
-                if (eve.Attendance.ToString().ToLower() == enteredText)
-                {
-                    filteredEvents.Add(eve);
-                    continue;
-                }
-
-                if (eve.Icon.ToLower() == enteredText)
-                {
-                    filteredEvents.Add(eve);
-                    continue;
-                }
-
-                if (eve.IsHumanitary.ToString().ToLower() == enteredText)
-                {
-                    filteredEvents.Add(eve);
-                    continue;
-                }
-
-                if (eve.AverageCostsOfSustension.ToString().ToLower() == enteredText)
-                {
-                    filteredEvents.Add(eve);
-                    continue;
-                }
-
-                if (eve.PopulatedPlace.Id.ToLower() == enteredText)
-                {
-                    filteredEvents.Add(eve);
-                    continue;
-                }
-                if (eve.PopulatedPlace.Name.ToLower() == enteredText)
-                {
-                    filteredEvents.Add(eve);
-                    continue;
-                }
-
-                if (eve.Country.Id.ToLower() == enteredText)
-                {
-                    filteredEvents.Add(eve);
-                    continue;
-                }
-                if (eve.Country.Name.ToLower() == enteredText)
-                {
-                    filteredEvents.Add(eve);
-                    continue;
-                }
-
-                foreach (DateTime historicalDOTE in eve.HistoryOfDatesOfTheEvent)
-                {
-                    if (historicalDOTE.ToString("MM/dd/yyyy").ToLower() == enteredText)
+                    if (eTag.Description.StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
                     {
                         if (!filteredEvents.Contains(eve))
                         {
@@ -317,9 +237,145 @@ namespace ICR_2022_2023_Mapa_dogadjaja
                     }
                 }
 
-                if (eve.DateOfTheEvent.Value.ToString("MM/dd/yyyy").ToLower() == enteredText)
+                if (eve.Name.StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    filteredEvents.Add(eve);
+                    if (!filteredEvents.Contains(eve))
+                    {
+                        filteredEvents.Add(eve);
+                    }
+                    continue;
+                }
+
+                if (eve.Description.StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (!filteredEvents.Contains(eve))
+                    {
+                        filteredEvents.Add(eve);
+                    }
+                    continue;
+                }
+
+                if (eve.Type.Id.StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (!filteredEvents.Contains(eve))
+                    {
+                        filteredEvents.Add(eve);
+                    }
+                    continue;
+                }
+                if (eve.Type.Name.StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (!filteredEvents.Contains(eve))
+                    {
+                        filteredEvents.Add(eve);
+                    }
+                    continue;
+                }
+                if (eve.Type.Description.StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (!filteredEvents.Contains(eve))
+                    {
+                        filteredEvents.Add(eve);
+                    }
+                    continue;
+                }
+                if (eve.Type.Icon.StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (!filteredEvents.Contains(eve))
+                    {
+                        filteredEvents.Add(eve);
+                    }
+                    continue;
+                }
+
+                if (eve.Attendance.ToString().StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (!filteredEvents.Contains(eve))
+                    {
+                        filteredEvents.Add(eve);
+                    }
+                    continue;
+                }
+
+                if (eve.Icon.StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (!filteredEvents.Contains(eve))
+                    {
+                        filteredEvents.Add(eve);
+                    }
+                    continue;
+                }
+
+                if (eve.IsHumanitary.ToString().StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (!filteredEvents.Contains(eve))
+                    {
+                        filteredEvents.Add(eve);
+                    }
+                    continue;
+                }
+
+                if (eve.AverageCostsOfSustension.ToString().StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (!filteredEvents.Contains(eve))
+                    {
+                        filteredEvents.Add(eve);
+                    }
+                    continue;
+                }
+
+                if (eve.PopulatedPlace.Id.StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (!filteredEvents.Contains(eve))
+                    {
+                        filteredEvents.Add(eve);
+                    }
+                    continue;
+                }
+                if (eve.PopulatedPlace.Name.StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (!filteredEvents.Contains(eve))
+                    {
+                        filteredEvents.Add(eve);
+                    }
+                    continue;
+                }
+
+                if (eve.Country.Id.StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (!filteredEvents.Contains(eve))
+                    {
+                        filteredEvents.Add(eve);
+                    }
+                    continue;
+                }
+                if (eve.Country.Name.StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (!filteredEvents.Contains(eve))
+                    {
+                        filteredEvents.Add(eve);
+                    }
+                    continue;
+                }
+
+                foreach (DateTime historicalDOTE in eve.HistoryOfDatesOfTheEvent)
+                {
+                    if (historicalDOTE.ToString("MM/dd/yyyy").StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        if (!filteredEvents.Contains(eve))
+                        {
+                            filteredEvents.Add(eve);
+                        }
+                        continue;
+                    }
+                }
+
+                if (eve.DateOfTheEvent.Value.ToString("MM/dd/yyyy").StartsWith(enteredText, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (!filteredEvents.Contains(eve))
+                    {
+                        filteredEvents.Add(eve);
+                    }
                     continue;
                 }
             }
