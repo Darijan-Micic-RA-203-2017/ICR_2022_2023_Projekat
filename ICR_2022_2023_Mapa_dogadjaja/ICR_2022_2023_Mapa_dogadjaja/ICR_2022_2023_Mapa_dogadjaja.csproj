@@ -69,6 +69,7 @@
     <Compile Include="ViewModel\AllEntitiesViewModel.cs" />
     <Compile Include="ViewModel\CountriesViewModel.cs" />
     <Compile Include="ViewModel\EnumBindingSourceExtension.cs" />
+    <Compile Include="ViewModel\EventsTableFilter.cs" />
     <Compile Include="ViewModel\EventsViewModel.cs" />
     <Compile Include="ViewModel\EventTagsViewModel.cs" />
     <Compile Include="ViewModel\EventTypesViewModel.cs" />
