@@ -16,7 +16,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Event
             DateTime? enteredDateOfTheEvent = (DateTime?)value;
             if (!enteredDateOfTheEvent.HasValue)
             {
-                return new ValidationResult(false, "Datum održavanja mora biti unet!");
+                return new ValidationResult(false, "Datum održavanja događaja mora biti unet!");
             }
 
             return new ValidationResult(true, null);

@@ -28,13 +28,13 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Country
             var enteredName = value as string;
             if (string.IsNullOrWhiteSpace(enteredName))
             {
-                return new ValidationResult(false, "Naziv mora biti unet!");
+                return new ValidationResult(false, "Naziv države mora biti unet!");
             }
 
             string firstCharacterOfEnteredName = enteredName.Substring(0, 1);
             if (firstCharacterOfEnteredName.Equals(firstCharacterOfEnteredName.ToLower()))
             {
-                return new ValidationResult(false, "Naziv mora započeti velikim slovom!");
+                return new ValidationResult(false, "Naziv države mora započeti velikim slovom!");
             }
 
             foreach (Model.Country c in countriesViewModel.Countries)

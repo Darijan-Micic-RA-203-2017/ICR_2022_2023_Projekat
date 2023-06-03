@@ -16,7 +16,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Event
             var enteredDescription = value as string;
             if (string.IsNullOrWhiteSpace(enteredDescription))
             {
-                return new ValidationResult(false, "Opis mora biti unet!");
+                return new ValidationResult(false, "Opis događaja mora biti unet!");
             }
             
             return new ValidationResult(true, null);

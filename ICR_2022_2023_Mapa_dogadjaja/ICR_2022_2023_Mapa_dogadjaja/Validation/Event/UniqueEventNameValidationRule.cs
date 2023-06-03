@@ -28,13 +28,13 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Event
             var enteredName = value as string;
             if (string.IsNullOrWhiteSpace(enteredName))
             {
-                return new ValidationResult(false, "Naziv mora biti unet!");
+                return new ValidationResult(false, "Naziv događaja mora biti unet!");
             }
 
             string firstCharacterOfEnteredName = enteredName.Substring(0, 1);
             if (firstCharacterOfEnteredName.Equals(firstCharacterOfEnteredName.ToLower()))
             {
-                return new ValidationResult(false, "Naziv mora započeti velikim slovom ili cifrom!");
+                return new ValidationResult(false, "Naziv događaja mora započeti velikim slovom ili cifrom!");
             }
             
             foreach (DTO.EventDTO eDTO in eventsViewModel.EventsDTOs)

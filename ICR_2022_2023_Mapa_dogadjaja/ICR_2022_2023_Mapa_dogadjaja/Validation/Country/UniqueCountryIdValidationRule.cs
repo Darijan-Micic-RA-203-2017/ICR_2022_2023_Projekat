@@ -28,7 +28,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Country
             var enteredId = value as string;
             if (string.IsNullOrWhiteSpace(enteredId))
             {
-                return new ValidationResult(false, "Oznaka mora biti uneta!");
+                return new ValidationResult(false, "Oznaka države mora biti uneta!");
             }
 
             foreach (Model.Country c in countriesViewModel.Countries)
