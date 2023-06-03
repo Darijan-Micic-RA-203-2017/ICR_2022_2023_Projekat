@@ -6,21 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Windows.Controls;
 
-namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Event
+namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Country
 {
-    public class UniqueEventNameValidationRule : ValidationRule
+    public class UniqueCountryNameValidationRule : ValidationRule
     {
-        private EventsViewModel eventsViewModel;
+        private CountriesViewModel countriesViewModel;
 
-        public UniqueEventNameValidationRule()
+        public UniqueCountryNameValidationRule()
         {
-            eventsViewModel = new EventsViewModel();
+            countriesViewModel = new CountriesViewModel();
         }
 
-        public EventsViewModel EventsViewModel
+        public CountriesViewModel CountriesViewModel
         {
-            get { return eventsViewModel; }
-            set { eventsViewModel = value; }
+            get { return countriesViewModel; }
+            set { countriesViewModel = value; }
         }
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
@@ -34,14 +34,14 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Event
             string firstCharacterOfEnteredName = enteredName.Substring(0, 1);
             if (firstCharacterOfEnteredName.Equals(firstCharacterOfEnteredName.ToLower()))
             {
-                return new ValidationResult(false, "Naziv mora započeti velikim slovom ili cifrom!");
+                return new ValidationResult(false, "Naziv mora započeti velikim slovom!");
             }
-            
-            foreach (DTO.EventDTO eDTO in eventsViewModel.EventsDTOs)
+
+            foreach (Model.Country c in countriesViewModel.Countries)
             {
-                if (eDTO.Name.Equals(enteredName))
+                if (c.Name.Equals(enteredName))
                 {
-                    return new ValidationResult(false, "Već postoji događaj sa unetim nazivom!");
+                    return new ValidationResult(false, "Već postoji država sa unetim nazivom!");
                 }
             }
 

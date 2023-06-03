@@ -333,8 +333,8 @@
                         </Binding>
                     </ComboBox.SelectedItem>
                 </ComboBox>
-                <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_country_button" HorizontalAlignment="Right" 
-                        Width="120">Unesite novu državu</Button>
+                <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_country_button" HorizontalAlignment="Right" Width="120" 
+                        Click="OpenDialogForCreatingANewCountry">Unesite novu državu</Button>
             </Grid>
         </DockPanel>
         <DockPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

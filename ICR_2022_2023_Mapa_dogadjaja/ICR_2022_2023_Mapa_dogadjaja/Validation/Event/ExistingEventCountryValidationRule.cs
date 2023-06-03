@@ -14,7 +14,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Event
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            Country selectedCountry = (Country) value;
+            Model.Country selectedCountry = (Model.Country) value;
             if (selectedCountry == null)
             {
                 return new ValidationResult(false, "Država mora biti odabrana!");

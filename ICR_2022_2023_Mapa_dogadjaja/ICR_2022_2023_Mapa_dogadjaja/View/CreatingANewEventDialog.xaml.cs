@@ -109,6 +109,10 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 openDialogForSelectingEventIconCommand.InputGestures.Add(new KeyGesture(Key.I, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(openDialogForSelectingEventIconCommand, OpenDialogForSelectingEventIcon));
 
+                RoutedCommand openDialogForCreatingANewCountryCommand = new RoutedCommand();
+                openDialogForCreatingANewCountryCommand.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(openDialogForCreatingANewCountryCommand, OpenDialogForCreatingANewCountry));
+
                 RoutedCommand saveEventCommand = new RoutedCommand();
                 saveEventCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(saveEventCommand, SaveEvent));
@@ -197,7 +201,13 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             selectedEventIcon = new BitmapImage(new Uri(openFileDialog.FileName, UriKind.Absolute));
             Event_icon.Source = selectedEventIcon;
         }
-        
+
+        private void OpenDialogForCreatingANewCountry(object sender, RoutedEventArgs e)
+        {
+            CreatingANewCountryDialog dialogForCreatingANewCountry = new CreatingANewCountryDialog(allEntitiesViewModel);
+            dialogForCreatingANewCountry.ShowDialog();
+        }
+
         private void CreateNewHistoricalDateOfTheEventInput(object sender, RoutedEventArgs e)
         {
             if (Panel_for_inputs_for_historical_dates_of_the_event == null)
