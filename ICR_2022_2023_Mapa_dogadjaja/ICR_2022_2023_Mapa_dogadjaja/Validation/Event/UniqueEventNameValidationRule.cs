@@ -32,11 +32,14 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Event
             }
 
             string firstCharacterOfEnteredName = enteredName.Substring(0, 1);
-            if (firstCharacterOfEnteredName.Equals(firstCharacterOfEnteredName.ToLower()))
+            if (!int.TryParse(firstCharacterOfEnteredName, out _))
             {
-                return new ValidationResult(false, "Naziv događaja mora započeti velikim slovom ili cifrom!");
+                if (firstCharacterOfEnteredName.Equals(firstCharacterOfEnteredName.ToLower()))
+                {
+                    return new ValidationResult(false, "Naziv događaja mora započeti velikim slovom ili cifrom!");
+                }
             }
-            
+
             foreach (DTO.EventDTO eDTO in eventsViewModel.EventsDTOs)
             {
                 if (eDTO.Name.Equals(enteredName))
