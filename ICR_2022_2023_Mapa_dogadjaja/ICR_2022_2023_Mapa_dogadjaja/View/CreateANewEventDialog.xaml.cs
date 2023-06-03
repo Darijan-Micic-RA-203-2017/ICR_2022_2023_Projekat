@@ -19,24 +19,24 @@ using System.Windows.Shapes;
 namespace ICR_2022_2023_Mapa_dogadjaja.View
 {
     /// <summary>
-    /// Interaction logic for CreatingANewEventDialog.xaml
+    /// Interaction logic for CreateANewEventDialog.xaml
     /// </summary>
-    public partial class CreatingANewEventDialog : Window, INotifyPropertyChanged
+    public partial class CreateANewEventDialog : Window, INotifyPropertyChanged
     {
         private Event newEvent;
 
         private EventTag currentlySelectedTag;
-        
+
         private BitmapImage selectedEventIcon;
 
         private AllEntitiesViewModel allEntitiesViewModel;
 
         private int validationErrorsCounter;
-        
-        public CreatingANewEventDialog(AllEntitiesViewModel allEntitiesViewModel)
+
+        public CreateANewEventDialog(AllEntitiesViewModel allEntitiesViewModel)
         {
             InitializeComponent();
-            
+
             DataContext = this;
 
             newEvent = new Event();
@@ -76,7 +76,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 }
             }
         }
-        
+
         public AllEntitiesViewModel AllEntitiesViewModel
         {
             get { return allEntitiesViewModel; }
@@ -111,7 +111,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
 
                 RoutedCommand openDialogForCreatingANewPopulatedPlaceCommand = new RoutedCommand();
                 openDialogForCreatingANewPopulatedPlaceCommand.InputGestures.Add(new KeyGesture(Key.G, ModifierKeys.Control));
-                CommandBindings.Add(new CommandBinding(openDialogForCreatingANewPopulatedPlaceCommand, 
+                CommandBindings.Add(new CommandBinding(openDialogForCreatingANewPopulatedPlaceCommand,
                     OpenDialogForCreatingANewPopulatedPlace));
 
                 RoutedCommand openDialogForCreatingANewCountryCommand = new RoutedCommand();
@@ -178,8 +178,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             }
 
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image Files (*.gif, *.jpg, *.jpe, *.png, *.bmp, *.dib, *.tif, *.wmf, *.ras, *.eps, " + 
-                "*.pcx, *.pcd, *.tga, *.dds)|*.gif;*.jpg;*.jpe;*.png;*.bmp;*.dib;*.tif;*.wmf;*.ras;*.eps;*.pcx;*.pcd;*.tga;" + 
+            openFileDialog.Filter = "Image Files (*.gif, *.jpg, *.jpe, *.png, *.bmp, *.dib, *.tif, *.wmf, *.ras, *.eps, " +
+                "*.pcx, *.pcd, *.tga, *.dds)|*.gif;*.jpg;*.jpe;*.png;*.bmp;*.dib;*.tif;*.wmf;*.ras;*.eps;*.pcx;*.pcd;*.tga;" +
                 "*.dds|All files (*.*)|*.*";
             openFileDialog.Title = "Odaberite ikonu događaja";
             openFileDialog.AddExtension = true;
@@ -196,7 +196,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             {
                 return;
             }
-            
+
             if (!File.Exists(openFileDialog.FileName))
             {
                 return;
@@ -209,14 +209,14 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
 
         private void OpenDialogForCreatingANewPopulatedPlace(object sender, RoutedEventArgs e)
         {
-            CreateANewPopulatedPlaceDialog dialogForCreatingANewPopulatedPlace = 
+            CreateANewPopulatedPlaceDialog dialogForCreatingANewPopulatedPlace =
                 new CreateANewPopulatedPlaceDialog(allEntitiesViewModel);
             dialogForCreatingANewPopulatedPlace.ShowDialog();
         }
 
         private void OpenDialogForCreatingANewCountry(object sender, RoutedEventArgs e)
         {
-            CreatingANewCountryDialog dialogForCreatingANewCountry = new CreatingANewCountryDialog(allEntitiesViewModel);
+            CreateANewCountryDialog dialogForCreatingANewCountry = new CreateANewCountryDialog(allEntitiesViewModel);
             dialogForCreatingANewCountry.ShowDialog();
         }
 
@@ -226,11 +226,11 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             {
                 return;
             }
-            
+
             DatePicker newHistoricalDateOfTheEventPicker = new DatePicker();
             newHistoricalDateOfTheEventPicker.VerticalContentAlignment = VerticalAlignment.Center;
             newHistoricalDateOfTheEventPicker.Margin = new Thickness(0, 0, 0, 10);
-            
+
             Panel_for_inputs_for_historical_dates_of_the_event.Children.Add(newHistoricalDateOfTheEventPicker);
         }
 
@@ -240,17 +240,17 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             {
                 return;
             }
-            
+
             if (!Save_button.IsEnabled)
             {
                 return;
             }
-            
+
             foreach (EventTag selectedTag in List_box_for_event_tags.SelectedItems)
             {
                 newEvent.Tags.Add(selectedTag);
             }
-            
+
             if (Event_icon.Source != null)
             {
                 newEvent.Icon = Event_icon.Source.ToString();
@@ -269,22 +269,22 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 newEvent.IsHumanitary = false;
             }
 
-            newEvent.Attendance = (Attendance) Combo_box_for_attendance.SelectedItem;
+            newEvent.Attendance = (Attendance)Combo_box_for_attendance.SelectedItem;
 
             foreach (UIElement childElem in Panel_for_inputs_for_historical_dates_of_the_event.Children)
             {
-                DatePicker datePicker = (DatePicker) childElem;
+                DatePicker datePicker = (DatePicker)childElem;
                 if (datePicker.SelectedDate.HasValue)
                 {
                     newEvent.HistoryOfDatesOfTheEvent.Add(datePicker.SelectedDate.Value);
                 }
             }
-            
+
             allEntitiesViewModel.EventsViewModel.Save(newEvent);
-            
+
             DialogResult = true;
         }
-        
+
         // REFERENCE: https://learn.microsoft.com/en-us/dotnet/desktop/wpf/windows/how-to-close-window-dialog-box?source=recommendations&view=netdesktop-7.0
         private void CloseDialog(object sender, RoutedEventArgs e)
         {

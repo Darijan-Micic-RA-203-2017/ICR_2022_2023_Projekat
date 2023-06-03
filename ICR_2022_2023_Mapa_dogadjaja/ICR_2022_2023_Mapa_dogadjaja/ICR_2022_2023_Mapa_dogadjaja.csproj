@@ -78,14 +78,14 @@
     <Compile Include="ViewModel\EventTagsViewModel.cs" />
     <Compile Include="ViewModel\EventTypesViewModel.cs" />
     <Compile Include="ViewModel\PopulatedPlacesViewModel.cs" />
+    <Compile Include="View\CreateANewCountryDialog.xaml.cs">
+      <DependentUpon>CreateANewCountryDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CreateANewEventDialog.xaml.cs">
+      <DependentUpon>CreateANewEventDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CreateANewPopulatedPlaceDialog.xaml.cs">
       <DependentUpon>CreateANewPopulatedPlaceDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\CreatingANewCountryDialog.xaml.cs">
-      <DependentUpon>CreatingANewCountryDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\CreatingANewEventDialog.xaml.cs">
-      <DependentUpon>CreatingANewEventDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DeleteAnEntityDialog.xaml.cs">
       <DependentUpon>DeleteAnEntityDialog.xaml</DependentUpon>
@@ -102,15 +102,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\CreateANewCountryDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreateANewEventDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CreateANewPopulatedPlaceDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\CreatingANewCountryDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\CreatingANewEventDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

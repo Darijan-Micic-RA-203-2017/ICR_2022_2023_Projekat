@@ -17,9 +17,9 @@ using System.Windows.Shapes;
 namespace ICR_2022_2023_Mapa_dogadjaja.View
 {
     /// <summary>
-    /// Interaction logic for CreatingANewCountryDialog.xaml
+    /// Interaction logic for CreateANewCountryDialog.xaml
     /// </summary>
-    public partial class CreatingANewCountryDialog : Window, INotifyPropertyChanged
+    public partial class CreateANewCountryDialog : Window, INotifyPropertyChanged
     {
         private Country newCountry;
 
@@ -27,12 +27,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
 
         private int validationErrorsCounter;
 
-        public CreatingANewCountryDialog(AllEntitiesViewModel allEntitiesViewModel)
+        public CreateANewCountryDialog(AllEntitiesViewModel allEntitiesViewModel)
         {
             InitializeComponent();
 
             DataContext = this;
-            
+
             newCountry = new Country();
             this.allEntitiesViewModel = allEntitiesViewModel;
             validationErrorsCounter = 0;
@@ -146,7 +146,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             {
                 return;
             }
-            
+
             allEntitiesViewModel.CountriesViewModel.Save(newCountry);
 
             DialogResult = true;

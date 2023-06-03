@@ -111,7 +111,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja
 
         private void OpenDialogForCreatingANewEvent(object sender, RoutedEventArgs e)
         {
-            CreatingANewEventDialog dialogForCreatingANewEvent = new CreatingANewEventDialog(allEntitiesViewModel);
+            CreateANewEventDialog dialogForCreatingANewEvent = new CreateANewEventDialog(allEntitiesViewModel);
             dialogForCreatingANewEvent.ShowDialog();
         }
 

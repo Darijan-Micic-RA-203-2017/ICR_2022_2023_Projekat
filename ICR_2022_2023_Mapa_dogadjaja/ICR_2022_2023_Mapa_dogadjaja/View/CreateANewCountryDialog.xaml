@@ -1,4 +1,4 @@
-﻿<Window x:Class="ICR_2022_2023_Mapa_dogadjaja.View.CreatingANewCountryDialog"
+﻿<Window x:Class="ICR_2022_2023_Mapa_dogadjaja.View.CreateANewCountryDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,8 +7,8 @@
         xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View"
         mc:Ignorable="d"
         Title="Unos i izmena države" Height="200" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-        <!-- Screen resolution:      Height="768" Width="1366" -->
-        <!-- Main window resolution: Height="680" Width="1240" -->
+    <!-- Screen resolution:      Height="768" Width="1366" -->
+    <!-- Main window resolution: Height="680" Width="1240" -->
     <Window.Resources>
         <!-- REFERENCE: https://kmatyaszek.github.io/wpf%20validation/2019/03/04/wpf-validation-display-errors-to-the-user.html -->
         <Style x:Key="ControlForTextBoxValidationErrorStyle" TargetType="TextBox">
