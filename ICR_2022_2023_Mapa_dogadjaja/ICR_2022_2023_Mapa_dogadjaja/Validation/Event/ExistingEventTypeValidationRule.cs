@@ -14,7 +14,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Event
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            EventType selectedEventType = (EventType)value;
+            Model.EventType selectedEventType = (Model.EventType) value;
             if (selectedEventType == null)
             {
                 return new ValidationResult(false, "Tip mora biti odabran!");

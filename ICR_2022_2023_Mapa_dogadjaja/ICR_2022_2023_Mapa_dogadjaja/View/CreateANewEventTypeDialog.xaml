@@ -1,0 +1,134 @@
+﻿<Window x:Class="ICR_2022_2023_Mapa_dogadjaja.View.CreateANewEventTypeDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:val_event_type="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.Validation.EventType"
+        xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View"
+        mc:Ignorable="d"
+        Title="Unos i izmena tipa događaja" Height="360" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <!-- Screen resolution:      Height="768" Width="1366" -->
+    <!-- Main window resolution: Height="680" Width="1240" -->
+    <Window.Resources>
+        <!-- REFERENCE: https://kmatyaszek.github.io/wpf%20validation/2019/03/04/wpf-validation-display-errors-to-the-user.html -->
+        <Style x:Key="ControlForTextBoxValidationErrorStyle" TargetType="TextBox">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <AdornedElementPlaceholder Grid.Row="0" Grid.Column="0" x:Name="TextBox_placeholder"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding ElementName=TextBox_placeholder, 
+                                        Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" TextWrapping="Wrap" 
+                                       Foreground="Red"></TextBlock>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ControlForImageValidationErrorStyle" TargetType="Image">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <AdornedElementPlaceholder Grid.Row="0" Grid.Column="0" x:Name="New_type_button_placeholder"/>
+                            <AdornedElementPlaceholder Grid.Row="0" Grid.Column="1" x:Name="Image_placeholder"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding ElementName=Image_placeholder, 
+                                        Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" TextWrapping="Wrap" 
+                                       Foreground="Red" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="150 30 0 0"></TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Visibility="Collapsed"></TextBlock>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="New_event_type_form_grid" Margin="10 0 10 0">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="150"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0 0 5 0">
+            <Label DockPanel.Dock="Left" Width="60">Oznaka:</Label>
+            <TextBox x:Name="Input_for_id" VerticalContentAlignment="Center" 
+                     Style="{StaticResource ControlForTextBoxValidationErrorStyle}">
+                <TextBox.Text>
+                    <Binding Path="NewEventType.Id" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
+                            <val_event_type:UniqueEventTypeIdValidationRule ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </DockPanel>
+        <DockPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5 0 0 0">
+            <Label DockPanel.Dock="Left" Width="60">Naziv:</Label>
+            <TextBox x:Name="Input_for_name" VerticalContentAlignment="Center" 
+                     Style="{StaticResource ControlForTextBoxValidationErrorStyle}">
+                <TextBox.Text>
+                    <Binding Path="NewEventType.Name" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
+                            <val_event_type:UniqueEventTypeNameValidationRule ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </DockPanel>
+        <DockPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0 0 5 0">
+            <Label DockPanel.Dock="Left" VerticalAlignment="Center" Width="60">Opis:</Label>
+            <TextBox x:Name="Input_for_decription" VerticalAlignment="Center" VerticalScrollBarVisibility="Visible" 
+                     Style="{StaticResource ControlForTextBoxValidationErrorStyle}" Height="120">
+                <TextBox.Text>
+                    <Binding Path="NewEventType.Description" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
+                            <val_event_type:ExistingEventTypeDescriptionValidationRule ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+        </DockPanel>
+        <DockPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="50" 
+                   Margin="5 0 0 0">
+            <Label DockPanel.Dock="Left" VerticalAlignment="Center" Width="60">Ikona:</Label>
+            <Button DockPanel.Dock="Left" x:Name="Add_icon_button" VerticalAlignment="Center" Width="100" 
+                    Click="OpenDialogForSelectingEventTypeIcon">Odaberite ikonu</Button>
+            <Image x:Name="Event_type_icon" Stretch="Uniform" Style="{StaticResource ControlForImageValidationErrorStyle}" 
+                   MaxWidth="150">
+                <Image.Source>
+                    <Binding Path="SelectedEventTypeIcon" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
+                            <val_event_type:ExistingEventTypeIconValidationRule ValidatesOnTargetUpdated="True"/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </Image.Source>
+            </Image>
+        </DockPanel>
+        <Button Grid.Row="2" Grid.Column="0" x:Name="Save_button" Height="30" Width="100" IsEnabled="False" 
+                Click="SaveEventType">Sačuvaj</Button>
+        <Button Grid.Row="2" Grid.Column="1" x:Name="Cancel_button" Height="30" Width="100" 
+                IsCancel="True" Click="CloseDialog">Otkaži</Button>
+    </Grid>
+</Window>

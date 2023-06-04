@@ -215,7 +215,7 @@
                     </ComboBox.SelectedItem>
                 </ComboBox>
                 <Button Grid.Row="0" Grid.Column="1" x:Name="Create_a_new_event_type_button" HorizontalAlignment="Right" 
-                        VerticalAlignment="Center" Width="120">Unesite novi tip</Button>
+                        VerticalAlignment="Center" Width="120" Click="OpenDialogForCreatingANewEventType">Unesite novi tip</Button>
             </Grid>
         </DockPanel>
         <DockPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

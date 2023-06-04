@@ -59,6 +59,10 @@
     <Compile Include="DTO\EventDTO.cs" />
     <Compile Include="Validation\Country\UniqueCountryIdValidationRule.cs" />
     <Compile Include="Validation\Country\UniqueCountryNameValidationRule.cs" />
+    <Compile Include="Validation\EventType\ExistingEventTypeDescriptionValidationRule.cs" />
+    <Compile Include="Validation\EventType\ExistingEventTypeIconValidationRule.cs" />
+    <Compile Include="Validation\EventType\UniqueEventTypeIdValidationRule.cs" />
+    <Compile Include="Validation\EventType\UniqueEventTypeNameValidationRule.cs" />
     <Compile Include="Validation\Event\AverageCostsOfSustensionForEventValidationRule.cs" />
     <Compile Include="Validation\Event\DateOfTheEventValidationRule.cs" />
     <Compile Include="Validation\Event\ExistingEventCountryValidationRule.cs" />
@@ -84,6 +88,9 @@
     <Compile Include="View\CreateANewEventDialog.xaml.cs">
       <DependentUpon>CreateANewEventDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CreateANewEventTypeDialog.xaml.cs">
+      <DependentUpon>CreateANewEventTypeDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CreateANewPopulatedPlaceDialog.xaml.cs">
       <DependentUpon>CreateANewPopulatedPlaceDialog.xaml</DependentUpon>
     </Compile>
@@ -107,6 +114,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CreateANewEventDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CreateANewEventTypeDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

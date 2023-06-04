@@ -105,6 +105,11 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
         {
             try
             {
+                RoutedCommand openDialogForCreatingANewEventTypeCommand = new RoutedCommand();
+                openDialogForCreatingANewEventTypeCommand.InputGestures.Add(new KeyGesture(Key.T, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(openDialogForCreatingANewEventTypeCommand, 
+                    OpenDialogForCreatingANewEventType));
+
                 RoutedCommand openDialogForSelectingEventIconCommand = new RoutedCommand();
                 openDialogForSelectingEventIconCommand.InputGestures.Add(new KeyGesture(Key.I, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(openDialogForSelectingEventIconCommand, OpenDialogForSelectingEventIcon));
@@ -167,6 +172,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             {
                 Save_button.IsEnabled = false;
             }
+        }
+
+        private void OpenDialogForCreatingANewEventType(object sender, RoutedEventArgs e)
+        {
+            CreateANewEventTypeDialog dialogForCreatingANewEventType = new CreateANewEventTypeDialog(allEntitiesViewModel);
+            dialogForCreatingANewEventType.ShowDialog();
         }
 
         // REFERENCE: https://learn.microsoft.com/en-us/dotnet/desktop/wpf/windows/how-to-open-common-system-dialog-box?view=netdesktop-7.0
