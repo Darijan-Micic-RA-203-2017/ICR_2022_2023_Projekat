@@ -75,7 +75,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja
                 CommandBindings.Add(new CommandBinding(openDialogForDeletingAnEntityCommand, OpenDialogForDeletingAnEntity));
                 
                 RoutedCommand openDialogForAllEventTagsCommand = new RoutedCommand();
-                openDialogForAllEventTagsCommand.InputGestures.Add(new KeyGesture(Key.I, ModifierKeys.Control));
+                openDialogForAllEventTagsCommand.InputGestures.Add(new KeyGesture(Key.Z, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(openDialogForAllEventTagsCommand, OpenDialogForAllEventTags));
 
                 RoutedCommand openDialogForAllEventTypesCommand = new RoutedCommand();
