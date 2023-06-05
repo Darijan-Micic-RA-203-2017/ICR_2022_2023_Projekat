@@ -14,7 +14,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Event
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            EventTag currentlySelectedEventTag = (EventTag) value;
+            Model.EventTag currentlySelectedEventTag = (Model.EventTag) value;
             if (currentlySelectedEventTag == null)
             {
                 return new ValidationResult(false, "Etikete moraju biti odabrane!");

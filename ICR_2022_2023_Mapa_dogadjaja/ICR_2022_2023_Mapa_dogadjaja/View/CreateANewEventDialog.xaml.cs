@@ -105,6 +105,10 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
         {
             try
             {
+                RoutedCommand openDialogForCreatingANewEventTagCommand = new RoutedCommand();
+                openDialogForCreatingANewEventTagCommand.InputGestures.Add(new KeyGesture(Key.Z, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(openDialogForCreatingANewEventTagCommand, OpenDialogForCreatingANewEventTag));
+
                 RoutedCommand openDialogForCreatingANewEventTypeCommand = new RoutedCommand();
                 openDialogForCreatingANewEventTypeCommand.InputGestures.Add(new KeyGesture(Key.T, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(openDialogForCreatingANewEventTypeCommand, 
@@ -172,6 +176,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             {
                 Save_button.IsEnabled = false;
             }
+        }
+
+        private void OpenDialogForCreatingANewEventTag(object sender, RoutedEventArgs e)
+        {
+            CreateANewEventTagDialog dialogForCreatingANewEventTag = new CreateANewEventTagDialog(allEntitiesViewModel);
+            dialogForCreatingANewEventTag.ShowDialog();
         }
 
         private void OpenDialogForCreatingANewEventType(object sender, RoutedEventArgs e)
