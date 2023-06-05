@@ -1,32 +1,32 @@
 [
   {
     "Id": "ODOG001",
-    "Color": "Brown",
+    "Color": "#FFA52A2A",
     "Description": "Muzika"
   },
   {
     "Id": "ODOG002",
-    "Color": "Red",
+    "Color": "#FFFF0000",
     "Description": "Kratkometražni film"
   },
   {
     "Id": "ODOG003",
-    "Color": "Orange",
+    "Color": "#FFFFA500",
     "Description": "Dugometražni film"
   },
   {
     "Id": "ODOG004",
-    "Color": "Blue",
+    "Color": "#FF0000FF",
     "Description": "Sport"
   },
   {
     "Id": "ODOG005",
-    "Color": "Black",
+    "Color": "#FF000000",
     "Description": "Dvoranski sport"
   },
   {
     "Id": "ODOG006",
-    "Color": "Green",
+    "Color": "#FF008000",
     "Description": "Humanitaran"
   }
 ]
