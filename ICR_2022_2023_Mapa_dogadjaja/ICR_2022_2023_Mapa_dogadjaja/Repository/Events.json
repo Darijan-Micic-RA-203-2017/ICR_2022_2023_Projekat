@@ -13,7 +13,11 @@
     "AverageCostsOfSustension": 250000.0,
     "PopulatedPlace": "GRAD001",
     "Country": "DRZ001",
-    "HistoryOfDatesOfTheEvent": [],
+    "HistoryOfDatesOfTheEvent": [
+      "2022-07-11T00:00:00",
+      "2021-07-11T00:00:00",
+      "2019-07-11T00:00:00"
+    ],
     "DateOfTheEvent": "2023-07-11T00:00:00"
   },
   {
@@ -31,7 +35,11 @@
     "AverageCostsOfSustension": 200000.0,
     "PopulatedPlace": "GRAD002",
     "Country": "DRZ001",
-    "HistoryOfDatesOfTheEvent": [],
+    "HistoryOfDatesOfTheEvent": [
+      "2022-01-24T00:00:00",
+      "2021-01-24T00:00:00",
+      "2019-01-24T00:00:00"
+    ],
     "DateOfTheEvent": "2023-01-24T00:00:00"
   },
   {
@@ -49,7 +57,11 @@
     "AverageCostsOfSustension": 110000.0,
     "PopulatedPlace": "GRAD003",
     "Country": "DRZ001",
-    "HistoryOfDatesOfTheEvent": [],
+    "HistoryOfDatesOfTheEvent": [
+      "2022-04-06T00:00:00",
+      "2021-04-06T00:00:00",
+      "2019-04-06T00:00:00"
+    ],
     "DateOfTheEvent": "2023-04-06T00:00:00"
   },
   {

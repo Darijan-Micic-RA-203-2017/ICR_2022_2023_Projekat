@@ -11,6 +11,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
 {
     public class AllEntitiesViewModel : INotifyPropertyChanged
     {
+        private Event searchModelEvent;
         private CountriesViewModel countriesViewModel;
         private PopulatedPlacesViewModel populatedPlacesViewModel;
         private EventTypesViewModel eventTypesViewModel;
@@ -19,6 +20,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
         
         public AllEntitiesViewModel()
         {
+            searchModelEvent = null;
             countriesViewModel = new CountriesViewModel();
             populatedPlacesViewModel = new PopulatedPlacesViewModel();
             eventTypesViewModel = new EventTypesViewModel();
@@ -26,6 +28,19 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
             eventsViewModel = new EventsViewModel();
 
             ConnectEventsToOtherEntities();
+        }
+
+        public Event SearchModelEvent
+        {
+            get { return searchModelEvent; }
+            set
+            {
+                if (value != searchModelEvent)
+                {
+                    searchModelEvent = value;
+                    OnPropertyChanged("SearchModelEvent");
+                }
+            }
         }
 
         public CountriesViewModel CountriesViewModel

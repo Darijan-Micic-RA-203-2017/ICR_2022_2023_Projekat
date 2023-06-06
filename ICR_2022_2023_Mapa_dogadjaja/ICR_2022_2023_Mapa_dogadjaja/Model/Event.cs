@@ -15,9 +15,9 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
             internal string name;
             internal string description;
             internal EventType type;
-            internal Attendance attendance;
+            internal Attendance? attendance;
             internal string icon;
-            internal bool isHumanitary;
+            internal bool? isHumanitary;
             internal double averageCostsOfSustension;
             internal PopulatedPlace populatedPlace;
             internal Country country;
@@ -39,8 +39,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
             backupData = new EventData();
         }
 
-        public Event(string id, List<EventTag> tags, string name, string description, EventType type, Attendance attendance,
-            string icon, bool isHumanitary, double averageCostsOfSustension, PopulatedPlace populatedPlace, Country country,
+        public Event(string id, List<EventTag> tags, string name, string description, EventType type, Attendance? attendance,
+            string icon, bool? isHumanitary, double averageCostsOfSustension, PopulatedPlace populatedPlace, Country country,
             List<DateTime> historyOfDatesOfTheEvent, DateTime? dateOfTheEvent)
         {
             eventData = new EventData();
@@ -126,7 +126,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
             }
         }
 
-        public Attendance Attendance
+        public Attendance? Attendance
         {
             get { return eventData.attendance; }
             set
@@ -152,7 +152,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
             }
         }
 
-        public bool IsHumanitary
+        public bool? IsHumanitary
         {
             get { return eventData.isHumanitary; }
             set
@@ -336,7 +336,14 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
                 return false;
             }
 
-            if (eventData.attendance != other.eventData.attendance)
+            if (eventData.attendance == null)
+            {
+                if (other.eventData.attendance != null)
+                {
+                    return false;
+                }
+            }
+            else if (eventData.attendance != other.eventData.attendance)
             {
                 return false;
             }
@@ -353,7 +360,14 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
                 return false;
             }
 
-            if (eventData.isHumanitary != other.eventData.isHumanitary)
+            if (eventData.isHumanitary == null)
+            {
+                if (other.eventData.isHumanitary != null)
+                {
+                    return false;
+                }
+            }
+            else if (eventData.isHumanitary != other.eventData.isHumanitary)
             {
                 return false;
             }

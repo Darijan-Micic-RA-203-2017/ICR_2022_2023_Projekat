@@ -14,9 +14,9 @@ namespace ICR_2022_2023_Mapa_dogadjaja.DTO
         private string name;
         private string description;
         private string type;
-        private Attendance attendance;
+        private Attendance? attendance;
         private string icon;
-        private bool isHumanitary;
+        private bool? isHumanitary;
         private double averageCostsOfSustension;
         private string populatedPlace;
         private string country;
@@ -29,8 +29,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja.DTO
             historyOfDatesOfTheEvent = new List<DateTime>();
         }
         
-        public EventDTO(string id, List<string> tags, string name, string description, string type, Attendance attendance, 
-            string icon, bool isHumanitary, double averageCostsOfSustension, string populatedPlace, string country, 
+        public EventDTO(string id, List<string> tags, string name, string description, string type, Attendance? attendance, 
+            string icon, bool? isHumanitary, double averageCostsOfSustension, string populatedPlace, string country, 
             List<DateTime> historyOfDatesOfTheEvent, DateTime? dateOfTheEvent)
         {
             this.id = id;
@@ -121,7 +121,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.DTO
             }
         }
 
-        public Attendance Attendance
+        public Attendance? Attendance
         {
             get { return attendance; }
             set
@@ -147,7 +147,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.DTO
             }
         }
 
-        public bool IsHumanitary
+        public bool? IsHumanitary
         {
             get { return isHumanitary; }
             set

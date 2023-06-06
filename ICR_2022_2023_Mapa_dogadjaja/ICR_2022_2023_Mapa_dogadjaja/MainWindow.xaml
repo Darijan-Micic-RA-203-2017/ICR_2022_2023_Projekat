@@ -36,7 +36,7 @@
         </Menu>
         <DockPanel Height="300" Margin="10 0 10 0">
             <WrapPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 0 0 10">
-                <Button x:Name="Search_button" Margin="0 0 10 0">Pretraži (Alt + 1)</Button>
+                <Button x:Name="Search_button" Margin="0 0 10 0" Click="OpenDialogForSearchingEvents">Pretraži (Alt + 1)</Button>
                 <TextBox x:Name="Input_for_filtering_table" Text="Filtriraj tabelu (Alt + 2)" Margin="0 0 10 0" Width="200" 
                          TextChanged="FilterTable"></TextBox>
                 <TextBox x:Name="Input_for_filtering_map" Text="Filtriraj mapu (Alt + 3)" Margin="0 0 10 0" Width="200"></TextBox>

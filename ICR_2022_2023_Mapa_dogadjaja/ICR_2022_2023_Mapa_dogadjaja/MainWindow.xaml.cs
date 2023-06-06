@@ -90,6 +90,10 @@ namespace ICR_2022_2023_Mapa_dogadjaja
                 openDialogForAllCountriesCommand.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(openDialogForAllCountriesCommand, OpenDialogForAllCountries));
 
+                RoutedCommand openDialogForSearchingEventsCommand = new RoutedCommand();
+                openDialogForSearchingEventsCommand.InputGestures.Add(new KeyGesture(Key.D1, ModifierKeys.Alt));
+                CommandBindings.Add(new CommandBinding(openDialogForSearchingEventsCommand, OpenDialogForSearchingEvents));
+
                 RoutedCommand focusOnInputForFilteringTableCommand = new RoutedCommand();
                 focusOnInputForFilteringTableCommand.InputGestures.Add(new KeyGesture(Key.D2, ModifierKeys.Alt));
                 CommandBindings.Add(new CommandBinding(focusOnInputForFilteringTableCommand, FocusOnInputForFilteringTable));
@@ -150,6 +154,16 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             MessageBox.Show("Dijalog: Pomoć Alt + P");
         }
 
+        private void OpenDialogForSearchingEvents(object sender, RoutedEventArgs e)
+        {
+            SearchEventsDialog dialogForSearchingEvents = new SearchEventsDialog(allEntitiesViewModel);
+            bool? dialogResult = dialogForSearchingEvents.ShowDialog();
+            if (dialogResult == true)
+            {
+                SearchEvents();
+            }
+        }
+
         private void FocusOnInputForFilteringTable(object sender, RoutedEventArgs e)
         {
             Input_for_filtering_table.Focus();
@@ -173,6 +187,23 @@ namespace ICR_2022_2023_Mapa_dogadjaja
                         dgColumn.Width = new DataGridLength(dgColumn.MinWidth * (dataGrid.ActualWidth - 14) / 100);
                     }
                 }
+            }
+        }
+
+        private void SearchEvents()
+        {
+            if (Table_of_events == null)
+            {
+                return;
+            }
+
+            ObservableCollection<Event> searchResults = EventsTableSearcher.SearchEventsInTable(allEntitiesViewModel);
+            if (searchResults != null)
+            {
+                eventsThatFitSearchCriterions = searchResults;
+                
+                Table_of_events.ItemsSource = EventsThatFitSearchCriterions;
+                Cancel_search_or_filtering_button.IsEnabled = true;
             }
         }
 

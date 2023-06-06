@@ -9,14 +9,25 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Event
 {
     public class AverageCostsOfSustensionForEventValidationRule : ValidationRule
     {
+        private bool isTriggeredInSearchEventsDialog;
+
         public AverageCostsOfSustensionForEventValidationRule() { }
+
+        public bool IsTriggeredInSearchEventsDialog
+        {
+            get { return isTriggeredInSearchEventsDialog; }
+            set { isTriggeredInSearchEventsDialog = value; }
+        }
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             var enteredAverageCostsOfSustensionAsString = value as string;
-            if (string.IsNullOrWhiteSpace(enteredAverageCostsOfSustensionAsString))
+            if (!isTriggeredInSearchEventsDialog)
             {
-                return new ValidationResult(false, "Cena troškova mora biti uneta!");
+                if (string.IsNullOrWhiteSpace(enteredAverageCostsOfSustensionAsString))
+                {
+                    return new ValidationResult(false, "Cena troškova mora biti uneta!");
+                }
             }
 
             double averageCostsOfSustension;
@@ -24,10 +35,20 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Validation.Event
             {
                 return new ValidationResult(false, "Nije unet broj!");
             }
-
-            if (averageCostsOfSustension < 0)
+            
+            if (!isTriggeredInSearchEventsDialog)
             {
-                return new ValidationResult(false, "Nije unet pozitivan broj!");
+                if (averageCostsOfSustension <= 0.0)
+                {
+                    return new ValidationResult(false, "Nije unet pozitivan broj!");
+                }
+            }
+            else
+            {
+                if (averageCostsOfSustension < 0.0)
+                {
+                    return new ValidationResult(false, "Nije unet pozitivan broj!");
+                }
             }
 
             return new ValidationResult(true, null);
