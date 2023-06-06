@@ -228,19 +228,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             {
                 searchModelEvent.Tags.Add(selectedTag);
             }
-
+            
             if (Event_icon.Source != null)
             {
                 searchModelEvent.Icon = Event_icon.Source.ToString();
             }
-            else
-            {
-                if (searchModelEvent.Type != null)
-                {
-                    searchModelEvent.Icon = searchModelEvent.Type.Icon;
-                }
-            }
-
+            
             if (IsHumanitary_option_Yes_radio_button.IsChecked == true)
             {
                 searchModelEvent.IsHumanitary = true;
