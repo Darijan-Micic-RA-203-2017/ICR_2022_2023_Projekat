@@ -109,5 +109,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
 
             Save();
         }
+
+        public void Delete(EventTag eventTagToDelete)
+        {
+            eventTags.Remove(eventTagToDelete);
+
+            Save();
+        }
     }
 }

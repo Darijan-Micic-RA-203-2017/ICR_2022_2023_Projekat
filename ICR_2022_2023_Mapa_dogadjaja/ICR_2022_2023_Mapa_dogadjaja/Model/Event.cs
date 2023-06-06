@@ -79,7 +79,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
             get { return eventData.tags; }
             set
             {
-                if (!value.SequenceEqual(eventData.tags))
+                if (!eventData.tags.SequenceEqual(value))
                 {
                     eventData.tags = value;
                     OnPropertyChanged("Tags");
@@ -118,7 +118,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
             get { return eventData.type; }
             set
             {
-                if (!value.Equals(eventData.type))
+                if (!eventData.type.Equals(value))
                 {
                     eventData.type = value;
                     OnPropertyChanged("Type");
@@ -183,7 +183,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
             get { return eventData.populatedPlace; }
             set
             {
-                if (!value.Equals(eventData.populatedPlace))
+                if (!eventData.populatedPlace.Equals(value))
                 {
                     eventData.populatedPlace = value;
                     OnPropertyChanged("PopulatedPlace");
@@ -196,7 +196,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
             get { return eventData.country; }
             set
             {
-                if (!value.Equals(eventData.country))
+                if (!eventData.country.Equals(value))
                 {
                     eventData.country = value;
                     OnPropertyChanged("Country");
@@ -209,7 +209,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
             get { return eventData.historyOfDatesOfTheEvent; }
             set
             {
-                if (!value.SequenceEqual(eventData.historyOfDatesOfTheEvent))
+                if (!eventData.historyOfDatesOfTheEvent.SequenceEqual(value))
                 {
                     eventData.historyOfDatesOfTheEvent = value;
                     OnPropertyChanged("HistoryOfDatesOfTheEvent");

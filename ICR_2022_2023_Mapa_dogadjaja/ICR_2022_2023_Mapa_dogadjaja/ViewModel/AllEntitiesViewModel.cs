@@ -141,5 +141,56 @@ namespace ICR_2022_2023_Mapa_dogadjaja.ViewModel
                 eventsViewModel.Events.Add(eve);
             }
         }
+
+        public void DereferenceEventsFromEntityToDelete(object entityToDelete)
+        {
+            if (entityToDelete is EventTag)
+            {
+                EventTag convertedSelectedEventTag = (EventTag) entityToDelete;
+                foreach (Event eve in eventsViewModel.Events)
+                {
+                    eve.Tags.Remove(convertedSelectedEventTag);
+                }
+            }
+            else if (entityToDelete is EventType)
+            {
+                EventType convertedSelectedEventType = (EventType) entityToDelete;
+                foreach (Event eve in eventsViewModel.Events)
+                {
+                    if (eve.Type.Equals(convertedSelectedEventType))
+                    {
+                        eve.Type = null;
+                    }
+                }
+            }
+            else if (entityToDelete is PopulatedPlace)
+            {
+                PopulatedPlace convertedSelectedPopulatedPlace = (PopulatedPlace) entityToDelete;
+                foreach (Event eve in eventsViewModel.Events)
+                {
+                    if (eve.PopulatedPlace.Equals(convertedSelectedPopulatedPlace))
+                    {
+                        eve.PopulatedPlace = null;
+                    }
+                }
+            }
+            else if (entityToDelete is Country)
+            {
+                Country convertedSelectedCountry = (Country) entityToDelete;
+                foreach (Event eve in eventsViewModel.Events)
+                {
+                    if (eve.Country.Equals(convertedSelectedCountry))
+                    {
+                        eve.Country = null;
+                    }
+                }
+            }
+            else
+            {
+                return;
+            }
+
+            eventsViewModel.Save();
+        }
     }
 }

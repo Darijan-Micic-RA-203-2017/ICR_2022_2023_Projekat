@@ -8,13 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ICR_2022_2023_Mapa_dogadjaja
 {
@@ -126,7 +120,14 @@ namespace ICR_2022_2023_Mapa_dogadjaja
 
         private void OpenDialogForDeletingAnEntity(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Dijalog: Obriši entitet Delete");
+            Event selectedEvent = (Event) Table_of_events.SelectedItem;
+            if (selectedEvent == null)
+            {
+                return;
+            }
+            
+            DeleteAnEntityDialog dialogForDeletingAnEntity = new DeleteAnEntityDialog(allEntitiesViewModel, selectedEvent);
+            dialogForDeletingAnEntity.ShowDialog();
         }
 
         private void OpenDialogForAllEventTags(object sender, RoutedEventArgs e)

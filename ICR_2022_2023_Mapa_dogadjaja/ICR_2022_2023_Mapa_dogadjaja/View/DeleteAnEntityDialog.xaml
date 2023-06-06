@@ -5,6 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View"
         mc:Ignorable="d"
-        Title="DeleteAnEntityDialog" Height="450" Width="800">
-    <Grid></Grid>
+        Title="Brisanje entiteta" Height="150" Width="350" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        <!-- Screen resolution:      Height="768" Width="1366" -->
+        <!-- Main window resolution: Height="680" Width="1240" -->
+    <Grid x:Name="Delete_an_entity_dialog_grid" Margin="10 0 10 0">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock x:Name="Dialog_text" FontSize="14" TextWrapping="Wrap">
+                Da li ste sigurni da želite da obrišete odabrani entitet?
+            </TextBlock>
+        </DockPanel>
+        <Button Grid.Row="1" Grid.Column="0" x:Name="Delete_confirmation_button" Height="25" Width="80" 
+                Click="DeleteEntity">Da</Button>
+        <Button Grid.Row="1" Grid.Column="1" x:Name="Cancel_button" Height="25" Width="80" 
+                IsCancel="True" Click="CloseDialog">Ne</Button>
+    </Grid>
 </Window>

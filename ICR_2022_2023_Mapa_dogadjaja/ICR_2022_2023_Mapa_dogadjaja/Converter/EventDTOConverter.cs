@@ -28,13 +28,34 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Converter
             }
             dto.Name = eve.Name;
             dto.Description = eve.Description;
-            dto.Type = eve.Type.Id;
+            if (eve.Type != null)
+            {
+                dto.Type = eve.Type.Id;
+            }
+            else
+            {
+                dto.Type = null;
+            }
             dto.Attendance = eve.Attendance;
             dto.Icon = eve.Icon;
             dto.IsHumanitary = eve.IsHumanitary;
             dto.AverageCostsOfSustension = eve.AverageCostsOfSustension;
-            dto.PopulatedPlace = eve.PopulatedPlace.Id;
-            dto.Country = eve.Country.Id;
+            if (eve.PopulatedPlace != null)
+            {
+                dto.PopulatedPlace = eve.PopulatedPlace.Id;
+            }
+            else
+            {
+                dto.PopulatedPlace = null;
+            }
+            if (eve.Country != null)
+            {
+                dto.Country = eve.Country.Id;
+            }
+            else
+            {
+                dto.Country = null;
+            }
             dto.HistoryOfDatesOfTheEvent = eve.HistoryOfDatesOfTheEvent;
             dto.DateOfTheEvent = eve.DateOfTheEvent;
 
