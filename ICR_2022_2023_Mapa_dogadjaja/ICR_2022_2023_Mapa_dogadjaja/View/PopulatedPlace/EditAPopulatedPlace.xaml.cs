@@ -1,5 +1,4 @@
-﻿using ICR_2022_2023_Mapa_dogadjaja.Model;
-using ICR_2022_2023_Mapa_dogadjaja.ViewModel;
+﻿using ICR_2022_2023_Mapa_dogadjaja.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace ICR_2022_2023_Mapa_dogadjaja.View
+namespace ICR_2022_2023_Mapa_dogadjaja.View.PopulatedPlace
 {
     /// <summary>
     /// Interaction logic for EditAPopulatedPlaceDialog.xaml
@@ -18,11 +17,11 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
     {
         private AllEntitiesViewModel allEntitiesViewModel;
 
-        private PopulatedPlace processedPopulatedPlace;
+        private Model.PopulatedPlace processedPopulatedPlace;
 
         private int validationErrorsCounter;
 
-        public EditAPopulatedPlaceDialog(AllEntitiesViewModel allEntitiesViewModel, PopulatedPlace selectedPopulatedPlace)
+        public EditAPopulatedPlaceDialog(AllEntitiesViewModel allEntitiesViewModel, Model.PopulatedPlace selectedPopulatedPlace)
         {
             InitializeComponent();
 
@@ -51,7 +50,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             }
         }
 
-        public PopulatedPlace ProcessedPopulatedPlace
+        public Model.PopulatedPlace ProcessedPopulatedPlace
         {
             get { return processedPopulatedPlace; }
             set

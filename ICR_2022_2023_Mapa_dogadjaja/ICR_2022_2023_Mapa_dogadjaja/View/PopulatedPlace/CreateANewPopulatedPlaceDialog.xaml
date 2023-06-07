@@ -1,10 +1,10 @@
-﻿<Window x:Class="ICR_2022_2023_Mapa_dogadjaja.View.CreateANewPopulatedPlaceDialog"
+﻿<Window x:Class="ICR_2022_2023_Mapa_dogadjaja.View.PopulatedPlace.CreateANewPopulatedPlaceDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:val_populated_place="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.Validation.PopulatedPlace"
-        xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View"
+        xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View.PopulatedPlace"
         mc:Ignorable="d"
         Title="Unos novog grada" Height="200" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
         <!-- Screen resolution:      Height="768" Width="1366" -->

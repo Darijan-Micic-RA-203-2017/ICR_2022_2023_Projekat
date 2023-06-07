@@ -1,4 +1,8 @@
 ﻿using ICR_2022_2023_Mapa_dogadjaja.Model;
+using ICR_2022_2023_Mapa_dogadjaja.View.Country;
+using ICR_2022_2023_Mapa_dogadjaja.View.EventTag;
+using ICR_2022_2023_Mapa_dogadjaja.View.EventType;
+using ICR_2022_2023_Mapa_dogadjaja.View.PopulatedPlace;
 using ICR_2022_2023_Mapa_dogadjaja.ViewModel;
 using Microsoft.Win32;
 using System;
@@ -12,7 +16,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
-namespace ICR_2022_2023_Mapa_dogadjaja.View
+namespace ICR_2022_2023_Mapa_dogadjaja.View.Event
 {
     /// <summary>
     /// Interaction logic for EditAnEventDialog.xaml
@@ -21,15 +25,15 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
     {
         private AllEntitiesViewModel allEntitiesViewModel;
         
-        private Event processedEvent;
+        private Model.Event processedEvent;
 
-        private EventTag currentlySelectedTag;
+        private Model.EventTag currentlySelectedTag;
 
         private BitmapImage selectedEventIcon;
 
         private int validationErrorsCounter;
 
-        public EditAnEventDialog(AllEntitiesViewModel allEntitiesViewModel, Event selectedEvent)
+        public EditAnEventDialog(AllEntitiesViewModel allEntitiesViewModel, Model.Event selectedEvent)
         {
             InitializeComponent();
 
@@ -59,7 +63,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             }
         }
         
-        public Event ProcessedEvent
+        public Model.Event ProcessedEvent
         {
             get { return processedEvent; }
             set
@@ -72,7 +76,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             }
         }
 
-        public EventTag CurrentlySelectedTag
+        public Model.EventTag CurrentlySelectedTag
         {
             get { return currentlySelectedTag; }
             set
@@ -296,15 +300,15 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 return;
             }
 
-            List<EventTag> selectedTags = new List<EventTag>();
-            foreach (EventTag selTag in List_box_for_event_tags.SelectedItems)
+            List<Model.EventTag> selectedTags = new List<Model.EventTag>();
+            foreach (Model.EventTag selTag in List_box_for_event_tags.SelectedItems)
             {
                 selectedTags.Add(selTag);
             }
             if (!processedEvent.Tags.SequenceEqual(selectedTags))
             {
                 processedEvent.Tags.Clear();
-                foreach (EventTag selectedTag in List_box_for_event_tags.SelectedItems)
+                foreach (Model.EventTag selectedTag in List_box_for_event_tags.SelectedItems)
                 {
                     processedEvent.Tags.Add(selectedTag);
                 }

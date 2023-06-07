@@ -1,5 +1,4 @@
-﻿using ICR_2022_2023_Mapa_dogadjaja.Model;
-using ICR_2022_2023_Mapa_dogadjaja.ViewModel;
+﻿using ICR_2022_2023_Mapa_dogadjaja.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -73,29 +72,29 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
 
             allEntitiesViewModel.DereferenceEventsFromEntityToDelete(selectedEntity);
 
-            if (selectedEntity is Event)
+            if (selectedEntity is Model.Event)
             {
-                Event convertedSelectedEvent = (Event) selectedEntity;
+                Model.Event convertedSelectedEvent = (Model.Event) selectedEntity;
                 allEntitiesViewModel.EventsViewModel.Delete(convertedSelectedEvent);
             }
-            else if (selectedEntity is EventTag)
+            else if (selectedEntity is Model.EventTag)
             {
-                EventTag convertedSelectedEventTag = (EventTag) selectedEntity;
+                Model.EventTag convertedSelectedEventTag = (Model.EventTag) selectedEntity;
                 allEntitiesViewModel.EventTagsViewModel.Delete(convertedSelectedEventTag);
             }
-            else if (selectedEntity is EventType)
+            else if (selectedEntity is Model.EventType)
             {
-                EventType convertedSelectedEventType = (EventType) selectedEntity;
+                Model.EventType convertedSelectedEventType = (Model.EventType) selectedEntity;
                 allEntitiesViewModel.EventTypesViewModel.Delete(convertedSelectedEventType);
             }
-            else if (selectedEntity is PopulatedPlace)
+            else if (selectedEntity is Model.PopulatedPlace)
             {
-                PopulatedPlace convertedSelectedPopulatedPlace = (PopulatedPlace) selectedEntity;
+                Model.PopulatedPlace convertedSelectedPopulatedPlace = (Model.PopulatedPlace) selectedEntity;
                 allEntitiesViewModel.PopulatedPlacesViewModel.Delete(convertedSelectedPopulatedPlace);
             }
-            else if (selectedEntity is Country)
+            else if (selectedEntity is Model.Country)
             {
-                Country convertedSelectedCountry = (Country) selectedEntity;
+                Model.Country convertedSelectedCountry = (Model.Country) selectedEntity;
                 allEntitiesViewModel.CountriesViewModel.Delete(convertedSelectedCountry);
             }
             else

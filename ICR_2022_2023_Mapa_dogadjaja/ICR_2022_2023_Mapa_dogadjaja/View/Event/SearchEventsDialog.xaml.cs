@@ -12,35 +12,35 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
-namespace ICR_2022_2023_Mapa_dogadjaja.View
+namespace ICR_2022_2023_Mapa_dogadjaja.View.Event
 {
     /// <summary>
-    /// Interaction logic for CreateANewEventDialog.xaml
+    /// Interaction logic for SearchEventsDialog.xaml
     /// </summary>
-    public partial class CreateANewEventDialog : Window, INotifyPropertyChanged
+    public partial class SearchEventsDialog : Window, INotifyPropertyChanged
     {
         private AllEntitiesViewModel allEntitiesViewModel;
-        
-        private Event processedEvent;
 
-        private EventTag currentlySelectedTag;
+        private Model.Event searchModelEvent;
+
+        private Model.EventTag currentlySelectedTag;
 
         private BitmapImage selectedEventIcon;
         
         private int validationErrorsCounter;
 
-        public CreateANewEventDialog(AllEntitiesViewModel allEntitiesViewModel)
+        public SearchEventsDialog(AllEntitiesViewModel allEntitiesViewModel)
         {
             InitializeComponent();
 
             DataContext = this;
 
             this.allEntitiesViewModel = allEntitiesViewModel;
-            processedEvent = new Event();
+            searchModelEvent = new Model.Event();
             currentlySelectedTag = null;
             selectedEventIcon = null;
             validationErrorsCounter = 0;
-
+            
             AddHotKeys();
 
             // REFERENCE: https://stackoverflow.com/a/808190
@@ -59,21 +59,21 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 }
             }
         }
-        
-        public Event ProcessedEvent
+
+        public Model.Event SearchModelEvent
         {
-            get { return processedEvent; }
+            get { return searchModelEvent; }
             set
             {
-                if (value != processedEvent)
+                if (value != searchModelEvent)
                 {
-                    processedEvent = value;
-                    OnPropertyChanged("ProcessedEvent");
+                    searchModelEvent = value;
+                    OnPropertyChanged("SearchModelEvent");
                 }
             }
         }
 
-        public EventTag CurrentlySelectedTag
+        public Model.EventTag CurrentlySelectedTag
         {
             get { return currentlySelectedTag; }
             set
@@ -95,37 +95,19 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
         // REFERENCE: https://codesamplez.com/development/wpf-hotkeys-c-sharp
         private void AddHotKeys()
         {
             try
             {
-                RoutedCommand openDialogForCreatingANewEventTagCommand = new RoutedCommand();
-                openDialogForCreatingANewEventTagCommand.InputGestures.Add(new KeyGesture(Key.Z, ModifierKeys.Control));
-                CommandBindings.Add(new CommandBinding(openDialogForCreatingANewEventTagCommand, OpenDialogForCreatingANewEventTag));
-
-                RoutedCommand openDialogForCreatingANewEventTypeCommand = new RoutedCommand();
-                openDialogForCreatingANewEventTypeCommand.InputGestures.Add(new KeyGesture(Key.T, ModifierKeys.Control));
-                CommandBindings.Add(new CommandBinding(openDialogForCreatingANewEventTypeCommand, 
-                    OpenDialogForCreatingANewEventType));
-
                 RoutedCommand openDialogForSelectingEventIconCommand = new RoutedCommand();
                 openDialogForSelectingEventIconCommand.InputGestures.Add(new KeyGesture(Key.I, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(openDialogForSelectingEventIconCommand, OpenDialogForSelectingEventIcon));
-
-                RoutedCommand openDialogForCreatingANewPopulatedPlaceCommand = new RoutedCommand();
-                openDialogForCreatingANewPopulatedPlaceCommand.InputGestures.Add(new KeyGesture(Key.G, ModifierKeys.Control));
-                CommandBindings.Add(new CommandBinding(openDialogForCreatingANewPopulatedPlaceCommand,
-                    OpenDialogForCreatingANewPopulatedPlace));
-
-                RoutedCommand openDialogForCreatingANewCountryCommand = new RoutedCommand();
-                openDialogForCreatingANewCountryCommand.InputGestures.Add(new KeyGesture(Key.R, ModifierKeys.Control));
-                CommandBindings.Add(new CommandBinding(openDialogForCreatingANewCountryCommand, OpenDialogForCreatingANewCountry));
-
+                
                 RoutedCommand saveEventCommand = new RoutedCommand();
                 saveEventCommand.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
-                CommandBindings.Add(new CommandBinding(saveEventCommand, SaveEvent));
+                CommandBindings.Add(new CommandBinding(saveEventCommand, SearchEvents));
 
                 RoutedCommand closeDialogCommand = new RoutedCommand();
                 closeDialogCommand.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
@@ -166,24 +148,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
 
             if (validationErrorsCounter == 0)
             {
-                Save_button.IsEnabled = true;
+                Search_button.IsEnabled = true;
             }
             else
             {
-                Save_button.IsEnabled = false;
+                Search_button.IsEnabled = false;
             }
-        }
-
-        private void OpenDialogForCreatingANewEventTag(object sender, RoutedEventArgs e)
-        {
-            CreateANewEventTagDialog dialogForCreatingANewEventTag = new CreateANewEventTagDialog(allEntitiesViewModel);
-            dialogForCreatingANewEventTag.ShowDialog();
-        }
-
-        private void OpenDialogForCreatingANewEventType(object sender, RoutedEventArgs e)
-        {
-            CreateANewEventTypeDialog dialogForCreatingANewEventType = new CreateANewEventTypeDialog(allEntitiesViewModel);
-            dialogForCreatingANewEventType.ShowDialog();
         }
 
         // REFERENCE: https://learn.microsoft.com/en-us/dotnet/desktop/wpf/windows/how-to-open-common-system-dialog-box?view=netdesktop-7.0
@@ -223,20 +193,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             selectedEventIcon = new BitmapImage(new Uri(openFileDialog.FileName, UriKind.Absolute));
             Event_icon.Source = selectedEventIcon;
         }
-
-        private void OpenDialogForCreatingANewPopulatedPlace(object sender, RoutedEventArgs e)
-        {
-            CreateANewPopulatedPlaceDialog dialogForCreatingANewPopulatedPlace =
-                new CreateANewPopulatedPlaceDialog(allEntitiesViewModel);
-            dialogForCreatingANewPopulatedPlace.ShowDialog();
-        }
-
-        private void OpenDialogForCreatingANewCountry(object sender, RoutedEventArgs e)
-        {
-            CreateANewCountryDialog dialogForCreatingANewCountry = new CreateANewCountryDialog(allEntitiesViewModel);
-            dialogForCreatingANewCountry.ShowDialog();
-        }
-
+        
         private void CreateNewHistoricalDateOfTheEventInput(object sender, RoutedEventArgs e)
         {
             if (Panel_for_inputs_for_historical_dates_of_the_event == null)
@@ -251,53 +208,49 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             Panel_for_inputs_for_historical_dates_of_the_event.Children.Add(newHistoricalDateOfTheEventPicker);
         }
 
-        private void SaveEvent(object sender, RoutedEventArgs e)
+        private void SearchEvents(object sender, RoutedEventArgs e)
         {
-            if (Processed_event_form_grid == null)
+            if (Search_model_event_form_grid == null)
             {
                 return;
             }
 
-            if (!Save_button.IsEnabled)
+            if (!Search_button.IsEnabled)
             {
                 return;
             }
-
-            foreach (EventTag selectedTag in List_box_for_event_tags.SelectedItems)
+            
+            foreach (Model.EventTag selectedTag in List_box_for_event_tags.SelectedItems)
             {
-                processedEvent.Tags.Add(selectedTag);
+                searchModelEvent.Tags.Add(selectedTag);
             }
-
+            
             if (Event_icon.Source != null)
             {
-                processedEvent.Icon = Event_icon.Source.ToString();
+                searchModelEvent.Icon = Event_icon.Source.ToString();
             }
-            else
-            {
-                processedEvent.Icon = processedEvent.Type.Icon;
-            }
-
+            
             if (IsHumanitary_option_Yes_radio_button.IsChecked == true)
             {
-                processedEvent.IsHumanitary = true;
+                searchModelEvent.IsHumanitary = true;
             }
             else if (IsHumanitary_option_No_radio_button.IsChecked == true)
             {
-                processedEvent.IsHumanitary = false;
+                searchModelEvent.IsHumanitary = false;
             }
 
-            processedEvent.Attendance = (Attendance?) Combo_box_for_attendance.SelectedItem;
+            searchModelEvent.Attendance = (Attendance?) Combo_box_for_attendance.SelectedItem;
 
             foreach (UIElement childElem in Panel_for_inputs_for_historical_dates_of_the_event.Children)
             {
                 DatePicker datePicker = (DatePicker) childElem;
                 if (datePicker.SelectedDate.HasValue)
                 {
-                    processedEvent.HistoryOfDatesOfTheEvent.Add(datePicker.SelectedDate.Value);
+                    searchModelEvent.HistoryOfDatesOfTheEvent.Add(datePicker.SelectedDate.Value);
                 }
             }
 
-            allEntitiesViewModel.EventsViewModel.Save(processedEvent);
+            allEntitiesViewModel.SearchModelEvent = searchModelEvent;
 
             DialogResult = true;
         }

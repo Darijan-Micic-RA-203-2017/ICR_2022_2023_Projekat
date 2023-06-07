@@ -1,5 +1,4 @@
-﻿using ICR_2022_2023_Mapa_dogadjaja.Model;
-using ICR_2022_2023_Mapa_dogadjaja.ViewModel;
+﻿using ICR_2022_2023_Mapa_dogadjaja.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,27 +8,27 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace ICR_2022_2023_Mapa_dogadjaja.View
+namespace ICR_2022_2023_Mapa_dogadjaja.View.Country
 {
     /// <summary>
-    /// Interaction logic for CreateANewCountryDialog.xaml
+    /// Interaction logic for EditACountryDialog.xaml
     /// </summary>
-    public partial class CreateANewCountryDialog : Window, INotifyPropertyChanged
+    public partial class EditACountryDialog : Window, INotifyPropertyChanged
     {
         private AllEntitiesViewModel allEntitiesViewModel;
 
-        private Country processedCountry;
-        
+        private Model.Country processedCountry;
+
         private int validationErrorsCounter;
 
-        public CreateANewCountryDialog(AllEntitiesViewModel allEntitiesViewModel)
+        public EditACountryDialog(AllEntitiesViewModel allEntitiesViewModel, Model.Country selectedCountry)
         {
             InitializeComponent();
 
             DataContext = this;
 
             this.allEntitiesViewModel = allEntitiesViewModel;
-            processedCountry = new Country();
+            processedCountry = selectedCountry;
             validationErrorsCounter = 0;
 
             AddHotKeys();
@@ -51,7 +50,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             }
         }
 
-        public Country ProcessedCountry
+        public Model.Country ProcessedCountry
         {
             get { return processedCountry; }
             set
@@ -63,7 +62,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 }
             }
         }
-        
+
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
@@ -142,8 +141,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 return;
             }
 
-            allEntitiesViewModel.CountriesViewModel.Save(processedCountry);
-
+            allEntitiesViewModel.CountriesViewModel.Save();
+            
             DialogResult = true;
         }
 

@@ -1,5 +1,4 @@
-﻿using ICR_2022_2023_Mapa_dogadjaja.Model;
-using ICR_2022_2023_Mapa_dogadjaja.ViewModel;
+﻿using ICR_2022_2023_Mapa_dogadjaja.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace ICR_2022_2023_Mapa_dogadjaja.View
+namespace ICR_2022_2023_Mapa_dogadjaja.View.EventTag
 {
     /// <summary>
     /// Interaction logic for EditAnEventTagDialog.xaml
@@ -19,13 +18,13 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
     {
         private AllEntitiesViewModel allEntitiesViewModel;
 
-        private EventTag processedEventTag;
+        private Model.EventTag processedEventTag;
 
         private Color selectedEventTagColor;
 
         private int validationErrorsCounter;
 
-        public EditAnEventTagDialog(AllEntitiesViewModel allEntitiesViewModel, EventTag selectedEventTag)
+        public EditAnEventTagDialog(AllEntitiesViewModel allEntitiesViewModel, Model.EventTag selectedEventTag)
         {
             InitializeComponent();
 
@@ -55,7 +54,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             }
         }
 
-        public EventTag ProcessedEventTag
+        public Model.EventTag ProcessedEventTag
         {
             get { return processedEventTag; }
             set
