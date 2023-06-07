@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View"
         xmlns:view_model="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.ViewModel"
         mc:Ignorable="d"
-        Title="Unos i izmena događaja" Height="720" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Unos novog događaja" Height="720" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
         <!-- Screen resolution:      Height="768" Width="1366" -->
         <!-- Main window resolution: Height="680" Width="1240" -->
     <Window.Resources>
