@@ -15,27 +15,27 @@ using System.Windows.Media.Imaging;
 namespace ICR_2022_2023_Mapa_dogadjaja.View
 {
     /// <summary>
-    /// Interaction logic for CreateANewEventTypeDialog.xaml
+    /// Interaction logic for EditAnEventTypeDialog.xaml
     /// </summary>
-    public partial class CreateANewEventTypeDialog : Window, INotifyPropertyChanged
+    public partial class EditAnEventTypeDialog : Window, INotifyPropertyChanged
     {
         private AllEntitiesViewModel allEntitiesViewModel;
 
         private EventType processedEventType;
 
         private BitmapImage selectedEventTypeIcon;
-        
+
         private int validationErrorsCounter;
 
-        public CreateANewEventTypeDialog(AllEntitiesViewModel allEntitiesViewModel)
+        public EditAnEventTypeDialog(AllEntitiesViewModel allEntitiesViewModel, EventType selectedEventType)
         {
             InitializeComponent();
 
             DataContext = this;
 
             this.allEntitiesViewModel = allEntitiesViewModel;
-            processedEventType = new EventType();
-            selectedEventTypeIcon = null;
+            processedEventType = selectedEventType;
+            PrepareViewOfSelectedEventType();
             validationErrorsCounter = 0;
 
             AddHotKeys();
@@ -82,7 +82,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 }
             }
         }
-        
+
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
@@ -93,6 +93,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private void PrepareViewOfSelectedEventType()
+        {
+            selectedEventTypeIcon = new BitmapImage(new Uri(processedEventType.Icon, UriKind.Absolute));
+            Event_type_icon.Source = selectedEventTypeIcon;
+        }
+
         // REFERENCE: https://codesamplez.com/development/wpf-hotkeys-c-sharp
         private void AddHotKeys()
         {
@@ -100,7 +106,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             {
                 RoutedCommand openDialogForSelectingEventTypeIconCommand = new RoutedCommand();
                 openDialogForSelectingEventTypeIconCommand.InputGestures.Add(new KeyGesture(Key.I, ModifierKeys.Control));
-                CommandBindings.Add(new CommandBinding(openDialogForSelectingEventTypeIconCommand, 
+                CommandBindings.Add(new CommandBinding(openDialogForSelectingEventTypeIconCommand,
                     OpenDialogForSelectingEventTypeIcon));
 
                 RoutedCommand saveEventTypeCommand = new RoutedCommand();
@@ -203,10 +209,10 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             {
                 return;
             }
-            
+
             processedEventType.Icon = Event_type_icon.Source.ToString();
-            
-            allEntitiesViewModel.EventTypesViewModel.Save(processedEventType);
+
+            allEntitiesViewModel.EventTypesViewModel.Save();
 
             DialogResult = true;
         }

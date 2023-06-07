@@ -69,6 +69,8 @@
     <Compile Include="Validation\EventTag\UniqueEventTagIdValidationRule.cs" />
     <Compile Include="Validation\EventType\ExistingEventTypeDescriptionValidationRule.cs" />
     <Compile Include="Validation\EventType\ExistingEventTypeIconValidationRule.cs" />
+    <Compile Include="Validation\EventType\ExistingEventTypeIdValidationRule.cs" />
+    <Compile Include="Validation\EventType\ExistingEventTypeNameValidationRule.cs" />
     <Compile Include="Validation\EventType\UniqueEventTypeIdValidationRule.cs" />
     <Compile Include="Validation\EventType\UniqueEventTypeNameValidationRule.cs" />
     <Compile Include="Validation\Event\AverageCostsOfSustensionForEventValidationRule.cs" />
@@ -119,6 +121,9 @@
     <Compile Include="View\EditAnEventDialog.xaml.cs">
       <DependentUpon>EditAnEventDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EditAnEventType.xaml.cs">
+      <DependentUpon>EditAnEventType.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EditAPopulatedPlace.xaml.cs">
       <DependentUpon>EditAPopulatedPlace.xaml</DependentUpon>
     </Compile>
@@ -166,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EditAnEventDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditAnEventType.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

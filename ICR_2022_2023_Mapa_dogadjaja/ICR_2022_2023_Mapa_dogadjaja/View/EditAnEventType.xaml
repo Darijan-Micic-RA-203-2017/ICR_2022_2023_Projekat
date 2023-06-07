@@ -1,4 +1,4 @@
-﻿<Window x:Class="ICR_2022_2023_Mapa_dogadjaja.View.CreateANewEventTypeDialog"
+﻿<Window x:Class="ICR_2022_2023_Mapa_dogadjaja.View.EditAnEventTypeDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,9 +6,9 @@
         xmlns:val_event_type="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.Validation.EventType"
         xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View"
         mc:Ignorable="d"
-        Title="Unos novog tipa događaja" Height="360" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-        <!-- Screen resolution:      Height="768" Width="1366" -->
-        <!-- Main window resolution: Height="680" Width="1240" -->
+        Title="Izmena tipa događaja" Height="360" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <!-- Screen resolution:      Height="768" Width="1366" -->
+    <!-- Main window resolution: Height="680" Width="1240" -->
     <Window.Resources>
         <!-- REFERENCE: https://kmatyaszek.github.io/wpf%20validation/2019/03/04/wpf-validation-display-errors-to-the-user.html -->
         <Style x:Key="ControlForTextBoxValidationErrorStyle" TargetType="TextBox">
@@ -75,7 +75,7 @@
                     <Binding Path="ProcessedEventType.Id" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>
                             <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
-                            <val_event_type:UniqueEventTypeIdValidationRule ValidatesOnTargetUpdated="True"/>
+                            <val_event_type:ExistingEventTypeIdValidationRule ValidatesOnTargetUpdated="True"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -89,7 +89,7 @@
                     <Binding Path="ProcessedEventType.Name" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>
                             <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
-                            <val_event_type:UniqueEventTypeNameValidationRule ValidatesOnTargetUpdated="True"/>
+                            <val_event_type:ExistingEventTypeNameValidationRule ValidatesOnTargetUpdated="True"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
