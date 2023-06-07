@@ -60,6 +60,8 @@
     <Compile Include="Converter\EnumDescriptionTypeConverter.cs" />
     <Compile Include="Converter\EventDTOConverter.cs" />
     <Compile Include="DTO\EventDTO.cs" />
+    <Compile Include="Validation\Country\ExistingCountryIdValidationRule.cs" />
+    <Compile Include="Validation\Country\ExistingCountryNameValidationRule.cs" />
     <Compile Include="Validation\Country\UniqueCountryIdValidationRule.cs" />
     <Compile Include="Validation\Country\UniqueCountryNameValidationRule.cs" />
     <Compile Include="Validation\EventTag\UniqueEventTagColorValidationRule.cs" />
@@ -109,6 +111,9 @@
     <Compile Include="View\DeleteAnEntityDialog.xaml.cs">
       <DependentUpon>DeleteAnEntityDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EditACountryDialog.xaml.cs">
+      <DependentUpon>EditACountryDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EditAnEventDialog.xaml.cs">
       <DependentUpon>EditAnEventDialog.xaml</DependentUpon>
     </Compile>
@@ -148,6 +153,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DeleteAnEntityDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditACountryDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
