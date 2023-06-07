@@ -1,5 +1,6 @@
 ﻿using ICR_2022_2023_Mapa_dogadjaja.Model;
 using ICR_2022_2023_Mapa_dogadjaja.View;
+using ICR_2022_2023_Mapa_dogadjaja.View.Country;
 using ICR_2022_2023_Mapa_dogadjaja.View.Event;
 using ICR_2022_2023_Mapa_dogadjaja.View.EventTag;
 using ICR_2022_2023_Mapa_dogadjaja.View.EventType;
@@ -216,7 +217,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja
 
         private void OpenDialogForAllCountries(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Dijalog: Sve države Ctrl + R");
+            AllCountriesDialog dialogForAllCountries = new AllCountriesDialog(allEntitiesViewModel);
+            dialogForAllCountries.ShowDialog();
         }
 
         private void OpenHelpDialog(object sender, RoutedEventArgs e)

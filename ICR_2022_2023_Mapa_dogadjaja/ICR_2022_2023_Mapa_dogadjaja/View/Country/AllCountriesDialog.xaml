@@ -1,0 +1,28 @@
+﻿<Window x:Class="ICR_2022_2023_Mapa_dogadjaja.View.Country.AllCountriesDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View.Country"
+        mc:Ignorable="d"
+        Title="Sve države" Height="600" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <!-- Screen resolution:      Height="768" Width="1366" -->
+    <!-- Main window resolution: Height="680" Width="1240" -->
+    <DockPanel LastChildFill="True" Margin="10 0 10 0">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    Margin="0 10 0 10">
+            <Button x:Name="Create_a_new_country_button" Margin="0 0 10 0" Click="OpenDialogForCreatingANewCountry">Nova država (Ctrl + N)</Button>
+            <Button x:Name="Edit_a_country_button" Margin="0 0 10 0" Click="OpenDialogForEditingACountry">Izmeni (Ctrl + E)</Button>
+            <Button x:Name="Delete_a_country_button" Margin="0 0 10 0" Click="OpenDialogForDeletingAnEntity">Obriši (Ctrl + Delete)</Button>
+        </StackPanel>
+        <DataGrid x:Name="Table_of_countries" ItemsSource="{Binding AllEntitiesViewModel.CountriesViewModel.Countries}" 
+                  IsReadOnly="True" SelectionMode="Single" CanUserReorderColumns="False" CanUserResizeColumns="False" 
+                  CanUserResizeRows="False" VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Left" 
+                  VerticalContentAlignment="Stretch" AutoGenerateColumns="False" SizeChanged="Table_of_countries_SizeChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Oznaka" Binding="{Binding Id}" MinWidth="15"></DataGridTextColumn>
+                <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" MinWidth="85"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>

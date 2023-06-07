@@ -100,6 +100,9 @@
     <Compile Include="ViewModel\EventTagsViewModel.cs" />
     <Compile Include="ViewModel\EventTypesViewModel.cs" />
     <Compile Include="ViewModel\PopulatedPlacesViewModel.cs" />
+    <Compile Include="View\Country\AllCountriesDialog.xaml.cs">
+      <DependentUpon>AllCountriesDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Country\CreateANewCountryDialog.xaml.cs">
       <DependentUpon>CreateANewCountryDialog.xaml</DependentUpon>
     </Compile>
@@ -160,6 +163,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Country\AllCountriesDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Country\CreateANewCountryDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
