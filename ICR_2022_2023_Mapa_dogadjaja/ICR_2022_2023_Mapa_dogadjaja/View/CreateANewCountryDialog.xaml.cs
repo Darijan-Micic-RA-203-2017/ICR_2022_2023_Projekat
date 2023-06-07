@@ -18,7 +18,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
     {
         private AllEntitiesViewModel allEntitiesViewModel;
 
-        private Country newCountry;
+        private Country processedCountry;
         
         private int validationErrorsCounter;
 
@@ -29,7 +29,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             DataContext = this;
 
             this.allEntitiesViewModel = allEntitiesViewModel;
-            newCountry = new Country();
+            processedCountry = new Country();
             validationErrorsCounter = 0;
 
             AddHotKeys();
@@ -51,15 +51,15 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             }
         }
 
-        public Country NewCountry
+        public Country ProcessedCountry
         {
-            get { return newCountry; }
+            get { return processedCountry; }
             set
             {
-                if (value != newCountry)
+                if (value != processedCountry)
                 {
-                    newCountry = value;
-                    OnPropertyChanged("NewCountry");
+                    processedCountry = value;
+                    OnPropertyChanged("ProcessedCountry");
                 }
             }
         }
@@ -132,7 +132,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
 
         private void SaveCountry(object sender, RoutedEventArgs e)
         {
-            if (New_country_form_grid == null)
+            if (Processed_country_form_grid == null)
             {
                 return;
             }
@@ -142,7 +142,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 return;
             }
 
-            allEntitiesViewModel.CountriesViewModel.Save(newCountry);
+            allEntitiesViewModel.CountriesViewModel.Save(processedCountry);
 
             DialogResult = true;
         }
