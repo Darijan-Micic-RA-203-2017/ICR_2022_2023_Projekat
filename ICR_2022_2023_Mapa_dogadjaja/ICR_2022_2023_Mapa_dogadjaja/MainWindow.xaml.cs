@@ -115,7 +115,14 @@ namespace ICR_2022_2023_Mapa_dogadjaja
 
         private void OpenDialogForEditingAnEvent(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Dijalog: Izmeni događaj Ctrl + E");
+            Event selectedEvent = (Event) Table_of_events.SelectedItem;
+            if (selectedEvent == null)
+            {
+                return;
+            }
+
+            EditAnEventDialog dialogForEditingAnEvent = new EditAnEventDialog(allEntitiesViewModel, selectedEvent);
+            dialogForEditingAnEvent.ShowDialog();
         }
 
         private void OpenDialogForDeletingAnEntity(object sender, RoutedEventArgs e)

@@ -15,9 +15,9 @@ using System.Windows.Media.Imaging;
 namespace ICR_2022_2023_Mapa_dogadjaja.View
 {
     /// <summary>
-    /// Interaction logic for CreateANewEventDialog.xaml
+    /// Interaction logic for EditAnEventDialog.xaml
     /// </summary>
-    public partial class CreateANewEventDialog : Window, INotifyPropertyChanged
+    public partial class EditAnEventDialog : Window, INotifyPropertyChanged
     {
         private AllEntitiesViewModel allEntitiesViewModel;
         
@@ -26,19 +26,18 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
         private EventTag currentlySelectedTag;
 
         private BitmapImage selectedEventIcon;
-        
+
         private int validationErrorsCounter;
 
-        public CreateANewEventDialog(AllEntitiesViewModel allEntitiesViewModel)
+        public EditAnEventDialog(AllEntitiesViewModel allEntitiesViewModel, Event selectedEvent)
         {
             InitializeComponent();
 
             DataContext = this;
 
             this.allEntitiesViewModel = allEntitiesViewModel;
-            processedEvent = new Event();
-            currentlySelectedTag = null;
-            selectedEventIcon = null;
+            processedEvent = selectedEvent;
+            PrepareViewOfSelectedEvent();
             validationErrorsCounter = 0;
 
             AddHotKeys();
@@ -85,7 +84,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 }
             }
         }
-        
+
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
@@ -95,7 +94,41 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
+        private void PrepareViewOfSelectedEvent()
+        {
+            currentlySelectedTag = processedEvent.Tags[0];
+            //List_box_for_event_tags.SetBinding(List_box_for_event_tags.SelectedItems., "{Binding }");
+
+            //Combo_box_for_event_type.SelectedItem = processedEvent.Type;
+
+            selectedEventIcon = new BitmapImage(new Uri(processedEvent.Icon, UriKind.Absolute));
+            Event_icon.Source = selectedEventIcon;
+
+            if (processedEvent.IsHumanitary == true)
+            {
+                IsHumanitary_option_Yes_radio_button.IsChecked = true;
+            }
+            else
+            {
+                IsHumanitary_option_No_radio_button.IsChecked = true;
+            }
+
+            Combo_box_for_attendance.SelectedItem = processedEvent.Attendance.Value;
+
+            if (processedEvent.HistoryOfDatesOfTheEvent.Count > 0)
+            {
+                Panel_for_inputs_for_historical_dates_of_the_event.Children.Clear();
+            }
+            foreach (DateTime historicalDate in processedEvent.HistoryOfDatesOfTheEvent)
+            {
+                CreateNewHistoricalDateOfTheEventInput(null, null);
+                DatePicker lastDatePicker = (DatePicker)Panel_for_inputs_for_historical_dates_of_the_event
+                    .Children[Panel_for_inputs_for_historical_dates_of_the_event.Children.Count - 1];
+                lastDatePicker.SelectedDate = historicalDate;
+            }
+        }
+
         // REFERENCE: https://codesamplez.com/development/wpf-hotkeys-c-sharp
         private void AddHotKeys()
         {
@@ -107,7 +140,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
 
                 RoutedCommand openDialogForCreatingANewEventTypeCommand = new RoutedCommand();
                 openDialogForCreatingANewEventTypeCommand.InputGestures.Add(new KeyGesture(Key.T, ModifierKeys.Control));
-                CommandBindings.Add(new CommandBinding(openDialogForCreatingANewEventTypeCommand, 
+                CommandBindings.Add(new CommandBinding(openDialogForCreatingANewEventTypeCommand,
                     OpenDialogForCreatingANewEventType));
 
                 RoutedCommand openDialogForSelectingEventIconCommand = new RoutedCommand();
@@ -286,11 +319,11 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 processedEvent.IsHumanitary = false;
             }
 
-            processedEvent.Attendance = (Attendance?) Combo_box_for_attendance.SelectedItem;
+            processedEvent.Attendance = (Attendance?)Combo_box_for_attendance.SelectedItem;
 
             foreach (UIElement childElem in Panel_for_inputs_for_historical_dates_of_the_event.Children)
             {
-                DatePicker datePicker = (DatePicker) childElem;
+                DatePicker datePicker = (DatePicker)childElem;
                 if (datePicker.SelectedDate.HasValue)
                 {
                     processedEvent.HistoryOfDatesOfTheEvent.Add(datePicker.SelectedDate.Value);

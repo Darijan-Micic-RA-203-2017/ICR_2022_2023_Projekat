@@ -73,6 +73,8 @@
     <Compile Include="Validation\Event\DateOfTheEventValidationRule.cs" />
     <Compile Include="Validation\Event\ExistingEventCountryValidationRule.cs" />
     <Compile Include="Validation\Event\ExistingEventDescriptionValidationRule.cs" />
+    <Compile Include="Validation\Event\ExistingEventIdValidationRule.cs" />
+    <Compile Include="Validation\Event\ExistingEventNameValidationRule.cs" />
     <Compile Include="Validation\Event\ExistingEventPopulatedPlaceValidationRule.cs" />
     <Compile Include="Validation\Event\ExistingEventTagsValidationRule.cs" />
     <Compile Include="Validation\Event\ExistingEventTypeValidationRule.cs" />
@@ -106,6 +108,9 @@
     </Compile>
     <Compile Include="View\DeleteAnEntityDialog.xaml.cs">
       <DependentUpon>DeleteAnEntityDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditAnEventDialog.xaml.cs">
+      <DependentUpon>EditAnEventDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SearchEventsDialog.xaml.cs">
       <DependentUpon>SearchEventsDialog.xaml</DependentUpon>
@@ -143,6 +148,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DeleteAnEntityDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditAnEventDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
