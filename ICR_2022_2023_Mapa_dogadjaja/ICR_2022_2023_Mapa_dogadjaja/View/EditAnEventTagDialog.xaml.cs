@@ -13,27 +13,27 @@ using System.Windows.Media;
 namespace ICR_2022_2023_Mapa_dogadjaja.View
 {
     /// <summary>
-    /// Interaction logic for CreateANewEventTagDialog.xaml
+    /// Interaction logic for EditAnEventTagDialog.xaml
     /// </summary>
-    public partial class CreateANewEventTagDialog : Window, INotifyPropertyChanged
+    public partial class EditAnEventTagDialog : Window, INotifyPropertyChanged
     {
         private AllEntitiesViewModel allEntitiesViewModel;
 
         private EventTag processedEventTag;
 
         private Color selectedEventTagColor;
-        
+
         private int validationErrorsCounter;
 
-        public CreateANewEventTagDialog(AllEntitiesViewModel allEntitiesViewModel)
+        public EditAnEventTagDialog(AllEntitiesViewModel allEntitiesViewModel, EventTag selectedEventTag)
         {
             InitializeComponent();
 
             DataContext = this;
 
             this.allEntitiesViewModel = allEntitiesViewModel;
-            processedEventTag = new EventTag();
-            selectedEventTagColor = Colors.Transparent;
+            processedEventTag = selectedEventTag;
+            PrepareViewOfSelectedEventTag();
             validationErrorsCounter = 0;
 
             AddHotKeys();
@@ -80,7 +80,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 }
             }
         }
-        
+
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
@@ -90,6 +90,20 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void PrepareViewOfSelectedEventTag()
+        {
+            string selectedAlpha = processedEventTag.Color.Substring(1, 2);
+            byte a = byte.Parse(selectedAlpha, System.Globalization.NumberStyles.HexNumber);
+            string selectedRed = processedEventTag.Color.Substring(3, 2);
+            byte r = byte.Parse(selectedRed, System.Globalization.NumberStyles.HexNumber);
+            string selectedGreen = processedEventTag.Color.Substring(5, 2);
+            byte g = byte.Parse(selectedGreen, System.Globalization.NumberStyles.HexNumber);
+            string selectedBlue = processedEventTag.Color.Substring(7, 2);
+            byte b = byte.Parse(selectedBlue, System.Globalization.NumberStyles.HexNumber);
+
+            SelectedEventTagColor = Color.FromArgb(a, r, g, b);
+        }
 
         // REFERENCE: https://codesamplez.com/development/wpf-hotkeys-c-sharp
         private void AddHotKeys()
@@ -173,10 +187,10 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             {
                 return;
             }
-            
+
             processedEventTag.Color = Color_picker.Color.ToString();
-            
-            allEntitiesViewModel.EventTagsViewModel.Save(processedEventTag);
+
+            allEntitiesViewModel.EventTagsViewModel.Save();
 
             DialogResult = true;
         }

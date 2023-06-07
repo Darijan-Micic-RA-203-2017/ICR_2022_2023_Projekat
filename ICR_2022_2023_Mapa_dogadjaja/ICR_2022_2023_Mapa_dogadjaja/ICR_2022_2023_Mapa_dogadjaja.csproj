@@ -64,6 +64,9 @@
     <Compile Include="Validation\Country\ExistingCountryNameValidationRule.cs" />
     <Compile Include="Validation\Country\UniqueCountryIdValidationRule.cs" />
     <Compile Include="Validation\Country\UniqueCountryNameValidationRule.cs" />
+    <Compile Include="Validation\EventTag\ExistingEventTagColorValidationRule.cs" />
+    <Compile Include="Validation\EventTag\ExistingEventTagDescriptionValidationRule.cs" />
+    <Compile Include="Validation\EventTag\ExistingEventTagIdValidationRule.cs" />
     <Compile Include="Validation\EventTag\UniqueEventTagColorValidationRule.cs" />
     <Compile Include="Validation\EventTag\UniqueEventTagDescriptionValidationRule.cs" />
     <Compile Include="Validation\EventTag\UniqueEventTagIdValidationRule.cs" />
@@ -121,6 +124,9 @@
     <Compile Include="View\EditAnEventDialog.xaml.cs">
       <DependentUpon>EditAnEventDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EditAnEventTagDialog.xaml.cs">
+      <DependentUpon>EditAnEventTagDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\EditAnEventType.xaml.cs">
       <DependentUpon>EditAnEventType.xaml</DependentUpon>
     </Compile>
@@ -171,6 +177,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EditAnEventDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditAnEventTagDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

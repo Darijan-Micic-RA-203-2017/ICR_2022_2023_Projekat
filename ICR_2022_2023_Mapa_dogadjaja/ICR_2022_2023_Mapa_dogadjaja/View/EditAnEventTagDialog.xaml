@@ -1,4 +1,4 @@
-﻿<Window x:Class="ICR_2022_2023_Mapa_dogadjaja.View.CreateANewEventTagDialog"
+﻿<Window x:Class="ICR_2022_2023_Mapa_dogadjaja.View.EditAnEventTagDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
         xmlns:val_event_tag="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.Validation.EventTag"
         xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View"
         mc:Ignorable="d"
-        Title="Unos nove etikete" Height="360" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Izmena etikete" Height="360" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
         <!-- Screen resolution:      Height="768" Width="1366" -->
         <!-- Main window resolution: Height="680" Width="1240" -->
     <Window.Resources>
@@ -73,7 +73,7 @@
                     <Binding Path="ProcessedEventTag.Id" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>
                             <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
-                            <val_event_tag:UniqueEventTagIdValidationRule ValidatesOnTargetUpdated="True"/>
+                            <val_event_tag:ExistingEventTagIdValidationRule ValidatesOnTargetUpdated="True"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -88,7 +88,7 @@
                              NotifyOnValidationError="True">
                         <Binding.ValidationRules>
                             <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
-                            <val_event_tag:UniqueEventTagColorValidationRule ValidatesOnTargetUpdated="True"/>
+                            <val_event_tag:ExistingEventTagColorValidationRule ValidatesOnTargetUpdated="True"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </syncfusion:ColorPicker.Color>
@@ -102,7 +102,7 @@
                     <Binding Path="ProcessedEventTag.Description" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>
                             <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
-                            <val_event_tag:UniqueEventTagDescriptionValidationRule ValidatesOnTargetUpdated="True"/>
+                            <val_event_tag:ExistingEventTagDescriptionValidationRule ValidatesOnTargetUpdated="True"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
