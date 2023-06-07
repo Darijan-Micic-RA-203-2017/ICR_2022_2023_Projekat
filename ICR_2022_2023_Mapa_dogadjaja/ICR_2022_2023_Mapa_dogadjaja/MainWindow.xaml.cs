@@ -2,6 +2,7 @@
 using ICR_2022_2023_Mapa_dogadjaja.View;
 using ICR_2022_2023_Mapa_dogadjaja.View.Event;
 using ICR_2022_2023_Mapa_dogadjaja.View.EventTag;
+using ICR_2022_2023_Mapa_dogadjaja.View.EventType;
 using ICR_2022_2023_Mapa_dogadjaja.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -202,7 +203,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja
 
         private void OpenDialogForAllEventTypes(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Dijalog: Svi tipovi događaja Ctrl + T");
+            AllEventTypesDialog dialogForAllEventTypes = new AllEventTypesDialog(allEntitiesViewModel);
+            dialogForAllEventTypes.ShowDialog();
         }
 
         private void OpenDialogForAllPopulatedPlaces(object sender, RoutedEventArgs e)

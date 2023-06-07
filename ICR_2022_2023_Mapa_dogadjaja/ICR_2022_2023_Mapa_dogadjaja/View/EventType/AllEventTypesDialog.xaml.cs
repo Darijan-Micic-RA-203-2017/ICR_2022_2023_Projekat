@@ -10,16 +10,16 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace ICR_2022_2023_Mapa_dogadjaja.View.EventTag
+namespace ICR_2022_2023_Mapa_dogadjaja.View.EventType
 {
     /// <summary>
-    /// Interaction logic for AllEventTagsDialog.xaml
+    /// Interaction logic for AllEventTypesDialog.xaml
     /// </summary>
-    public partial class AllEventTagsDialog : Window, INotifyPropertyChanged
+    public partial class AllEventTypesDialog : Window, INotifyPropertyChanged
     {
         private AllEntitiesViewModel allEntitiesViewModel;
-        
-        public AllEventTagsDialog(AllEntitiesViewModel allEntitiesViewModel)
+
+        public AllEventTypesDialog(AllEntitiesViewModel allEntitiesViewModel)
         {
             InitializeComponent();
 
@@ -42,7 +42,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View.EventTag
                 }
             }
         }
-        
+
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
@@ -58,18 +58,18 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View.EventTag
         {
             try
             {
-                RoutedCommand openDialogForCreatingANewEventTagCommand = new RoutedCommand();
-                openDialogForCreatingANewEventTagCommand.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control));
-                CommandBindings.Add(new CommandBinding(openDialogForCreatingANewEventTagCommand, OpenDialogForCreatingANewEventTag));
+                RoutedCommand openDialogForCreatingANewEventTypeCommand = new RoutedCommand();
+                openDialogForCreatingANewEventTypeCommand.InputGestures.Add(new KeyGesture(Key.N, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(openDialogForCreatingANewEventTypeCommand, OpenDialogForCreatingANewEventType));
 
-                RoutedCommand openDialogForEditingAnEventTagCommand = new RoutedCommand();
-                openDialogForEditingAnEventTagCommand.InputGestures.Add(new KeyGesture(Key.E, ModifierKeys.Control));
-                CommandBindings.Add(new CommandBinding(openDialogForEditingAnEventTagCommand, OpenDialogForEditingAnEventTag));
+                RoutedCommand openDialogForEditingAnEventTypeCommand = new RoutedCommand();
+                openDialogForEditingAnEventTypeCommand.InputGestures.Add(new KeyGesture(Key.E, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(openDialogForEditingAnEventTypeCommand, OpenDialogForEditingAnEventType));
 
                 RoutedCommand openDialogForDeletingAnEntityCommand = new RoutedCommand();
                 openDialogForDeletingAnEntityCommand.InputGestures.Add(new KeyGesture(Key.Delete, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(openDialogForDeletingAnEntityCommand, OpenDialogForDeletingAnEntity));
-                
+
                 RoutedCommand closeDialogCommand = new RoutedCommand();
                 closeDialogCommand.InputGestures.Add(new KeyGesture(Key.Q, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(closeDialogCommand, CloseDialog));
@@ -80,33 +80,33 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View.EventTag
             }
         }
 
-        private void OpenDialogForCreatingANewEventTag(object sender, RoutedEventArgs e)
+        private void OpenDialogForCreatingANewEventType(object sender, RoutedEventArgs e)
         {
-            CreateANewEventTagDialog dialogForCreatingANewEventTag = new CreateANewEventTagDialog(allEntitiesViewModel);
-            dialogForCreatingANewEventTag.ShowDialog();
+            CreateANewEventTypeDialog dialogForCreatingANewEventType = new CreateANewEventTypeDialog(allEntitiesViewModel);
+            dialogForCreatingANewEventType.ShowDialog();
         }
 
-        private void OpenDialogForEditingAnEventTag(object sender, RoutedEventArgs e)
+        private void OpenDialogForEditingAnEventType(object sender, RoutedEventArgs e)
         {
-            Model.EventTag selectedEventTag = (Model.EventTag) Table_of_event_tags.SelectedItem;
-            if (selectedEventTag == null)
+            Model.EventType selectedEventType = (Model.EventType) Table_of_event_types.SelectedItem;
+            if (selectedEventType == null)
             {
                 return;
             }
 
-            EditAnEventTagDialog dialogForEditingAnEventTag = new EditAnEventTagDialog(allEntitiesViewModel, selectedEventTag);
-            dialogForEditingAnEventTag.ShowDialog();
+            EditAnEventTypeDialog dialogForEditingAnEventType = new EditAnEventTypeDialog(allEntitiesViewModel, selectedEventType);
+            dialogForEditingAnEventType.ShowDialog();
         }
 
         private void OpenDialogForDeletingAnEntity(object sender, RoutedEventArgs e)
         {
-            Model.EventTag selectedEventTag = (Model.EventTag) Table_of_event_tags.SelectedItem;
-            if (selectedEventTag == null)
+            Model.EventType selectedEventType = (Model.EventType) Table_of_event_types.SelectedItem;
+            if (selectedEventType == null)
             {
                 return;
             }
 
-            DeleteAnEntityDialog dialogForDeletingAnEntity = new DeleteAnEntityDialog(allEntitiesViewModel, selectedEventTag);
+            DeleteAnEntityDialog dialogForDeletingAnEntity = new DeleteAnEntityDialog(allEntitiesViewModel, selectedEventType);
             dialogForDeletingAnEntity.ShowDialog();
         }
 
@@ -117,9 +117,9 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View.EventTag
         }
 
         // REFERENCE: https://social.msdn.microsoft.com/Forums/silverlight/en-US/062a2fc8-802d-4390-b2c8-ec73153e1911/column-width-in-percentage-for-datagrid?forum=silverlightcontrols
-        private void Table_of_event_tags_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void Table_of_event_types_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            DataGrid dataGrid = (DataGrid) sender;
+            DataGrid dataGrid = (DataGrid)sender;
 
             foreach (DataGridColumn dgColumn in dataGrid.Columns)
             {

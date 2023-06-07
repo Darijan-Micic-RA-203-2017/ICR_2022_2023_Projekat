@@ -106,6 +106,9 @@
     <Compile Include="View\EventTag\AllEventTagsDialog.xaml.cs">
       <DependentUpon>AllEventTagsDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EventType\AllEventTypesDialog.xaml.cs">
+      <DependentUpon>AllEventTypesDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Event\AllEventsDialog.xaml.cs">
       <DependentUpon>AllEventsDialog.xaml</DependentUpon>
     </Compile>
@@ -159,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EventTag\AllEventTagsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EventType\AllEventTypesDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
