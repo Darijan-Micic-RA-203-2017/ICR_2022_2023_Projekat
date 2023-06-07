@@ -1,0 +1,46 @@
+﻿<Window x:Class="ICR_2022_2023_Mapa_dogadjaja.View.Event.AllEventsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View.Event"
+        xmlns:cvt="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.Converter"
+        mc:Ignorable="d"
+        Title="Svi događaji" Height="600" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        <!-- Screen resolution:      Height="768" Width="1366" -->
+        <!-- Main window resolution: Height="680" Width="1240" -->
+    <DockPanel LastChildFill="True" Margin="10 0 10 0">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                    Margin="0 10 0 10">
+            <Button x:Name="Create_a_new_event_button" Margin="0 0 10 0" Click="OpenDialogForCreatingANewEvent">Novi događaj (Ctrl + N)</Button>
+            <Button x:Name="Edit_an_event_button" Margin="0 0 10 0" Click="OpenDialogForEditingAnEvent">Izmeni (Ctrl + E)</Button>
+            <Button x:Name="Delete_an_event_button" Margin="0 0 10 0" Click="OpenDialogForDeletingAnEntity">Obriši (Ctrl + Delete)</Button>
+            <Button x:Name="Search_button" Margin="0 0 10 0" Click="OpenDialogForSearchingEvents">Pretraži (Alt + 1)</Button>
+            <TextBox x:Name="Input_for_filtering_table" Text="Filtriraj tabelu (Alt + 2)" Margin="0 0 10 0" Width="200" 
+                         TextChanged="FilterTable"></TextBox>
+            <Button x:Name="Cancel_search_or_filtering_button" IsEnabled="False" 
+                        Click="CancelSearchOrFiltering">Poništi (Alt + 4)</Button>
+        </StackPanel>
+        <DataGrid x:Name="Table_of_events" ItemsSource="{Binding AllEntitiesViewModel.EventsViewModel.Events}" IsReadOnly="True" 
+                      SelectionMode="Single" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" 
+                      VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch" 
+                      AutoGenerateColumns="False" SizeChanged="Table_of_events_SizeChanged" RowHeight="86">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Oznaka" Binding="{Binding Id}" MinWidth="8"></DataGridTextColumn>
+                <!-- REFERENCE: https://girishzalke.com/2017/01/12/display-images-in-wpf-data-grid/ -->
+                <DataGridTemplateColumn Header="Ikona" MinWidth="8">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Icon}" Stretch="Uniform"></Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" MinWidth="39"></DataGridTextColumn>
+                <DataGridTextColumn Header="Tip" Binding="{Binding Type.Name}" MinWidth="18"></DataGridTextColumn>
+                <DataGridTextColumn Header="Datum" Binding="{Binding DateOfTheEvent, Converter={cvt:DateTimeToFormattedStringConverter}}" MinWidth="7"></DataGridTextColumn>
+                <DataGridTextColumn Header="Grad" Binding="{Binding PopulatedPlace.Name}" MinWidth="10"></DataGridTextColumn>
+                <DataGridTextColumn Header="Država" Binding="{Binding Country.Name}" MinWidth="10"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>
