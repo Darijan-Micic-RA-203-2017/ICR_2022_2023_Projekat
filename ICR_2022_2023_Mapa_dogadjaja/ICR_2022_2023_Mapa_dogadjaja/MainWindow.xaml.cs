@@ -5,18 +5,20 @@ using ICR_2022_2023_Mapa_dogadjaja.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace ICR_2022_2023_Mapa_dogadjaja
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         private const string DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_TABLE = "Filtriraj tabelu (Alt + 2)";
         private const string DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_MAP = "Filtriraj mapu (Alt + 3)";
@@ -25,29 +27,72 @@ namespace ICR_2022_2023_Mapa_dogadjaja
 
         private ObservableCollection<Event> eventsThatFitSearchCriterions = new ObservableCollection<Event>();
         private ObservableCollection<Event> filteredEvents = new ObservableCollection<Event>();
+
+        private BitmapImage worldMapImage;
         
         public MainWindow()
         {
             InitializeComponent();
 
+            DataContext = this;
+
             allEntitiesViewModel = new AllEntitiesViewModel();
-            DataContext = allEntitiesViewModel;
-            
+
+            worldMapImage = new BitmapImage(new Uri("../../Icons/AppIcons/Mapa_sveta.png", UriKind.Relative));
+            World_map.Source = worldMapImage;
+
             AddHotKeys();
         }
-        
+
+        public AllEntitiesViewModel AllEntitiesViewModel
+        {
+            get { return allEntitiesViewModel; }
+            set
+            {
+                if (value != allEntitiesViewModel)
+                {
+                    allEntitiesViewModel = value;
+                    OnPropertyChanged("AllEntitiesViewModel");
+                }
+            }
+        }
+
         public ObservableCollection<Event> EventsThatFitSearchCriterions
         {
             get { return eventsThatFitSearchCriterions; }
-            set { eventsThatFitSearchCriterions = value; }
+            set
+            {
+                if (!eventsThatFitSearchCriterions.SequenceEqual(value))
+                {
+                    eventsThatFitSearchCriterions = value;
+                    OnPropertyChanged("EventsThatFitSearchCriterions");
+                }
+            }
         }
         
         public ObservableCollection<Event> FilteredEvents
         {
             get { return filteredEvents; }
-            set { filteredEvents = value; }
+            set
+            {
+                if (!filteredEvents.SequenceEqual(value))
+                {
+                    filteredEvents = value;
+                    OnPropertyChanged("FilteredEvents");
+                }
+            }
         }
-        
+
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         // REFERENCE: https://codesamplez.com/development/wpf-hotkeys-c-sharp
         private void AddHotKeys()
         {
@@ -68,7 +113,11 @@ namespace ICR_2022_2023_Mapa_dogadjaja
                 RoutedCommand openDialogForDeletingAnEntityCommand = new RoutedCommand();
                 openDialogForDeletingAnEntityCommand.InputGestures.Add(new KeyGesture(Key.Delete, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(openDialogForDeletingAnEntityCommand, OpenDialogForDeletingAnEntity));
-                
+
+                RoutedCommand openDialogForAllEventsCommand = new RoutedCommand();
+                openDialogForAllEventsCommand.InputGestures.Add(new KeyGesture(Key.D, ModifierKeys.Control));
+                CommandBindings.Add(new CommandBinding(openDialogForAllEventsCommand, OpenDialogForAllEvents));
+
                 RoutedCommand openDialogForAllEventTagsCommand = new RoutedCommand();
                 openDialogForAllEventTagsCommand.InputGestures.Add(new KeyGesture(Key.Z, ModifierKeys.Control));
                 CommandBindings.Add(new CommandBinding(openDialogForAllEventTagsCommand, OpenDialogForAllEventTags));
@@ -116,7 +165,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja
 
         private void OpenDialogForEditingAnEvent(object sender, RoutedEventArgs e)
         {
-            Event selectedEvent = (Event) Table_of_events.SelectedItem;
+            Model.Event selectedEvent = (Model.Event) Table_of_events.SelectedItem;
             if (selectedEvent == null)
             {
                 return;
@@ -128,14 +177,20 @@ namespace ICR_2022_2023_Mapa_dogadjaja
 
         private void OpenDialogForDeletingAnEntity(object sender, RoutedEventArgs e)
         {
-            Event selectedEvent = (Event) Table_of_events.SelectedItem;
+            Model.Event selectedEvent = (Model.Event) Table_of_events.SelectedItem;
             if (selectedEvent == null)
             {
                 return;
             }
-            
+
             DeleteAnEntityDialog dialogForDeletingAnEntity = new DeleteAnEntityDialog(allEntitiesViewModel, selectedEvent);
             dialogForDeletingAnEntity.ShowDialog();
+        }
+
+        private void OpenDialogForAllEvents(object sender, RoutedEventArgs e)
+        {
+            AllEventsDialog dialogForAllEvents = new AllEventsDialog(allEntitiesViewModel);
+            dialogForAllEvents.ShowDialog();
         }
 
         private void OpenDialogForAllEventTags(object sender, RoutedEventArgs e)
@@ -173,32 +228,6 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             }
         }
 
-        private void FocusOnInputForFilteringTable(object sender, RoutedEventArgs e)
-        {
-            Input_for_filtering_table.Focus();
-        }
-
-        // REFERENCE: https://social.msdn.microsoft.com/Forums/silverlight/en-US/062a2fc8-802d-4390-b2c8-ec73153e1911/column-width-in-percentage-for-datagrid?forum=silverlightcontrols
-        private void Table_of_events_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            DataGrid dataGrid = (DataGrid) sender;
-            
-            foreach (DataGridColumn dgColumn in dataGrid.Columns)
-            {
-                if (dgColumn.MinWidth > 0 && dgColumn.ActualWidth > 0)
-                {
-                    if (dataGrid.MinWidth > 0)
-                    {
-                        dgColumn.Width = new DataGridLength(dgColumn.MinWidth / dataGrid.MinWidth * dataGrid.ActualWidth);
-                    }
-                    else
-                    {
-                        dgColumn.Width = new DataGridLength(dgColumn.MinWidth * (dataGrid.ActualWidth - 14) / 100);
-                    }
-                }
-            }
-        }
-
         private void SearchEvents()
         {
             if (Table_of_events == null)
@@ -206,14 +235,19 @@ namespace ICR_2022_2023_Mapa_dogadjaja
                 return;
             }
 
-            ObservableCollection<Event> searchResults = EventsTableSearcher.SearchEventsInTable(allEntitiesViewModel);
+            ObservableCollection<Model.Event> searchResults = EventsTableSearcher.SearchEventsInTable(allEntitiesViewModel);
             if (searchResults != null)
             {
                 eventsThatFitSearchCriterions = searchResults;
-                
+
                 Table_of_events.ItemsSource = EventsThatFitSearchCriterions;
                 Cancel_search_or_filtering_button.IsEnabled = true;
             }
+        }
+
+        private void FocusOnInputForFilteringTable(object sender, RoutedEventArgs e)
+        {
+            Input_for_filtering_table.Focus();
         }
 
         private void FilterTable(object sender, TextChangedEventArgs e)
@@ -230,12 +264,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja
                 Cancel_search_or_filtering_button.IsEnabled = false;
                 Table_of_events.ItemsSource = allEntitiesViewModel.EventsViewModel.Events;
                 eventsThatFitSearchCriterions.Clear();
-                
+
                 return;
             }
-            
+
             filteredEvents = EventsTableFilter.FilterTableOfEvents(allEntitiesViewModel.EventsViewModel.Events, enteredText);
-            
+
             Table_of_events.ItemsSource = FilteredEvents;
             Cancel_search_or_filtering_button.IsEnabled = true;
         }
@@ -252,6 +286,27 @@ namespace ICR_2022_2023_Mapa_dogadjaja
             eventsThatFitSearchCriterions.Clear();
             filteredEvents.Clear();
             Input_for_filtering_table.Text = DEFAULT_TEXT_OF_INPUT_FOR_FILTERING_TABLE;
+        }
+
+        // REFERENCE: https://social.msdn.microsoft.com/Forums/silverlight/en-US/062a2fc8-802d-4390-b2c8-ec73153e1911/column-width-in-percentage-for-datagrid?forum=silverlightcontrols
+        private void Table_of_events_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            DataGrid dataGrid = (DataGrid) sender;
+
+            foreach (DataGridColumn dgColumn in dataGrid.Columns)
+            {
+                if (dgColumn.MinWidth > 0 && dgColumn.ActualWidth > 0)
+                {
+                    if (dataGrid.MinWidth > 0)
+                    {
+                        dgColumn.Width = new DataGridLength(dgColumn.MinWidth / dataGrid.MinWidth * dataGrid.ActualWidth);
+                    }
+                    else
+                    {
+                        dgColumn.Width = new DataGridLength(dgColumn.MinWidth * (dataGrid.ActualWidth - 14) / 100);
+                    }
+                }
+            }
         }
     }
 }

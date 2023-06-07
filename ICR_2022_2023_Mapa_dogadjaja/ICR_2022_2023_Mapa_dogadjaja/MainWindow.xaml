@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="Mapa događaja" Height="680" Width="1240" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
         <!-- Screen resolution: Height="768" Width="1366" -->
-    <DockPanel>
+    <DockPanel LastChildFill="True">
         <Menu x:Name="Main_menu" DockPanel.Dock="Top" Background="Black" Foreground="White">
             <MenuItem x:Name="Submenu_Application_of_main_menu" Header="_Aplikacija (Alt + A)" AutomationProperties.AccessKey="A">
                 <MenuItem x:Name="Item_Close_of_submenu_Application" Header="Zatvori" Background="Black" Foreground="White" 
@@ -34,36 +34,40 @@
             <MenuItem x:Name="Submenu_Help_of_main_menu" Header="_Pomoć (Alt + P)" AutomationProperties.AccessKey="P" 
                       Click="OpenHelpDialog"></MenuItem>
         </Menu>
-        <DockPanel Height="300" Margin="10 0 10 0">
-            <WrapPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 0 0 10">
-                <Button x:Name="Search_button" Margin="0 0 10 0" Click="OpenDialogForSearchingEvents">Pretraži (Alt + 1)</Button>
-                <TextBox x:Name="Input_for_filtering_table" Text="Filtriraj tabelu (Alt + 2)" Margin="0 0 10 0" Width="200" 
+        <DockPanel LastChildFill="True" Margin="10 0 10 0">
+            <DockPanel DockPanel.Dock="Right" Width="240" Margin="10 10 0 10">
+                <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                            Margin="0 0 0 10">
+                    <Button x:Name="Search_button" Margin="0 0 0 10" Click="OpenDialogForSearchingEvents">Pretraži (Alt + 1)</Button>
+                    <TextBox x:Name="Input_for_filtering_table" Text="Filtriraj tabelu (Alt + 2)" Margin="0 0 0 10" Width="200" 
                          TextChanged="FilterTable"></TextBox>
-                <TextBox x:Name="Input_for_filtering_map" Text="Filtriraj mapu (Alt + 3)" Margin="0 0 10 0" Width="200"></TextBox>
-                <Button x:Name="Cancel_search_or_filtering_button" IsEnabled="False" 
+                    <TextBox x:Name="Input_for_filtering_map" Text="Filtriraj mapu (Alt + 3)" Margin="0 0 0 10" Width="200"></TextBox>
+                    <Button x:Name="Cancel_search_or_filtering_button" IsEnabled="False" 
                         Click="CancelSearchOrFiltering">Poništi (Alt + 4)</Button>
-            </WrapPanel>
-            <DataGrid x:Name="Table_of_events" ItemsSource="{Binding EventsViewModel.Events}" IsReadOnly="True" 
+                </StackPanel>
+                <DataGrid x:Name="Table_of_events" ItemsSource="{Binding AllEntitiesViewModel.EventsViewModel.Events}" IsReadOnly="True" 
                       SelectionMode="Single" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" 
                       VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch" 
                       AutoGenerateColumns="False" SizeChanged="Table_of_events_SizeChanged" RowHeight="86">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Oznaka" Binding="{Binding Id}" MinWidth="8"></DataGridTextColumn>
-                    <!-- REFERENCE: https://girishzalke.com/2017/01/12/display-images-in-wpf-data-grid/ -->
-                    <DataGridTemplateColumn Header="Ikona" MinWidth="8">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Image Source="{Binding Icon}" Stretch="Uniform"></Image>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" MinWidth="39"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Tip" Binding="{Binding Type.Name}" MinWidth="18"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Datum" Binding="{Binding DateOfTheEvent, Converter={cvt:DateTimeToFormattedStringConverter}}" MinWidth="7"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Grad" Binding="{Binding PopulatedPlace.Name}" MinWidth="10"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Država" Binding="{Binding Country.Name}" MinWidth="10"></DataGridTextColumn>
-                </DataGrid.Columns>
-            </DataGrid>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Oznaka" Binding="{Binding Id}" MinWidth="8"></DataGridTextColumn>
+                        <!-- REFERENCE: https://girishzalke.com/2017/01/12/display-images-in-wpf-data-grid/ -->
+                        <DataGridTemplateColumn Header="Ikona" MinWidth="8">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Icon}" Stretch="Uniform"></Image>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" MinWidth="39"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Tip" Binding="{Binding Type.Name}" MinWidth="18"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Datum" Binding="{Binding DateOfTheEvent, Converter={cvt:DateTimeToFormattedStringConverter}}" MinWidth="7"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Grad" Binding="{Binding PopulatedPlace.Name}" MinWidth="10"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Država" Binding="{Binding Country.Name}" MinWidth="10"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+            <Image x:Name="World_map" Stretch="Fill" Margin="0 10 0 10"></Image>
         </DockPanel>
     </DockPanel>
 </Window>
