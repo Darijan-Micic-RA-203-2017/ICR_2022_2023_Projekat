@@ -103,6 +103,9 @@
     <Compile Include="View\Country\CreateANewCountryDialog.xaml.cs">
       <DependentUpon>CreateANewCountryDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EventTag\AllEventTagsDialog.xaml.cs">
+      <DependentUpon>AllEventTagsDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Event\AllEventsDialog.xaml.cs">
       <DependentUpon>AllEventsDialog.xaml</DependentUpon>
     </Compile>
@@ -152,6 +155,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Country\CreateANewCountryDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EventTag\AllEventTagsDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

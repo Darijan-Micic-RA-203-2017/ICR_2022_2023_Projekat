@@ -1,6 +1,7 @@
 ﻿using ICR_2022_2023_Mapa_dogadjaja.Model;
 using ICR_2022_2023_Mapa_dogadjaja.View;
 using ICR_2022_2023_Mapa_dogadjaja.View.Event;
+using ICR_2022_2023_Mapa_dogadjaja.View.EventTag;
 using ICR_2022_2023_Mapa_dogadjaja.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -195,7 +196,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja
 
         private void OpenDialogForAllEventTags(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Dijalog: Sve etikete Ctrl + I");
+            AllEventTagsDialog dialogForAllEventTags = new AllEventTagsDialog(allEntitiesViewModel);
+            dialogForAllEventTags.ShowDialog();
         }
 
         private void OpenDialogForAllEventTypes(object sender, RoutedEventArgs e)
