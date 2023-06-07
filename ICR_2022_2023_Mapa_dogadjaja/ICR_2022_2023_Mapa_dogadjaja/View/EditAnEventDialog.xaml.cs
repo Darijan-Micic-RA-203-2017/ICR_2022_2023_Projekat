@@ -97,11 +97,11 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
 
         private void PrepareViewOfSelectedEvent()
         {
-            currentlySelectedTag = processedEvent.Tags[0];
-            //List_box_for_event_tags.SetBinding(List_box_for_event_tags.SelectedItems., "{Binding }");
-
-            //Combo_box_for_event_type.SelectedItem = processedEvent.Type;
-
+            for (int i = processedEvent.Tags.Count - 1; i >= 0; i--)
+            {
+                currentlySelectedTag = processedEvent.Tags[i];
+            }
+            
             selectedEventIcon = new BitmapImage(new Uri(processedEvent.Icon, UriKind.Absolute));
             Event_icon.Source = selectedEventIcon;
 
@@ -296,9 +296,18 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 return;
             }
 
-            foreach (EventTag selectedTag in List_box_for_event_tags.SelectedItems)
+            List<EventTag> selectedTags = new List<EventTag>();
+            foreach (EventTag selTag in List_box_for_event_tags.SelectedItems)
             {
-                processedEvent.Tags.Add(selectedTag);
+                selectedTags.Add(selTag);
+            }
+            if (!processedEvent.Tags.SequenceEqual(selectedTags))
+            {
+                processedEvent.Tags.Clear();
+                foreach (EventTag selectedTag in List_box_for_event_tags.SelectedItems)
+                {
+                    processedEvent.Tags.Add(selectedTag);
+                }
             }
 
             if (Event_icon.Source != null)
@@ -319,19 +328,25 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 processedEvent.IsHumanitary = false;
             }
 
-            processedEvent.Attendance = (Attendance?)Combo_box_for_attendance.SelectedItem;
+            processedEvent.Attendance = (Attendance?) Combo_box_for_attendance.SelectedItem;
 
+            List<DateTime> historicalDates = new List<DateTime>();
             foreach (UIElement childElem in Panel_for_inputs_for_historical_dates_of_the_event.Children)
             {
-                DatePicker datePicker = (DatePicker)childElem;
+                DatePicker datePicker = (DatePicker) childElem;
                 if (datePicker.SelectedDate.HasValue)
                 {
+                    historicalDates.Add(datePicker.SelectedDate.Value);
                     processedEvent.HistoryOfDatesOfTheEvent.Add(datePicker.SelectedDate.Value);
                 }
             }
+            if (!processedEvent.HistoryOfDatesOfTheEvent.SequenceEqual(historicalDates))
+            {
+                processedEvent.HistoryOfDatesOfTheEvent = historicalDates;
+            }
 
-            allEntitiesViewModel.EventsViewModel.Save(processedEvent);
-
+            allEntitiesViewModel.EventsViewModel.Save();
+            
             DialogResult = true;
         }
 
