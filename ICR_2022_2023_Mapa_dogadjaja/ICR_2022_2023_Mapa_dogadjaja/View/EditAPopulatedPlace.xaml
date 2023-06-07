@@ -1,4 +1,4 @@
-﻿<Window x:Class="ICR_2022_2023_Mapa_dogadjaja.View.CreateANewPopulatedPlaceDialog"
+﻿<Window x:Class="ICR_2022_2023_Mapa_dogadjaja.View.EditAPopulatedPlaceDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,9 +6,9 @@
         xmlns:val_populated_place="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.Validation.PopulatedPlace"
         xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View"
         mc:Ignorable="d"
-        Title="Unos novog grada" Height="200" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
-        <!-- Screen resolution:      Height="768" Width="1366" -->
-        <!-- Main window resolution: Height="680" Width="1240" -->
+        Title="Izmena grada" Height="200" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <!-- Screen resolution:      Height="768" Width="1366" -->
+    <!-- Main window resolution: Height="680" Width="1240" -->
     <Window.Resources>
         <!-- REFERENCE: https://kmatyaszek.github.io/wpf%20validation/2019/03/04/wpf-validation-display-errors-to-the-user.html -->
         <Style x:Key="ControlForTextBoxValidationErrorStyle" TargetType="TextBox">
@@ -50,7 +50,7 @@
                     <Binding Path="ProcessedPopulatedPlace.Id" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>
                             <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
-                            <val_populated_place:UniquePopulatedPlaceIdValidationRule ValidatesOnTargetUpdated="True"/>
+                            <val_populated_place:ExistingPopulatedPlaceIdValidationRule ValidatesOnTargetUpdated="True"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
@@ -64,13 +64,13 @@
                     <Binding Path="ProcessedPopulatedPlace.Name" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>
                             <!-- REFERENCE: https://stackoverflow.com/a/34526737 -->
-                            <val_populated_place:UniquePopulatedPlaceNameValidationRule ValidatesOnTargetUpdated="True"/>
+                            <val_populated_place:ExistingPopulatedPlaceNameValidationRule ValidatesOnTargetUpdated="True"/>
                         </Binding.ValidationRules>
                     </Binding>
                 </TextBox.Text>
             </TextBox>
         </DockPanel>
-        <Button Grid.Row="1" Grid.Column="0" x:Name="Save_button" Height="30" Width="100" IsEnabled="False" 
+        <Button Grid.Row="1" Grid.Column="0" x:Name="Save_button" Height="30" Width="100" 
                 Click="SavePopulatedPlace">Sačuvaj</Button>
         <Button Grid.Row="1" Grid.Column="1" x:Name="Cancel_button" Height="30" Width="100" IsCancel="True" 
                 Click="CloseDialog">Otkaži</Button>

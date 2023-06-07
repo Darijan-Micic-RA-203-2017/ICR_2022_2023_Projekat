@@ -12,24 +12,24 @@ using System.Windows.Input;
 namespace ICR_2022_2023_Mapa_dogadjaja.View
 {
     /// <summary>
-    /// Interaction logic for CreateANewPopulatedPlaceDialog.xaml
+    /// Interaction logic for EditAPopulatedPlaceDialog.xaml
     /// </summary>
-    public partial class CreateANewPopulatedPlaceDialog : Window, INotifyPropertyChanged
+    public partial class EditAPopulatedPlaceDialog : Window, INotifyPropertyChanged
     {
         private AllEntitiesViewModel allEntitiesViewModel;
 
         private PopulatedPlace processedPopulatedPlace;
-        
+
         private int validationErrorsCounter;
 
-        public CreateANewPopulatedPlaceDialog(AllEntitiesViewModel allEntitiesViewModel)
+        public EditAPopulatedPlaceDialog(AllEntitiesViewModel allEntitiesViewModel, PopulatedPlace selectedPopulatedPlace)
         {
             InitializeComponent();
 
             DataContext = this;
 
             this.allEntitiesViewModel = allEntitiesViewModel;
-            processedPopulatedPlace = new PopulatedPlace();
+            processedPopulatedPlace = selectedPopulatedPlace;
             validationErrorsCounter = 0;
 
             AddHotKeys();
@@ -63,7 +63,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 }
             }
         }
-        
+
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
@@ -142,7 +142,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 return;
             }
 
-            allEntitiesViewModel.PopulatedPlacesViewModel.Save(processedPopulatedPlace);
+            allEntitiesViewModel.PopulatedPlacesViewModel.Save();
 
             DialogResult = true;
         }
