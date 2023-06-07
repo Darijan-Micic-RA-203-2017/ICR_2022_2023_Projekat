@@ -97,7 +97,7 @@
         <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Label DockPanel.Dock="Left" VerticalAlignment="Center" Width="60">Opis:</Label>
             <TextBox x:Name="Input_for_description" VerticalAlignment="Center" VerticalScrollBarVisibility="Visible" 
-                     Style="{StaticResource ControlForTextBoxValidationErrorStyle}" Height="120">
+                     Style="{StaticResource ControlForTextBoxValidationErrorStyle}" TextWrapping="Wrap" Height="120">
                 <TextBox.Text>
                     <Binding Path="NewEventTag.Description" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
                         <Binding.ValidationRules>

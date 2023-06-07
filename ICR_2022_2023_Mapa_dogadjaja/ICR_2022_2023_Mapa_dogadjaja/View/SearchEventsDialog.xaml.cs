@@ -19,14 +19,14 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
     /// </summary>
     public partial class SearchEventsDialog : Window, INotifyPropertyChanged
     {
+        private AllEntitiesViewModel allEntitiesViewModel;
+
         private Event searchModelEvent;
 
         private EventTag currentlySelectedTag;
 
         private BitmapImage selectedEventIcon;
-
-        private AllEntitiesViewModel allEntitiesViewModel;
-
+        
         private int validationErrorsCounter;
 
         public SearchEventsDialog(AllEntitiesViewModel allEntitiesViewModel)
@@ -35,16 +35,29 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
 
             DataContext = this;
 
+            this.allEntitiesViewModel = allEntitiesViewModel;
             searchModelEvent = new Event();
             currentlySelectedTag = null;
             selectedEventIcon = null;
-            this.allEntitiesViewModel = allEntitiesViewModel;
             validationErrorsCounter = 0;
             
             AddHotKeys();
 
             // REFERENCE: https://stackoverflow.com/a/808190
             AddHandler(System.Windows.Controls.Validation.ErrorEvent, new RoutedEventHandler(OnErrorEvent));
+        }
+
+        public AllEntitiesViewModel AllEntitiesViewModel
+        {
+            get { return allEntitiesViewModel; }
+            set
+            {
+                if (value != allEntitiesViewModel)
+                {
+                    allEntitiesViewModel = value;
+                    OnPropertyChanged("AllEntitiesViewModel");
+                }
+            }
         }
 
         public Event SearchModelEvent
@@ -72,20 +85,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 }
             }
         }
-
-        public AllEntitiesViewModel AllEntitiesViewModel
-        {
-            get { return allEntitiesViewModel; }
-            set
-            {
-                if (value != allEntitiesViewModel)
-                {
-                    allEntitiesViewModel = value;
-                    OnPropertyChanged("AllEntitiesViewModel");
-                }
-            }
-        }
-
+        
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)

@@ -17,12 +17,12 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
     /// </summary>
     public partial class CreateANewEventTagDialog : Window, INotifyPropertyChanged
     {
+        private AllEntitiesViewModel allEntitiesViewModel;
+
         private EventTag newEventTag;
 
         private Color selectedEventTagColor;
-
-        private AllEntitiesViewModel allEntitiesViewModel;
-
+        
         private int validationErrorsCounter;
 
         public CreateANewEventTagDialog(AllEntitiesViewModel allEntitiesViewModel)
@@ -31,15 +31,28 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
 
             DataContext = this;
 
+            this.allEntitiesViewModel = allEntitiesViewModel;
             newEventTag = new EventTag();
             selectedEventTagColor = Colors.Transparent;
-            this.allEntitiesViewModel = allEntitiesViewModel;
             validationErrorsCounter = 0;
 
             AddHotKeys();
 
             // REFERENCE: https://stackoverflow.com/a/808190
             AddHandler(System.Windows.Controls.Validation.ErrorEvent, new RoutedEventHandler(OnErrorEvent));
+        }
+
+        public AllEntitiesViewModel AllEntitiesViewModel
+        {
+            get { return allEntitiesViewModel; }
+            set
+            {
+                if (value != allEntitiesViewModel)
+                {
+                    allEntitiesViewModel = value;
+                    OnPropertyChanged("AllEntitiesViewModel");
+                }
+            }
         }
 
         public EventTag NewEventTag
@@ -67,20 +80,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
                 }
             }
         }
-
-        public AllEntitiesViewModel AllEntitiesViewModel
-        {
-            get { return allEntitiesViewModel; }
-            set
-            {
-                if (value != allEntitiesViewModel)
-                {
-                    allEntitiesViewModel = value;
-                    OnPropertyChanged("AllEntitiesViewModel");
-                }
-            }
-        }
-
+        
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)

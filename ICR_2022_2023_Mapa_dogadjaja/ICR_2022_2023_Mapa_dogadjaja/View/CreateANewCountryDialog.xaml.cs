@@ -16,10 +16,10 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
     /// </summary>
     public partial class CreateANewCountryDialog : Window, INotifyPropertyChanged
     {
-        private Country newCountry;
-
         private AllEntitiesViewModel allEntitiesViewModel;
 
+        private Country newCountry;
+        
         private int validationErrorsCounter;
 
         public CreateANewCountryDialog(AllEntitiesViewModel allEntitiesViewModel)
@@ -28,27 +28,14 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
 
             DataContext = this;
 
-            newCountry = new Country();
             this.allEntitiesViewModel = allEntitiesViewModel;
+            newCountry = new Country();
             validationErrorsCounter = 0;
 
             AddHotKeys();
 
             // REFERENCE: https://stackoverflow.com/a/808190
             AddHandler(System.Windows.Controls.Validation.ErrorEvent, new RoutedEventHandler(OnErrorEvent));
-        }
-
-        public Country NewCountry
-        {
-            get { return newCountry; }
-            set
-            {
-                if (value != newCountry)
-                {
-                    newCountry = value;
-                    OnPropertyChanged("NewCountry");
-                }
-            }
         }
 
         public AllEntitiesViewModel AllEntitiesViewModel
@@ -64,6 +51,19 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             }
         }
 
+        public Country NewCountry
+        {
+            get { return newCountry; }
+            set
+            {
+                if (value != newCountry)
+                {
+                    newCountry = value;
+                    OnPropertyChanged("NewCountry");
+                }
+            }
+        }
+        
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)

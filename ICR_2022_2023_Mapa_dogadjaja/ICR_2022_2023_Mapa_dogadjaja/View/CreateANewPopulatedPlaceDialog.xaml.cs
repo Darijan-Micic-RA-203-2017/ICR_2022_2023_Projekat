@@ -16,10 +16,10 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
     /// </summary>
     public partial class CreateANewPopulatedPlaceDialog : Window, INotifyPropertyChanged
     {
-        private PopulatedPlace newPopulatedPlace;
-
         private AllEntitiesViewModel allEntitiesViewModel;
 
+        private PopulatedPlace newPopulatedPlace;
+        
         private int validationErrorsCounter;
 
         public CreateANewPopulatedPlaceDialog(AllEntitiesViewModel allEntitiesViewModel)
@@ -28,27 +28,14 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
 
             DataContext = this;
 
-            newPopulatedPlace = new PopulatedPlace();
             this.allEntitiesViewModel = allEntitiesViewModel;
+            newPopulatedPlace = new PopulatedPlace();
             validationErrorsCounter = 0;
 
             AddHotKeys();
 
             // REFERENCE: https://stackoverflow.com/a/808190
             AddHandler(System.Windows.Controls.Validation.ErrorEvent, new RoutedEventHandler(OnErrorEvent));
-        }
-
-        public PopulatedPlace NewPopulatedPlace
-        {
-            get { return newPopulatedPlace; }
-            set
-            {
-                if (value != newPopulatedPlace)
-                {
-                    newPopulatedPlace = value;
-                    OnPropertyChanged("NewPopulatedPlace");
-                }
-            }
         }
 
         public AllEntitiesViewModel AllEntitiesViewModel
@@ -64,6 +51,19 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View
             }
         }
 
+        public PopulatedPlace NewPopulatedPlace
+        {
+            get { return newPopulatedPlace; }
+            set
+            {
+                if (value != newPopulatedPlace)
+                {
+                    newPopulatedPlace = value;
+                    OnPropertyChanged("NewPopulatedPlace");
+                }
+            }
+        }
+        
         protected virtual void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
