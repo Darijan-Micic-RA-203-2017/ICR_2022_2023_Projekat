@@ -3,6 +3,7 @@ using ICR_2022_2023_Mapa_dogadjaja.View;
 using ICR_2022_2023_Mapa_dogadjaja.View.Event;
 using ICR_2022_2023_Mapa_dogadjaja.View.EventTag;
 using ICR_2022_2023_Mapa_dogadjaja.View.EventType;
+using ICR_2022_2023_Mapa_dogadjaja.View.PopulatedPlace;
 using ICR_2022_2023_Mapa_dogadjaja.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -209,7 +210,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja
 
         private void OpenDialogForAllPopulatedPlaces(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Dijalog: Svi gradovi Ctrl + G");
+            AllPopulatedPlacesDialog dialogForAllPopulatedPlaces = new AllPopulatedPlacesDialog(allEntitiesViewModel);
+            dialogForAllPopulatedPlaces.ShowDialog();
         }
 
         private void OpenDialogForAllCountries(object sender, RoutedEventArgs e)

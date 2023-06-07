@@ -121,6 +121,9 @@
     <Compile Include="View\EventType\CreateANewEventTypeDialog.xaml.cs">
       <DependentUpon>CreateANewEventTypeDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PopulatedPlace\AllPopulatedPlacesDialog.xaml.cs">
+      <DependentUpon>AllPopulatedPlacesDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PopulatedPlace\CreateANewPopulatedPlaceDialog.xaml.cs">
       <DependentUpon>CreateANewPopulatedPlaceDialog.xaml</DependentUpon>
     </Compile>
@@ -182,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EventType\CreateANewEventTypeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PopulatedPlace\AllPopulatedPlacesDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
