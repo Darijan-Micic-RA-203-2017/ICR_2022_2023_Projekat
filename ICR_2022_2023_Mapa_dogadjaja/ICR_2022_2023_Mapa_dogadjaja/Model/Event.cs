@@ -118,7 +118,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
             get { return eventData.type; }
             set
             {
-                if (!eventData.type.Equals(value))
+                if (!value.Equals(eventData.type))
                 {
                     eventData.type = value;
                     OnPropertyChanged("Type");
@@ -183,7 +183,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
             get { return eventData.populatedPlace; }
             set
             {
-                if (!eventData.populatedPlace.Equals(value))
+                if (!value.Equals(eventData.populatedPlace))
                 {
                     eventData.populatedPlace = value;
                     OnPropertyChanged("PopulatedPlace");
@@ -196,7 +196,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.Model
             get { return eventData.country; }
             set
             {
-                if (!eventData.country.Equals(value))
+                if (!value.Equals(eventData.country))
                 {
                     eventData.country = value;
                     OnPropertyChanged("Country");
