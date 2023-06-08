@@ -15,9 +15,14 @@
         <TextBlock TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Left" Margin="0 0 0 20">
             Klikom na poveznicu prebacujete se na stranicu sa video snimkom u kom je objašnjena funkcionalnost.
         </TextBlock>
-        <TextBlock TextWrapping="Wrap" FontSize="16" HorizontalAlignment="Center">
+        <TextBlock TextWrapping="Wrap" FontSize="16" HorizontalAlignment="Center" Margin="0 0 0 15">
             <Hyperlink x:Name="Search_events_video_page_link" Click="GoToSearchEventsVideoPage">
-                Funkcionalnost 1 - pretraga događaja
+                Funkcionalnost 1: Pretraga događaja
+            </Hyperlink>
+        </TextBlock>
+        <TextBlock TextWrapping="Wrap" FontSize="16" HorizontalAlignment="Center">
+            <Hyperlink x:Name="Filter_table_of_events_video_page_link" Click="GoToFilterTableOfEventsVideoPage">
+                Funkcionalnost 2: Filtracija tabele događaja
             </Hyperlink>
         </TextBlock>
     </StackPanel>

@@ -1,4 +1,4 @@
-﻿<Page x:Class="ICR_2022_2023_Mapa_dogadjaja.View.Help.SearchEventsVideoPage"
+﻿<Page x:Class="ICR_2022_2023_Mapa_dogadjaja.View.Help.FilterTableOfEventsVideoPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -6,23 +6,23 @@
       xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View.Help"
       mc:Ignorable="d"
       d:DesignHeight="560" d:DesignWidth="1280"
-      Title="Pretraga događaja">
-      <!-- Screen resolution:      Height="768" Width="1366" -->
-      <!-- Main window resolution: Height="680" Width="1240" -->
-      <!-- Help dialog resolution: Height="600" Width="1280" -->
+      Title="Filtracija tabele događaja">
+    <!-- Screen resolution:      Height="768" Width="1366" -->
+    <!-- Main window resolution: Height="680" Width="1240" -->
+    <!-- Help dialog resolution: Height="600" Width="1280" -->
     <!-- REFERENCE: https://learn.microsoft.com/en-us/dotnet/desktop/wpf/app-development/navigation-overview?view=netframeworkdesktop-4.8 -->
     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10 0 10 0">
         <TextBlock TextWrapping="Wrap" FontSize="12" Margin="0 0 0 10" HorizontalAlignment="Center">
             <Hyperlink x:Name="Starting_page_link" Click="GoToStartingPage">Povratak na početnu stranicu</Hyperlink>
         </TextBlock>
         <TextBlock TextWrapping="Wrap" FontSize="20" Margin="0 0 0 20" HorizontalAlignment="Center">
-            Funkcionalnost 1: Pretraga događaja
+            Funkcionalnost 2: Filtracija tabele događaja
         </TextBlock>
         <TextBlock TextWrapping="Wrap" Margin="0 0 0 20" FontSize="14">
-            Pretraga događaja može se pokrenuti prečicom Alt + 1 ili odabirom dugmeta "Pretraži (Alt + 1)" pomoću tastera "Tab".
+            Tabela događaja može se filtrirati prečicom Alt + 2.
         </TextBlock>
         <!-- REFERENCE: https://wpf-tutorial.com/audio-video/how-to-creating-a-complete-audio-video-player/ -->
-        <MediaElement x:Name="Video_player" Source="../../Videos/Pretraga_dogadjaja_video.mkv" LoadedBehavior="Manual" 
+        <MediaElement x:Name="Video_player" Source="../../Videos/Filtracija_tabele_dogadjaja_video.mkv" LoadedBehavior="Manual" 
                       HorizontalAlignment="Center" Height="360" Width="1240"></MediaElement>
         <ToolBar Height="32">
             <Button Command="MediaCommands.Play">

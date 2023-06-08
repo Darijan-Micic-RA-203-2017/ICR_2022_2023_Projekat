@@ -12,17 +12,17 @@ using System.Windows.Threading;
 
 namespace ICR_2022_2023_Mapa_dogadjaja.View.Help
 {
-    /// <summary>
-    /// Interaction logic for SearchEventsVideoPage.xaml
-    /// </summary>
-    public partial class SearchEventsVideoPage : Page
-    {
+	/// <summary>
+	/// Interaction logic for FilterTableOfEventsVideoPage.xaml
+	/// </summary>
+	public partial class FilterTableOfEventsVideoPage : Page
+	{
 		private bool isVideoPlayerPlaying = false;
 		private bool isUserDraggingSlider = false;
 
-		public SearchEventsVideoPage()
-        {
-            InitializeComponent();
+		public FilterTableOfEventsVideoPage()
+		{
+			InitializeComponent();
 
 			// REFERENCE: https://wpf-tutorial.com/audio-video/how-to-creating-a-complete-audio-video-player/
 			DispatcherTimer timer = new DispatcherTimer();
@@ -31,26 +31,26 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View.Help
 			timer.Start();
 
 			AddHotKeys();
-        }
-		
+		}
+
 		private void AddHotKeys()
-        {
-            try
-            {
+		{
+			try
+			{
 				MediaCommands.Play.InputGestures.Add(new KeyGesture(Key.P, ModifierKeys.Control));
-                CommandBindings.Add(new CommandBinding(MediaCommands.Play, PlayVideo, CanVideoBePlayed));
-				
+				CommandBindings.Add(new CommandBinding(MediaCommands.Play, PlayVideo, CanVideoBePlayed));
+
 				MediaCommands.Pause.InputGestures.Add(new KeyGesture(Key.Space, ModifierKeys.Control));
-                CommandBindings.Add(new CommandBinding(MediaCommands.Pause, PauseVideo, CanVideoBePaused));
-				
+				CommandBindings.Add(new CommandBinding(MediaCommands.Pause, PauseVideo, CanVideoBePaused));
+
 				MediaCommands.Stop.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));
-                CommandBindings.Add(new CommandBinding(MediaCommands.Stop, StopVideo, CanVideoBeStoppped));
-            }
-            catch (Exception e)
-            {
-                Console.Write(e.StackTrace);
-            }
-        }
+				CommandBindings.Add(new CommandBinding(MediaCommands.Stop, StopVideo, CanVideoBeStoppped));
+			}
+			catch (Exception e)
+			{
+				Console.Write(e.StackTrace);
+			}
+		}
 
 		// REFERENCE: https://wpf-tutorial.com/audio-video/how-to-creating-a-complete-audio-video-player/
 		private void TickTimer(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View.Help
 				Progress_slider.Value = Video_player.Position.TotalSeconds;
 			}
 		}
-		
+
 		private void CanVideoBePlayed(object sender, CanExecuteRoutedEventArgs e)
 		{
 			e.CanExecute = (Video_player != null) && (Video_player.Source != null);
@@ -105,16 +105,16 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View.Help
 			isUserDraggingSlider = false;
 			Video_player.Position = TimeSpan.FromSeconds(Progress_slider.Value);
 		}
-		
+
 		private void Progress_slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
 		{
 			Progress_status_label.Text = TimeSpan.FromSeconds(Progress_slider.Value).ToString(@"hh\:mm\:ss");
 		}
-		
+
 		private void GoToStartingPage(object sender, RoutedEventArgs e)
-        {
-            StartingPage startingPage = new StartingPage();
-            NavigationService.Navigate(startingPage);
-        }
-    }
+		{
+			StartingPage startingPage = new StartingPage();
+			NavigationService.Navigate(startingPage);
+		}
+	}
 }

@@ -124,6 +124,9 @@
     <Compile Include="View\EventType\CreateANewEventTypeDialog.xaml.cs">
       <DependentUpon>CreateANewEventTypeDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Help\FilterTableOfEventsVideoPage.xaml.cs">
+      <DependentUpon>FilterTableOfEventsVideoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Help\HelpDialog.xaml.cs">
       <DependentUpon>HelpDialog.xaml</DependentUpon>
     </Compile>
@@ -201,6 +204,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EventType\CreateANewEventTypeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Help\FilterTableOfEventsVideoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -338,6 +345,7 @@
     <Content Include="Icons\EventTypeIcons\Muzicki_festival_ikona.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Videos\Filtracija_tabele_dogadjaja_video.mkv" />
     <Content Include="Videos\Pretraga_dogadjaja_video.mkv" />
   </ItemGroup>
   <ItemGroup>
