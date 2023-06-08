@@ -42,5 +42,11 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View.Help
             CreateNewEntitiesVideoPage createNewEntititesVideoPage = new CreateNewEntitiesVideoPage();
             NavigationService.Navigate(createNewEntititesVideoPage);
         }
+
+        private void GoToEditAndDeleteEntitiesVideoPage(object sender, RoutedEventArgs e)
+        {
+            EditAndDeleteEntitiesVideoPage editAndDeleteEntitiesVideoPage = new EditAndDeleteEntitiesVideoPage();
+            NavigationService.Navigate(editAndDeleteEntitiesVideoPage);
+        }
     }
 }

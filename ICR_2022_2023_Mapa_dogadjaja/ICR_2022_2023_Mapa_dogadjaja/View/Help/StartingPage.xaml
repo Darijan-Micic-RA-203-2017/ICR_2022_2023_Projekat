@@ -30,5 +30,10 @@
                 Funkcionalnost 3: Unos novih entiteta
             </Hyperlink>
         </TextBlock>
+        <TextBlock TextWrapping="Wrap" FontSize="16" HorizontalAlignment="Center" Margin="0 0 0 15">
+            <Hyperlink x:Name="Edit_and_delete_entities_video_page_link" Click="GoToEditAndDeleteEntitiesVideoPage">
+                Funkcionalnost 4: Izmena i brisanje entiteta
+            </Hyperlink>
+        </TextBlock>
     </StackPanel>
 </Page>

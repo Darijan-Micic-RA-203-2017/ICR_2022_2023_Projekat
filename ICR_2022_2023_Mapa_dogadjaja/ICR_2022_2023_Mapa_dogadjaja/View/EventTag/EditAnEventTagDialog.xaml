@@ -108,7 +108,7 @@
                 </TextBox.Text>
             </TextBox>
         </DockPanel>
-        <Button Grid.Row="2" Grid.Column="0" x:Name="Save_button" Height="30" Width="100" IsEnabled="False" 
+        <Button Grid.Row="2" Grid.Column="0" x:Name="Save_button" Height="30" Width="100" 
                 Click="SaveEventTag">Sačuvaj</Button>
         <Button Grid.Row="2" Grid.Column="1" x:Name="Cancel_button" Height="30" Width="100" IsCancel="True" 
                 Click="CloseDialog">Otkaži</Button>

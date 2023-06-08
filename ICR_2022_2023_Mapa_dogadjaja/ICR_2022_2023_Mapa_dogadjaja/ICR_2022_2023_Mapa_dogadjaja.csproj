@@ -127,6 +127,9 @@
     <Compile Include="View\Help\CreateNewEntitiesVideoPage.xaml.cs">
       <DependentUpon>CreateNewEntitiesVideoPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Help\EditAndDeleteEntitiesVideoPage.xaml.cs">
+      <DependentUpon>EditAndDeleteEntitiesVideoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Help\FilterTableOfEventsVideoPage.xaml.cs">
       <DependentUpon>FilterTableOfEventsVideoPage.xaml</DependentUpon>
     </Compile>
@@ -211,6 +214,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Help\CreateNewEntitiesVideoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Help\EditAndDeleteEntitiesVideoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -353,6 +360,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Videos\Filtracija_tabele_dogadjaja_video.mkv" />
+    <Content Include="Videos\Izmena_i_brisanje_entiteta_video.mkv" />
     <Content Include="Videos\Pretraga_dogadjaja_video.mkv" />
     <Content Include="Videos\Unos_novih_entiteta_video.mkv" />
   </ItemGroup>
