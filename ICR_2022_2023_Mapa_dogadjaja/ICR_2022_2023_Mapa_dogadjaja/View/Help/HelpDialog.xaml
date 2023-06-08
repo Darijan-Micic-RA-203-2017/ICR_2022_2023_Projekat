@@ -1,0 +1,13 @@
+﻿<Window x:Class="ICR_2022_2023_Mapa_dogadjaja.View.Help.HelpDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View.Help"
+        mc:Ignorable="d"
+        Title="Pomoć" Height="600" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        <!-- Screen resolution:      Height="768" Width="1366" -->
+        <!-- Main window resolution: Height="680" Width="1240" -->
+    <!-- REFERENCE: https://learn.microsoft.com/en-us/dotnet/desktop/wpf/app-development/navigation-overview?view=netframeworkdesktop-4.8 -->
+    <Frame Source="StartingPage.xaml"></Frame>
+</Window>

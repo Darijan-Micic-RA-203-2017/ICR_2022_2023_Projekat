@@ -4,6 +4,7 @@ using ICR_2022_2023_Mapa_dogadjaja.View.Country;
 using ICR_2022_2023_Mapa_dogadjaja.View.Event;
 using ICR_2022_2023_Mapa_dogadjaja.View.EventTag;
 using ICR_2022_2023_Mapa_dogadjaja.View.EventType;
+using ICR_2022_2023_Mapa_dogadjaja.View.Help;
 using ICR_2022_2023_Mapa_dogadjaja.View.PopulatedPlace;
 using ICR_2022_2023_Mapa_dogadjaja.ViewModel;
 using System;
@@ -223,7 +224,8 @@ namespace ICR_2022_2023_Mapa_dogadjaja
 
         private void OpenHelpDialog(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Dijalog: Pomoć Alt + P");
+            HelpDialog helpDialog = new HelpDialog();
+            helpDialog.ShowDialog();
         }
 
         private void OpenDialogForSearchingEvents(object sender, RoutedEventArgs e)

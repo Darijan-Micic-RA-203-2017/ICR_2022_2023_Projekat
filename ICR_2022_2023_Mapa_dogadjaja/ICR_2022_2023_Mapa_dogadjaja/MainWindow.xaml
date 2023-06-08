@@ -22,6 +22,8 @@
                           Click="OpenDialogForEditingAnEvent"></MenuItem>
                 <MenuItem x:Name="Item_Delete_entity_of_submenu_Event" Header="Obriši entitet" Background="Black" Foreground="White" 
                           Click="OpenDialogForDeletingAnEntity"></MenuItem>
+                <MenuItem x:Name="Item_All_events_of_submenu_Event" Header="Svi događaji" Background="Black" Foreground="White" 
+                          Click="OpenDialogForAllEvents"></MenuItem>
                 <MenuItem x:Name="Item_All_event_tags_of_submenu_Event" Header="Sve etikete" Background="Black" Foreground="White" 
                           Click="OpenDialogForAllEventTags"></MenuItem>
                 <MenuItem x:Name="Item_All_event_types_of_submenu_Event" Header="Svi tipovi događaja" Background="Black" Foreground="White" 

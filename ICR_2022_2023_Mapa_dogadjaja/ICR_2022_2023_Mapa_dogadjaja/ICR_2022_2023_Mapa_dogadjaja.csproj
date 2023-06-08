@@ -124,6 +124,15 @@
     <Compile Include="View\EventType\CreateANewEventTypeDialog.xaml.cs">
       <DependentUpon>CreateANewEventTypeDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Help\HelpDialog.xaml.cs">
+      <DependentUpon>HelpDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Help\SearchEventsVideoPage.xaml.cs">
+      <DependentUpon>SearchEventsVideoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Help\StartingPage.xaml.cs">
+      <DependentUpon>StartingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PopulatedPlace\AllPopulatedPlacesDialog.xaml.cs">
       <DependentUpon>AllPopulatedPlacesDialog.xaml</DependentUpon>
     </Compile>
@@ -192,6 +201,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EventType\CreateANewEventTypeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Help\HelpDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Help\SearchEventsVideoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Help\StartingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -284,6 +305,15 @@
     <Content Include="Icons\AppIcons\Mapa_sveta.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Icons\AppIcons\Pauziraj_video_ikona.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icons\AppIcons\Pusti_video_ikona.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Icons\AppIcons\Zaustavi_video_ikona.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Icons\EventIcons\Aukcija_sportskih_dresova_Milosa_Nikolica_ikona.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -308,6 +338,7 @@
     <Content Include="Icons\EventTypeIcons\Muzicki_festival_ikona.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Videos\Pretraga_dogadjaja_video.mkv" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
@@ -317,5 +348,6 @@
       <Version>21.2.8</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
