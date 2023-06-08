@@ -5,11 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View.Help"
       mc:Ignorable="d"
-      d:DesignHeight="560" d:DesignWidth="1280"
+      d:DesignHeight="700" d:DesignWidth="1280"
       Title="Početna stranica">
       <!-- Screen resolution:      Height="768" Width="1366" -->
       <!-- Main window resolution: Height="680" Width="1240" -->
-      <!-- Help dialog resolution: Height="600" Width="1280" -->
+      <!-- Help dialog resolution: Height="720" Width="1280" -->
     <!-- REFERENCE: https://learn.microsoft.com/en-us/dotnet/desktop/wpf/app-development/navigation-overview?view=netframeworkdesktop-4.8 -->
     <StackPanel Orientation="Vertical" Margin="10 0 10 0">
         <TextBlock TextWrapping="Wrap" FontSize="20" HorizontalAlignment="Left" Margin="0 0 0 20">
@@ -20,9 +20,14 @@
                 Funkcionalnost 1: Pretraga događaja
             </Hyperlink>
         </TextBlock>
-        <TextBlock TextWrapping="Wrap" FontSize="16" HorizontalAlignment="Center">
+        <TextBlock TextWrapping="Wrap" FontSize="16" HorizontalAlignment="Center" Margin="0 0 0 15">
             <Hyperlink x:Name="Filter_table_of_events_video_page_link" Click="GoToFilterTableOfEventsVideoPage">
                 Funkcionalnost 2: Filtracija tabele događaja
+            </Hyperlink>
+        </TextBlock>
+        <TextBlock TextWrapping="Wrap" FontSize="16" HorizontalAlignment="Center" Margin="0 0 0 15">
+            <Hyperlink x:Name="Create_new_entities_video_page_link" Click="GoToCreateNewEntitiesVideoPage">
+                Funkcionalnost 3: Unos novih entiteta
             </Hyperlink>
         </TextBlock>
     </StackPanel>

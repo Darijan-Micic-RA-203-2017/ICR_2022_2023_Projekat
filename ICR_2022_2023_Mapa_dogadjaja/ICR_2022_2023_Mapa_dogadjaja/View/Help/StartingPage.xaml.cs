@@ -36,5 +36,11 @@ namespace ICR_2022_2023_Mapa_dogadjaja.View.Help
             FilterTableOfEventsVideoPage filterTableOfEventsVideoPage = new FilterTableOfEventsVideoPage();
             NavigationService.Navigate(filterTableOfEventsVideoPage);
         }
+
+        private void GoToCreateNewEntitiesVideoPage(object sender, RoutedEventArgs e)
+        {
+            CreateNewEntitiesVideoPage createNewEntititesVideoPage = new CreateNewEntitiesVideoPage();
+            NavigationService.Navigate(createNewEntititesVideoPage);
+        }
     }
 }

@@ -124,6 +124,9 @@
     <Compile Include="View\EventType\CreateANewEventTypeDialog.xaml.cs">
       <DependentUpon>CreateANewEventTypeDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Help\CreateNewEntitiesVideoPage.xaml.cs">
+      <DependentUpon>CreateNewEntitiesVideoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Help\FilterTableOfEventsVideoPage.xaml.cs">
       <DependentUpon>FilterTableOfEventsVideoPage.xaml</DependentUpon>
     </Compile>
@@ -204,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EventType\CreateANewEventTypeDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Help\CreateNewEntitiesVideoPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -347,6 +354,7 @@
     </Content>
     <Content Include="Videos\Filtracija_tabele_dogadjaja_video.mkv" />
     <Content Include="Videos\Pretraga_dogadjaja_video.mkv" />
+    <Content Include="Videos\Unos_novih_entiteta_video.mkv" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">

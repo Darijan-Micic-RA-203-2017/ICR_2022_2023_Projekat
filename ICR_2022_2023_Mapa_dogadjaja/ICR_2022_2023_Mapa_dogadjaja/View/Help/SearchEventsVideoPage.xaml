@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:ICR_2022_2023_Mapa_dogadjaja.View.Help"
       mc:Ignorable="d"
-      d:DesignHeight="560" d:DesignWidth="1280"
+      d:DesignHeight="720" d:DesignWidth="1280"
       Title="Pretraga događaja">
       <!-- Screen resolution:      Height="768" Width="1366" -->
       <!-- Main window resolution: Height="680" Width="1240" -->
@@ -23,7 +23,7 @@
         </TextBlock>
         <!-- REFERENCE: https://wpf-tutorial.com/audio-video/how-to-creating-a-complete-audio-video-player/ -->
         <MediaElement x:Name="Video_player" Source="../../Videos/Pretraga_dogadjaja_video.mkv" LoadedBehavior="Manual" 
-                      HorizontalAlignment="Center" Height="360" Width="1240"></MediaElement>
+                      HorizontalAlignment="Center" Height="420" Width="1240"></MediaElement>
         <ToolBar Height="32">
             <Button Command="MediaCommands.Play">
                 <Image Source="/ICR_2022_2023_Mapa_dogadjaja;component/Icons/AppIcons/Pusti_video_ikona.png" />
