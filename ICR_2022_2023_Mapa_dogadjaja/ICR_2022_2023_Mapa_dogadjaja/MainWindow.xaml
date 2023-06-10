@@ -52,20 +52,15 @@
                       VerticalScrollBarVisibility="Visible" HorizontalContentAlignment="Left" VerticalContentAlignment="Stretch" 
                       AutoGenerateColumns="False" SizeChanged="Table_of_events_SizeChanged" RowHeight="86">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Oznaka" Binding="{Binding Id}" MinWidth="8"></DataGridTextColumn>
                         <!-- REFERENCE: https://girishzalke.com/2017/01/12/display-images-in-wpf-data-grid/ -->
-                        <DataGridTemplateColumn Header="Ikona" MinWidth="8">
+                        <DataGridTemplateColumn Header="Ikona" MinWidth="35">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Image Source="{Binding Icon}" Stretch="Uniform"></Image>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" MinWidth="39"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Tip" Binding="{Binding Type.Name}" MinWidth="18"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Datum" Binding="{Binding DateOfTheEvent, Converter={cvt:DateTimeToFormattedStringConverter}}" MinWidth="7"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Grad" Binding="{Binding PopulatedPlace.Name}" MinWidth="10"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Država" Binding="{Binding Country.Name}" MinWidth="10"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Naziv" Binding="{Binding Name}" MinWidth="65"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </DockPanel>
